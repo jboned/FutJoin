@@ -1,12 +1,15 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-import {DemoMaterialModule } from '../material-module';
-import {MatNativeDateModule} from '@angular/material';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {platformBrowserDynamic} from '@angular/platform-browser-dynamic';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { NgModule } from '@angular/core';
 
+import {MaterialModule } from './material-module';
+
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { FlexLayoutModule } from '@angular/flex-layout';
+import {MatFormFieldModule} from '@angular/material/form-field';
 import { AppComponent } from './app.component';
+
+
 
 @NgModule({
   declarations: [
@@ -16,9 +19,10 @@ import { AppComponent } from './app.component';
     BrowserModule,
     BrowserAnimationsModule,
     FormsModule,
-    DemoMaterialModule,
-    MatNativeDateModule,
+    MaterialModule,
     ReactiveFormsModule,
+    FlexLayoutModule,
+    MatFormFieldModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

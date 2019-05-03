@@ -1,9 +1,15 @@
 
 #logo{
-  position:relative;
-  left:30%;
-  right:50%;
-  top:50%;
-  bottom:80%;
-  width: 30em;
+  width: 25em;
+}
+
+.login{
+  height:230px;
+  width:400px;
+  text-align: center;
+  background-color:	#F3F5F4;
+}
+
+.example-full-width {
+  width: 100%;
 }
