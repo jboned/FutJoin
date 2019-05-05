@@ -7,39 +7,34 @@
 </head>
 <body>
     <div fxLayout="column" fxLayoutAlign="center center">
-        <div  fxFlexAlign="center" >
+        <div  fxFlexAlign="center">
             <img src="assets/img/Logo.png" class="puff-in-center" id="logo"/>
         </div>
-        
+
         <mat-card class ="login">
             <mat-card-title>Login</mat-card-title>
             <mat-card-content>
-                <form #loginForm="ngForm">
+                <form #loginForm="ngForm" (ngSubmit)="onSubmit()" >
                     <p>
                         <mat-form-field class="example-full-width">
-                            <input style="width:300px;" type="text" matInput placeholder="Email" name="email" #email ="ngModel" [(ngModel)]="user.email" 
-                                   [formControl]="emailFormControl" [errorStateMatcher]="matcher">
-                            <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
-                                    Por favor, introduce un email valido.
-                            </mat-error>
-                            <mat-error *ngIf="emailFormControl.hasError('required')">
-                                    Email is <strong>required</strong>
-                            </mat-error>
+                            <input matInput type="email"  placeholder="Email" #email="ngModel"
+                             [(ngModel)]="user.email" name="email" required>
                         </mat-form-field>
-                    </p>    
+                    </p>
                     <p>
                         <mat-form-field class="example-full-width">
-                        <input type="password" matInput placeholder="Password">
+                        <input matInput type="password" placeholder="Password" name="password" #password="ngModel"
+                            [(ngModel)]="user.password" name="password" required/>
                         </mat-form-field>
                     </p>
                     <div fxLayout="row" fxLayoutAlign="space-between">
                         <button mat-raised-button color="accent" type="submit" style="position:left">Iniciar sesion</button>
-                        <button mat-button color="warn">¿No tienes cuenta? Regístrate</button>
+                        <button mat-button color="warn" type="submit">¿No tienes cuenta? Regístrate</button>
                     </div>
                 </form>
             </mat-card-content>
         </mat-card>
-   </div>         
+   </div>
 
 </body>
 </html>
