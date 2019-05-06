@@ -7,6 +7,9 @@ import {MaterialModule } from './material-module';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import {MatFormFieldModule} from '@angular/material/form-field';
+
+import {HttpClientModule} from '@angular/common/http';
+
 import { AppComponent } from './app.component';
 
 
@@ -23,6 +26,8 @@ import { AppComponent } from './app.component';
     ReactiveFormsModule,
     FlexLayoutModule,
     MatFormFieldModule,
+    HttpClientModule
+
   ],
   providers: [],
   bootstrap: [AppComponent]

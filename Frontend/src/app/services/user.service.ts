@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient,HttpResponse,HttpHeaders} from '@angular/common/http';
-import 'rxjs/add/operator/map';
+import {map} from 'rxjs/operators'
+
 import {Observable} from 'rxjs/Observable';
 import { GLOBAL } from './global';
 
@@ -10,4 +11,15 @@ export class UserService{
   constructor(private _http: HttpClient) {
     this.url = GLOBAL.url;
   }
+
+  public signup(user_to_login, gethash = null):Observable<any>{
+      if(gethash != null){
+        user_to_login.gethash = gethash;
+      }
+      let json = JSON.stringify(user_to_login);
+      let params = json;
+
+      let headers = new HttpHeaders().set('Content-Type','application/json');
+      return this._http.post(this.url+'login', params, {headers: headers});
+}
 }

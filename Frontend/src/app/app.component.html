@@ -6,30 +6,43 @@
 	<title>Futhoun</title>
 </head>
 <body>
+
     <div fxLayout="column" fxLayoutAlign="center center">
         <div  fxFlexAlign="center">
             <img src="assets/img/Logo.png" class="puff-in-center" id="logo"/>
         </div>
 
         <mat-card class ="login">
-            <mat-card-title>Login</mat-card-title>
+            <mat-card-title class="titulo">Login</mat-card-title>
             <mat-card-content>
-                <form #loginForm="ngForm" (ngSubmit)="onSubmit()" >
-                    <p>
-                        <mat-form-field class="example-full-width">
-                            <input matInput type="email"  placeholder="Email" #email="ngModel"
-                             [(ngModel)]="user.email" name="email" required>
+                <form name="form" #loginForm="ngForm" (ngSubmit)="loginForm.form.valid && onSubmit()" >
+
+                    <div class="form-group">
+
+                        <mat-form-field [hideRequiredMarker]=true class="example-full-width">
+                              <input type="text" class="form-control" name="email" matInput placeholder="Email"
+                              [(ngModel)]="user.email" #email="ngModel" [ngClass]="{ 'is-invalid': loginForm.submitted && email.invalid }" required email />
+                              <mat-error *ngIf="loginForm.submitted && email.invalid">
+                                  <mat-error *ngIf="email.errors['required']">Email is required</mat-error>
+                                  <mat-error *ngIf="email.errors['email']">Email must be a valid email address</mat-error>
+                              </mat-error>
                         </mat-form-field>
-                    </p>
-                    <p>
-                        <mat-form-field class="example-full-width">
-                        <input matInput type="password" placeholder="Password" name="password" #password="ngModel"
-                            [(ngModel)]="user.password" name="password" required/>
+
+                    </div>
+                    <br/>
+                    <div class="form-group">
+                        <mat-form-field class="example-full-width" [hideRequiredMarker]=true>
+                          <input type="password" name="password" class="form-control" matInput placeholder="Password"
+                            [(ngModel)]="user.password" #password="ngModel" [ngClass]="{ 'is-invalid': loginForm.submitted && password.invalid }" required />
+                          <mat-error *ngIf="loginForm.submitted && password.invalid">
+                              <mat-error *ngIf="password.errors['required']">Password is required</mat-error>
+                          </mat-error>
                         </mat-form-field>
-                    </p>
+                    </div>
+                  <br/><br/>
                     <div fxLayout="row" fxLayoutAlign="space-between">
                         <button mat-raised-button color="accent" type="submit" style="position:left">Iniciar sesion</button>
-                        <button mat-button color="warn" type="submit">¿No tienes cuenta? Regístrate</button>
+                        <a mat-button color="warn" href="https://stackoverflow.com">¿No tienes cuenta? Regístrate</a>
                     </div>
                 </form>
             </mat-card-content>

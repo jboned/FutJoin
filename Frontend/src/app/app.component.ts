@@ -1,24 +1,49 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {User} from './models/user';
+import {UserService} from './services/user.service'
 
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.css'],
+  providers: [UserService]
 })
-export class AppComponent {
-  title = 'FutJoin';
+
+export class AppComponent implements OnInit{
+  public title = 'FutJoin';
   public user: User;
   public identity;
   public token;
+  public errorMessage;
 
 
-  constructor() {
+  constructor(
+    private _userService:UserService
+  ){
     this.user = new User('', '', '', '', '', '', '', '', 0, '', '', 0, 0);
   }
 
-  public onSubmit() {
-    console.log(this.user);
+
+  ngOnInit(){
+
   }
+
+
+
+  public onSubmit() {
+
+    this._userService.signup(this.user).subscribe(
+        response => {
+          console.log(response);
+        },
+        error =>{
+          var body = JSON.parse(error._body);
+          this.errorMessage = body.message;
+
+        }
+    );
+  }
+
+
 }
