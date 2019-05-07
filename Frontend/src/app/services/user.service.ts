@@ -20,6 +20,6 @@ export class UserService{
       let params = json;
 
       let headers = new HttpHeaders().set('Content-Type','application/json');
-      return this._http.post(this.url+'login', params, {headers: headers});
+      return this._http.post(this.url+'login', params, {headers: headers}).pipe(map(res => res));
 }
 }

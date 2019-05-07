@@ -3,11 +3,16 @@
 
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Futhoun</title>
+	<title>FutJoin</title>
 </head>
 <body>
 
-    <div fxLayout="column" fxLayoutAlign="center center">
+  <div *ngIf="identity" class="logueado" [@fadeInOut] >
+
+  </div>
+
+    <div fxLayout="column" fxLayoutAlign="center center" *ngIf="!identity" [@fadeInOut]>
+        <img class=bg src="../assets/img/syOPVz8.jpg">
         <div  fxFlexAlign="center">
             <img src="assets/img/Logo.png" class="puff-in-center" id="logo"/>
         </div>
@@ -42,12 +47,13 @@
                   <br/><br/>
                     <div fxLayout="row" fxLayoutAlign="space-between">
                         <button mat-raised-button color="accent" type="submit" style="position:left">Iniciar sesion</button>
-                        <a mat-button color="warn" href="https://stackoverflow.com">¿No tienes cuenta? Regístrate</a>
+                        <a mat-button color="primary" routerLink=".">¿No tienes cuenta? Regístrate</a>
                     </div>
+                    <a class="olvidar" mat-button routerLink=".">¿Olvidaste tu contraseña?</a>
+
                 </form>
             </mat-card-content>
         </mat-card>
    </div>
-
 </body>
 </html>

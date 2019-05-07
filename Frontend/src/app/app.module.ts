@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
+import { ToastrModule } from 'ngx-toastr';
 
 import {MaterialModule } from './material-module';
 
@@ -26,7 +27,8 @@ import { AppComponent } from './app.component';
     ReactiveFormsModule,
     FlexLayoutModule,
     MatFormFieldModule,
-    HttpClientModule
+    HttpClientModule,
+    ToastrModule.forRoot()
 
   ],
   providers: [],

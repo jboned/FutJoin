@@ -1,16 +1,19 @@
 /* You can add global styles to this file, and also import other style files */
 @import './futjoinTheme.scss';
 /*@import "~@angular/material/prebuilt-themes/indigo-pink.css";*/
+@import "../node_modules/ngx-toastr/toastr.css";
 
-
-
-html {
-  background: url(assets/img/syOPVz8.jpg) no-repeat center center fixed;
+/*
+html{
+  background: url(./assets/img/syOPVz8.jpg) no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
 }
+*/
+
+
 .puff-in-center {
 	-webkit-animation: puff-in-center 0.7s cubic-bezier(0.470, 0.000, 0.745, 0.715) ;
 	        animation: puff-in-center 0.7s cubic-bezier(0.470, 0.000, 0.745, 0.715) ;
@@ -65,7 +68,7 @@ html {
         font-weight: 400;
         src: url(https://fonts.gstatic.com/s/materialicons/v47/flUhRq6tzZclQEJ-Vdg-IuiaDsNcIhQ8tQ.woff2) format('woff2');
 }
-      
+
 .material-icons {
         font-family: 'Material Icons';
         font-weight: normal;
