@@ -12,13 +12,15 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {HttpClientModule} from '@angular/common/http';
 
 import { AppComponent } from './app.component';
+import {MustMatchDirective} from './_helpers/must-match.directive'
 
 //import {routing, appRoutingProviders} from './app.routing';
 
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    MustMatchDirective
   ],
   imports: [
     BrowserModule,

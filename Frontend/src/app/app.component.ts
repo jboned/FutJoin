@@ -41,8 +41,8 @@ import { trigger, state, style, animate, transition } from '@angular/animations'
         width:'700px',
         backgroundColor:'#F3F5F4'
       })),
-      transition('login=>register', animate('1000ms')),
-      transition('register=>login', animate('1000ms'))
+      transition('login=>register', animate('500ms')),
+      transition('register=>login', animate('500ms'))
     ]),
 
 
@@ -52,12 +52,16 @@ import { trigger, state, style, animate, transition } from '@angular/animations'
 export class AppComponent implements OnInit{
   public title = 'FutJoin';
 
+  //Login.
   public user: User;
   public identity;
   public token;
 
+  //Registro.
   public userRegister: User;
+  isLinear = true;
 
+  //Otros.
   public errorMessage;
   public estado;
 
@@ -67,8 +71,8 @@ export class AppComponent implements OnInit{
     private _userService:UserService,
     private toastr: ToastrService
   ){
-    this.user = new User('', '', '', '', '', '', '', '', 0, '', '', 0, 0);
-    this.userRegister = new User('', '', '', '', '', '', '', '', 0, '', '', 0, 0);
+    this.user = new User('', '', '', '', '', '', '', '', '', 0, 0 );
+    this.userRegister = new User('', '', '', '', '', '', '', '', '', 0, 0 );
     this.estado = "login";
   }
 
@@ -79,7 +83,6 @@ export class AppComponent implements OnInit{
   }
 
   showToaster(){
-
     this.toastr.error(this.errorMessage,'Error',{
       progressBar : true,
       closeButton: true,
@@ -110,7 +113,7 @@ export class AppComponent implements OnInit{
                     this.showToaster();
                   }else{
                     localStorage.setItem('token',token);
-                    this.user = new User('', '', '', '', '', '', '', '', 0, '', '', 0, 0);
+                    this.user = new User('', '', '', '', '', '', '', '', '', 0, 0 );
                   }
               },
               (error: HttpErrorResponse) =>{

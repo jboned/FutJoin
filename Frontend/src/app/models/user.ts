@@ -3,15 +3,18 @@ export class User{
         public _id: String,
         public email: String,
         public password: String,
-        public alias: String,
-        public telefono: String,
-        public direccion: String,
-        public image: String,
+        public confirmPassword: String,
         public nombre: String,
-        public tipo: Number,
+
+        //No obligatorios
+        public telefono: String,
+        public image: String,
+
+        //Datos futbolísticos
         public piebueno: String,
         public posicion: String,
         public altura: Number,
         public partidosJugados:Number
     ){}
+
 }
