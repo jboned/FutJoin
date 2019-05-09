@@ -8,7 +8,9 @@
 <body>
 
   <div *ngIf="identity" class="logueado" [@fadeInOut] >
-
+        <img class=bg src="../assets/img/gris.png">
+        <button (click) = "logout()"></button>
+    <h1>LOGUEADO</h1>
   </div>
 
     <div fxLayout="column" fxLayoutAlign="center center" *ngIf="!identity" [@fadeInOut]>
@@ -16,14 +18,15 @@
         <div  fxFlexAlign="center">
             <img src="assets/img/Logo.png" class="puff-in-center" id="logo"/>
         </div>
+        <mat-card  [@changeDivSize] = estado>
 
-        <mat-card class ="login">
-            <mat-card-title class="titulo">Login</mat-card-title>
-            <mat-card-content>
+            <mat-card-title *ngIf="estado=='login'" class="titulo">Login</mat-card-title>
+            <mat-card-title *ngIf="estado=='register'" class="titulo">Registro de usuario</mat-card-title>
+            
+
+            <mat-card-content *ngIf="estado=='login'">
                 <form name="form" #loginForm="ngForm" (ngSubmit)="loginForm.form.valid && onSubmit()" >
-
                     <div class="form-group">
-
                         <mat-form-field [hideRequiredMarker]=true class="example-full-width">
                               <input type="text" class="form-control" name="email" matInput placeholder="Email"
                               [(ngModel)]="user.email" #email="ngModel" [ngClass]="{ 'is-invalid': loginForm.submitted && email.invalid }" required email />
@@ -32,12 +35,11 @@
                                   <mat-error *ngIf="email.errors['email']">Email must be a valid email address</mat-error>
                               </mat-error>
                         </mat-form-field>
-
                     </div>
                     <br/>
                     <div class="form-group">
                         <mat-form-field class="example-full-width" [hideRequiredMarker]=true>
-                          <input type="password" name="password" class="form-control" matInput placeholder="Password"
+                          <input type="password" name="password" class="form-control" matInput placeholder="Contraseña"
                             [(ngModel)]="user.password" #password="ngModel" [ngClass]="{ 'is-invalid': loginForm.submitted && password.invalid }" required />
                           <mat-error *ngIf="loginForm.submitted && password.invalid">
                               <mat-error *ngIf="password.errors['required']">Password is required</mat-error>
@@ -47,13 +49,76 @@
                   <br/><br/>
                     <div fxLayout="row" fxLayoutAlign="space-between">
                         <button mat-raised-button color="accent" type="submit" style="position:left">Iniciar sesion</button>
-                        <a mat-button color="primary" routerLink=".">¿No tienes cuenta? Regístrate</a>
+                        <a mat-button color="primary" (click) = "estado='register'">¿No tienes cuenta? Regístrate</a>
                     </div>
-                    <a class="olvidar" mat-button routerLink=".">¿Olvidaste tu contraseña?</a>
-
+                    <a class="olvidar" mat-button>¿Olvidaste tu contraseña?</a>
                 </form>
             </mat-card-content>
+
+
+            
+            <mat-card-content *ngIf="estado=='register'">
+                <form name="formOblReg" #registerObligatoryForm="ngForm" (ngSubmit)="registerObligatoryForm.formOblReg.valid && onRegisterSubmit()">
+                    <mat-horizontal-stepper #stepper [linear]=!isLinear>
+            
+                        <mat-step>  
+                                   
+                            <ng-template matStepLabel>Introduce Datos de la cuenta</ng-template>
+                            
+                            <mat-form-field>
+                                    <input type="text" name="email" matInput placeholder="Email"
+                                        [(ngModel)]="userRegister.email" #email="ngModel" required email />
+                                    <mat-error *ngIf="email.invalid">
+                                        <mat-error *ngIf="email.errors['required']">Email is required</mat-error>
+                                        <mat-error *ngIf="email.errors['email']">Email must be a valid email address</mat-error>
+                                    </mat-error>
+                            </mat-form-field>
+                            
+                            <mat-form-field>
+                                    <input type="password" name="password" matInput placeholder="Contraseña"
+                                            [(ngModel)]="userRegister.password" #password="ngModel" required pattern="^(?=.*[0-9]+.*)(?=.*[a-zA-Z]+.*)[0-9a-zA-Z]{6,}$"/>
+                                    <mat-error *ngIf="password.invalid">
+                                        <mat-error *ngIf="password.errors['required']">Password is required</mat-error>
+                                        <mat-error *ngIf="password.errors['pattern']">Password must contain at least one number, and be longer than six charaters</mat-error>
+                                    </mat-error>
+                            </mat-form-field>
+
+                            <mat-form-field>
+                                    <input type="password" name="password2" matInput placeholder="Repita la Contraseña"
+                                           [(ngModel)]="userRegister.password2" #password2="ngModel"required/>
+                                <mat-error *ngIf="password2.invalid" >
+                                    <mat-error *ngIf="password2.errors['required']">Confirm your password</mat-error>
+                                    <mat-error *ngIf="password2.value == password.value">Confirm your password</mat-error>
+                                </mat-error>
+                            </mat-form-field>
+                        
+                            
+                            <div>
+                                <button  ng-Model="next" [disabled]="email.invalid || password.invalid || password2.invalid" mat-raised-button color="primary" matStepperNext>Next</button>
+                            </div>
+
+                        </mat-step>
+                    
+                    
+                        <mat-step>
+                            <ng-template matStepLabel>Fill out your address</ng-template>
+                            <mat-form-field>
+                                <input matInput placeholder="Address"required>
+                            </mat-form-field>
+                            <div>
+                                <button mat-button matStepperPrevious>Back</button>
+                                <button mat-button matStepperNext>Next</button>
+                            </div>
+                        </mat-step>
+    
+                    </mat-horizontal-stepper>
+                </form>
+            </mat-card-content>
+            
+
         </mat-card>
+        
    </div>
+   
 </body>
 </html>

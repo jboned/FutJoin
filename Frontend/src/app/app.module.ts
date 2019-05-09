@@ -13,6 +13,7 @@ import {HttpClientModule} from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 
+//import {routing, appRoutingProviders} from './app.routing';
 
 
 @NgModule({
@@ -28,10 +29,11 @@ import { AppComponent } from './app.component';
     FlexLayoutModule,
     MatFormFieldModule,
     HttpClientModule,
-    ToastrModule.forRoot()
+    ToastrModule.forRoot(),
+   // routing
 
   ],
-  providers: [],
+  providers: [],//appRoutingProviders],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

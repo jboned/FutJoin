@@ -23,28 +23,44 @@ import { trigger, state, style, animate, transition } from '@angular/animations'
       state('flyIn', style({ transform: 'translateX(0)' })),
       transition(':enter', [
         style({ transform: 'translateX(-100%)' }),
-        animate('0.5s 300ms ease-in')
+       // animate('0.5s 300ms ease-in')
+       animate('0.3s ease-in')
       ]),
       transition(':leave', [
         animate('0.3s ease-out', style({ transform: 'translateX(100%)' }))
       ])
     ]),
-    trigger('shrinkOut', [
-      state('in', style({ height: '*' })),
-      transition('* => void', [
-        style({ height: '*' }),
-        animate(250, style({ height: 0 }))
-      ])
-    ])
+    trigger('changeDivSize', [
+      state('login', style({
+        height:'280px',
+        width:'400px',
+        backgroundColor:	'#F3F5F4'
+      })),
+      state('register', style({
+        height:'400px',
+        width:'700px',
+        backgroundColor:'#F3F5F4'
+      })),
+      transition('login=>register', animate('1000ms')),
+      transition('register=>login', animate('1000ms'))
+    ]),
+
+
   ]
 })
 
 export class AppComponent implements OnInit{
   public title = 'FutJoin';
+
   public user: User;
   public identity;
   public token;
+
+  public userRegister: User;
+
   public errorMessage;
+  public estado;
+
 
 
   constructor(
@@ -52,11 +68,14 @@ export class AppComponent implements OnInit{
     private toastr: ToastrService
   ){
     this.user = new User('', '', '', '', '', '', '', '', 0, '', '', 0, 0);
+    this.userRegister = new User('', '', '', '', '', '', '', '', 0, '', '', 0, 0);
+    this.estado = "login";
   }
 
 
   ngOnInit(){
-
+    this.identity = this._userService.getIdentity();
+    this.token = this._userService.getToken();
   }
 
   showToaster(){
@@ -80,7 +99,7 @@ export class AppComponent implements OnInit{
             this.errorMessage = "El usuario no está correctamente identificado";
           }else{
             //Guardo la sesion
-
+            localStorage.setItem('identity',JSON.stringify(identity));
             //Conseguir token
             this._userService.signup(this.user,'true').subscribe(
               response => {
@@ -90,8 +109,8 @@ export class AppComponent implements OnInit{
                     this.errorMessage = "El token no se ha generado correctamente";
                     this.showToaster();
                   }else{
-                    console.log(token);
-                    console.log(identity);
+                    localStorage.setItem('token',token);
+                    this.user = new User('', '', '', '', '', '', '', '', 0, '', '', 0, 0);
                   }
               },
               (error: HttpErrorResponse) =>{
@@ -107,6 +126,18 @@ export class AppComponent implements OnInit{
           this.showToaster();
         }
     );
+  }
+
+  public logout(){
+    localStorage.removeItem('identity');
+    localStorage.removeItem('token');
+    localStorage.clear();
+    this.identity = null;
+    this.token = null;
+  }
+
+  public onRegisterSubmit(){
+
   }
 
 

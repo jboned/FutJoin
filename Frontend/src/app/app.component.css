@@ -2,12 +2,19 @@
 #logo{
   width: 20em;
 }
-
+/*
 .login{
   height:280px;
   width:400px;
   background-color:	#F3F5F4;
 }
+
+.register{
+  height:400px;
+  width:400px;
+  background-color:	#F3F5F4;
+}
+*/
 .titulo{
   text-align: center;
 }
