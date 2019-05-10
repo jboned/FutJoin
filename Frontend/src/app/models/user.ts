@@ -9,7 +9,8 @@ export class User{
         //No obligatorios
         public telefono: String,
         public image: String,
-
+        public tipo: Number,
+        
         //Datos futbolísticos
         public piebueno: String,
         public posicion: String,

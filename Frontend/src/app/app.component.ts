@@ -62,7 +62,7 @@ export class AppComponent implements OnInit{
   isLinear = true;
 
   //Otros.
-  public errorMessage;
+  public message;
   public estado;
 
 
@@ -71,8 +71,8 @@ export class AppComponent implements OnInit{
     private _userService:UserService,
     private toastr: ToastrService
   ){
-    this.user = new User('', '', '', '', '', '', '', '', '', 0, 0 );
-    this.userRegister = new User('', '', '', '', '', '', '', '', '', 0, 0 );
+    this.user = new User('', '', '', '', '', '', '',0, '', '', 0, 0 );
+    this.userRegister = new User('', '', '', '', '', '', '',0, '', '', 0, 0 );
     this.estado = "login";
   }
 
@@ -83,10 +83,19 @@ export class AppComponent implements OnInit{
   }
 
   showToaster(){
-    this.toastr.error(this.errorMessage,'Error',{
+    this.toastr.error(this.message,'Error',{
       progressBar : true,
       closeButton: true,
       positionClass: 'toast-top-center',
+      timeOut: 3000
+    });
+  }
+  showToasterBueno(){
+    this.toastr.success(this.message,'Éxito',{
+      progressBar : true,
+      closeButton: true,
+      positionClass: 'toast-top-center',
+      timeOut: 2500
     });
   }
 
@@ -96,28 +105,32 @@ export class AppComponent implements OnInit{
 
     this._userService.signup(this.user).subscribe(
         response => {
-          let identity = response.user;
+
+          let identity = response.user;  
           this.identity = identity;
+
           if(!this.identity._id){
-            this.errorMessage = "El usuario no está correctamente identificado";
+            this.message = "El usuario no está correctamente identificado";
           }else{
             //Guardo la sesion
             localStorage.setItem('identity',JSON.stringify(identity));
+            this.message="Login correcto.";
+            this.showToasterBueno()
             //Conseguir token
             this._userService.signup(this.user,'true').subscribe(
               response => {
                   let token = response.token;
                   this.token = token;
                   if(this.token.length<=0){
-                    this.errorMessage = "El token no se ha generado correctamente";
+                    this.message = "El token no se ha generado correctamente";
                     this.showToaster();
                   }else{
                     localStorage.setItem('token',token);
-                    this.user = new User('', '', '', '', '', '', '', '', '', 0, 0 );
+                    this.user = new User('', '', '', '', '', '', '',0, '', '', 0, 0 );
                   }
               },
               (error: HttpErrorResponse) =>{
-                this.errorMessage = error.error.message;
+                this.message = error.error.message;
                 this.showToaster();
               }
             );
@@ -125,8 +138,9 @@ export class AppComponent implements OnInit{
         },
         (error: HttpErrorResponse) =>{
 
-          this.errorMessage = error.error.message;
+          this.message = error.error.message;
           this.showToaster();
+          
         }
     );
   }
@@ -140,7 +154,25 @@ export class AppComponent implements OnInit{
   }
 
   public onRegisterSubmit(){
+    this._userService.register(this.userRegister).subscribe(
+      response => {
+       let user = response.user;
+       this.userRegister = user;
 
+        if(!user._id){
+          this.message = "Error al registrarse";
+          this.showToaster();
+        }else{
+          this.message="El registro se ha realizado correctamente."
+          this.showToasterBueno();   
+          this.userRegister = new User('', '', '', '', '', '', '',0, '', '', 0, 0 );
+          this.estado = "login";  
+        }
+      },
+      (error:HttpErrorResponse)=>{
+        this.message = error.error.message;
+        this.showToaster();
+      });
   }
 
 

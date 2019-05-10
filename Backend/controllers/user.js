@@ -11,16 +11,12 @@ function saveUser(req, res){
     var params = req.body;
 
     user.email = params.email;
-    user.alias = params.alias;
-    user.nombre = params.nombre;
-    user.telefono = 'null';
-    user.direccion = 'null';
     user.image = 'null';
 
-    user.tipo = 0;
-    user.piebueno = 'null';
-    user.posicion = 'null';
-    user.altura = 0;
+    user.piebueno = params.piebueno;
+    user.posicion = params.posicion;
+    user.altura = params.altura;
+    user.tipo = 1; //Siempre que se registre un usuario, es tipo usuario normal
     user.partidosJugados=0;
     bcrypt.hash(params.password, null, null, function(err, hash){
         user.password = hash;

@@ -6,12 +6,12 @@ var schema = mongoose.Schema;
 var UserSchema = schema({
     email: String,
     password: String,
-    alias: String,
-    telefono: String,
-    direccion: String,
-    image: String,
     nombre: String,
     tipo: Number,
+
+    telefono: String,
+    image: String,
+    
     piebueno: String,
     posicion: String,
     altura: Number,

@@ -58,77 +58,110 @@
 
 
             <mat-card-content *ngIf="estado=='register'">
-                <form name="formOblReg" #registerObligatoryForm="ngForm" (ngSubmit)="registerObligatoryForm.form.valid && onRegisterSubmit()"  [mustMatch]="['password', 'confirmPassword']">
+                <form name="formOblReg" #registerObligatoryForm="ngForm" (ngSubmit)="registerObligatoryForm.form.valid && onRegisterSubmit()"  [mustMatch]="['password', 'confirmPassword']" (keydown.enter)="$event.preventDefault()">
                     <mat-horizontal-stepper #stepper [linear]="isLinear">
-
                         <mat-step [completed] = "!(email.invalid || password.invalid || confirmPassword.invalid)">
                             <ng-template matStepLabel>Introduce Datos de la cuenta.</ng-template>
-                            <div class="form-group">
-                              <mat-form-field>
-                                      <input type="text" name="email" matInput placeholder="Email" class="form-control"
-                                          [(ngModel)]="userRegister.email" #email="ngModel" required email />
-                                      <mat-error *ngIf="email.invalid && (email.dirty || email.touched)">
-                                          <mat-error *ngIf="email.errors['required']">El email es obligatorio.</mat-error>
-                                          <mat-error *ngIf="email.errors['email']">Por favor, introduce un email válido.</mat-error>
-                                      </mat-error>
-                              </mat-form-field>
+
+                            <div fxLayout="row" fxLayoutAlign="space-evenly">
+                                <div class="form-group">
+                                    <mat-form-field>
+                                        <input type="text" name="email" matInput placeholder="Email" class="form-control"
+                                            [(ngModel)]="userRegister.email" #email="ngModel" required email />
+                                        <mat-error *ngIf="email.invalid && (email.dirty || email.touched)">
+                                            <mat-error *ngIf="email.errors['required']">El email es obligatorio.</mat-error>
+                                            <mat-error *ngIf="email.errors['email']">Por favor, introduce un email válido.</mat-error>
+                                        </mat-error>
+                                    </mat-form-field>
+                                </div>
+
+                                <div class="form-group">
+                                    <mat-form-field>
+                                        <input type="password" name="password" matInput placeholder="Contraseña" class="form-control"
+                                                [(ngModel)]="userRegister.password" #password="ngModel" required pattern="^(?=.*[0-9]+.*)(?=.*[a-zA-Z]+.*)[0-9a-zA-Z]{6,}$"/>
+                                        <mat-error *ngIf="password.invalid && (password.dirty || password.touched)" >
+                                            <mat-error *ngIf="password.errors['required']">Introduzca la contraseña.</mat-error>
+                                            <mat-error *ngIf="password.errors['pattern']"> La contraseña debe contener por lo menos un numero y tener más de 8 carácteres. </mat-error>
+                                        </mat-error>
+                                    </mat-form-field>
+                                </div>
                             </div>
 
-                            <div class="form-group">
-                              <mat-form-field>
-                                      <input type="password" name="password" matInput placeholder="Contraseña" class="form-control"
-                                              [(ngModel)]="userRegister.password" #password="ngModel" required pattern="^(?=.*[0-9]+.*)(?=.*[a-zA-Z]+.*)[0-9a-zA-Z]{6,}$"/>
-                                      <mat-error *ngIf="password.invalid && (password.dirty || password.touched)" >
-                                          <mat-error *ngIf="password.errors['required']">Introduzca la contraseña.</mat-error>
-                                          <mat-error *ngIf="password.errors['pattern']"> La contraseña debe contener por lo menos un numero y tener más de 8 carácteres. </mat-error>
-                                      </mat-error>
-                              </mat-form-field>
-                          </div>
+                            <br/><br/>
 
-                          <div class="form-group">
-                            <mat-form-field>
-                                <input type="password" name="confirmPassword" matInput placeholder="Confirma la contraseña" class="form-control"
-                                              [(ngModel)]="userRegister.confirmPassword" #confirmPassword="ngModel" required>
-                                      <mat-error *ngIf="confirmPassword.invalid && (confirmPassword.dirty || confirmPassword.touched)" >
-                                          <mat-error *ngIf="confirmPassword.errors['required']">Introduzca la contraseña.</mat-error>
-                                          <mat-error *ngIf="confirmPassword.errors['mustMatch']">Las contraseñas no coinciden.</mat-error>
-                                      </mat-error>
-                            </mat-form-field>
-                          </div>
-
-                          <div class="form-group">
-                            <mat-form-field>
-                                <input type="text" name="nombre" matInput placeholder="Nombre Completo" class="form-control"
-                                              [(ngModel)]="userRegister.nombre" #nombre="ngModel" required>
-                                      <mat-error *ngIf="nombre.invalid && (nombre.dirty || nombre.touched)" >
-                                          <mat-error *ngIf="nombre.errors['required']">Introduzca su nombre completo.</mat-error>
-                                      </mat-error>
-                            </mat-form-field>
-                          </div>
-
-                          <br/>
-                            <div>
-                                <button  ng-Model="next" [disabled]="email.invalid || password.invalid || confirmPassword.invalid" mat-raised-button color="primary" matStepperNext>Next</button>
-                                <button mat-raised-button color="warn" (click) = "estado='login'">Back	<mat-icon>cancel</mat-icon></button>
-
-
+                            <div fxLayout="row" fxLayoutAlign="space-evenly">
+                         
+                                <div class="form-group">
+                                    <mat-form-field>
+                                        <input type="text" name="nombre" matInput placeholder="Nombre Completo" class="form-control"
+                                                    [(ngModel)]="userRegister.nombre" #nombre="ngModel" required>
+                                            <mat-error *ngIf="nombre.invalid && (nombre.dirty || nombre.touched)" >
+                                                <mat-error *ngIf="nombre.errors['required']">Introduzca su nombre completo.</mat-error>
+                                            </mat-error>
+                                    </mat-form-field>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <mat-form-field>
+                                        <input type="password" name="confirmPassword" matInput placeholder="Confirma la contraseña" class="form-control"
+                                                        [(ngModel)]="userRegister.confirmPassword" #confirmPassword="ngModel" required>
+                                                <mat-error *ngIf="confirmPassword.invalid && (confirmPassword.dirty || confirmPassword.touched)" >
+                                                    <mat-error *ngIf="confirmPassword.errors['required']">Introduzca la contraseña.</mat-error>
+                                                    <mat-error *ngIf="confirmPassword.errors['mustMatch']">Las contraseñas no coinciden.</mat-error>
+                                                </mat-error>
+                                    </mat-form-field>
+                                </div>
                             </div>
 
-
+                            <br/>
+                            <div fxLayout="row" fxLayoutAlign="space-evenly">
+                                <button type="button" mat-raised-button color="warn" (click) = "estado='login'">Back <mat-icon>cancel</mat-icon></button>
+                                <button  type="button" ng-Model="next" [disabled]="email.invalid || password.invalid || confirmPassword.invalid" 
+                                        mat-raised-button color="primary" matStepperNext>Next <mat-icon>arrow_forward</mat-icon></button>
+                            </div>
                         </mat-step>
 
 
                         <mat-step>
-                            <ng-template matStepLabel>Fill out your address</ng-template>
-                            <mat-form-field>
-                                <input matInput placeholder="Address"required>
-                            </mat-form-field>
-                            <div>
-                                <button mat-button matStepperPrevious>Back</button>
-                                <button mat-button matStepperNext>Next</button>
+                            <ng-template matStepLabel>Introduce los datos futbolísticos.</ng-template>
+                            <div fxLayout="row" fxLayoutAlign="space-evenly">
+                                <div class="form-group">
+                                    <mat-form-field>
+                                        <mat-label>Pie bueno</mat-label>
+                                        <mat-select class="form-control" [(ngModel)]="userRegister.piebueno" 
+                                                    placeholder="Seleccione su pierna buena" name="piebueno">
+                                            <mat-option value="Derecho">Derecho</mat-option>
+                                            <mat-option value="Izquierdo">Izquierdo</mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                </div>
+                                <div class="form-group">
+                                    <mat-form-field>
+                                        <mat-label>Posicion</mat-label>
+                                        <mat-select name="posicion" lass="form-control" [(ngModel)]="userRegister.posicion" #posicion="ngModel">
+                                            <mat-option value="Delantero">Delantero</mat-option>
+                                            <mat-option value="Centrocampista">Centrocampista</mat-option>
+                                            <mat-option value="Defensa">Defensa</mat-option>
+                                            <mat-option value="Portero">Portero</mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <div fxLayout="row" fxLayoutAlign="space-evenly">
+                                <div class="form-group">
+                                    <mat-form-field>
+                                        <input type="number" name="altura" matInput placeholder="Introduzca su altura en cm." class="form-control"
+                                        [(ngModel)]="userRegister.altura" #altura="ngModel" min="100" max="250">
+                                    </mat-form-field>
+                                </div>
+                              
+                            </div>
+
+                            <div fxLayout="row" fxLayoutAlign="space-evenly">
+                                    <button type="button" mat-raised-button color="warn" matStepperPrevious>Back <mat-icon>cancel</mat-icon></button>
+                                    <button mat-raised-button color="accent" type="submit">Finalizar  <mat-icon>check</mat-icon></button>
                             </div>
                         </mat-step>
-
                     </mat-horizontal-stepper>
                 </form>
             </mat-card-content>
