@@ -39,7 +39,7 @@ import {UserEditComponent} from './components/user-edit.component';
       })),
       state('register', style({
         height:'400px',
-        width:'700px',
+        width:'850px',
         backgroundColor:'#F3F5F4'
       })),
       transition('login=>register', animate('500ms')),
@@ -66,15 +66,21 @@ export class AppComponent implements OnInit{
   public message;
   public estado;
 
+  public minDate; 
+  public maxDate;
+
 
 
   constructor(
     private _userService:UserService,
     private toastr: ToastrService
   ){
-    this.user = new User('', '', '', '', '', '', '',0, '', '', 0, 0 );
-    this.userRegister = new User('', '', '', '', '', '', '',0, '', '', 0, 0 );
+    this.user = new User('', '', '', '', '', '', '',0,null,'', '', '', 0, 0 );
+    this.userRegister = new User('', '', '', '', '', '', '',0,null,'', '', '', 0, 0 );
     this.estado = "login";
+
+    this.minDate = new Date(1900,0,1);
+    this.maxDate = new Date();
   }
 
 
@@ -116,7 +122,7 @@ export class AppComponent implements OnInit{
             //Guardo la sesion
             localStorage.setItem('identity',JSON.stringify(identity));
             this.message="Login correcto.";
-            this.showToasterBueno()
+            this.showToasterBueno();
             //Conseguir token
             this._userService.signup(this.user,'true').subscribe(
               response => {
@@ -127,7 +133,7 @@ export class AppComponent implements OnInit{
                     this.showToaster();
                   }else{
                     localStorage.setItem('token',token);
-                    this.user = new User('', '', '', '', '', '', '',0, '', '', 0, 0 );
+                    this.user = new User('', '', '', '', '', '', '',0,null,'', '', '', 0, 0 );
                   }
               },
               (error: HttpErrorResponse) =>{
@@ -158,6 +164,7 @@ export class AppComponent implements OnInit{
     this._userService.register(this.userRegister).subscribe(
       response => {
        let user = response.user;
+       console.log(user);
        this.userRegister = user;
 
         if(!user._id){
@@ -166,7 +173,7 @@ export class AppComponent implements OnInit{
         }else{
           this.message="El registro se ha realizado correctamente."
           this.showToasterBueno();
-          this.userRegister = new User('', '', '', '', '', '', '',0, '', '', 0, 0 );
+          this.userRegister = new User('', '', '', '', '', '', '',0,null,'', '', '', 0, 0 );
           this.estado = "login";
         }
       },

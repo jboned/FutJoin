@@ -9,6 +9,7 @@
 
   <div *ngIf="identity" [@fadeInOut] >
         <img class=bg src="../assets/img/gris.png">
+        <router-outlet></router-outlet>
 
         <div>
 
@@ -20,7 +21,7 @@
                 <div fxLayout fxLayoutGap="40px">
                   <div></div><div></div><div></div>
                   <div>
-                    <button mat-button><mat-icon>home</mat-icon>Inicio</button>
+                    <a href="#" mat-button><mat-icon>home</mat-icon>Inicio</a>
                   </div>
                   <div>
                     <button mat-button><mat-icon>filter_tilt_shift</mat-icon>Mis partidos.</button>
@@ -33,23 +34,19 @@
               <div fxFlex fxLayout fxLayoutAlign="end">
                 <div fxLayout fxLayoutGap="40px">
                   <div>
-                    <button mat-button><mat-icon>account_circle</mat-icon>Mi perfil</button>
+                    <a [routerLink]="['mis-datos']" mat-button><mat-icon>account_circle</mat-icon>Mi perfil</a>
                   </div>
                   <div>
-                    <button mat-raised-button color="warn"><mat-icon>logout</mat-icon>Logout</button>
+                    <a [routerLink]="['']" mat-raised-button color="warn" (click)="logout()"><mat-icon>logout</mat-icon>Logout</a>
                   </div>
                 </div>
               </div>
-
             </mat-toolbar-row>
-
           </mat-toolbar>
-            <br/> <br/> <br/> <br/> <br/>
-            <button mat-raised-button color="accent" (click)="logout()">LOGOUT</button>
         </div>
   </div>
 
-    <div fxLayout="column" fxLayoutAlign="center center" *ngIf="!identity" [@fadeInOut]>
+    <div *ngIf="!identity" fxLayout="column" fxLayoutAlign="center center"  [@fadeInOut]>
         <img class=bg src="../assets/img/syOPVz8.jpg">
         <div  fxFlexAlign="center">
             <img src="assets/img/Logo.png" class="puff-in-center" id="logo"/>
@@ -195,9 +192,53 @@
 
                             <div fxLayout="row" fxLayoutAlign="space-evenly">
                                     <button type="button" mat-raised-button color="warn" matStepperPrevious>Back <mat-icon>cancel</mat-icon></button>
-                                    <button mat-raised-button color="accent" type="submit">Finalizar  <mat-icon>check</mat-icon></button>
+                                    <button type="button" ng-Model="next"mat-raised-button color="primary" matStepperNext>Next <mat-icon>arrow_forward</mat-icon></button>
                             </div>
                         </mat-step>
+
+                        <mat-step>
+                            <ng-template matStepLabel>Introduce otros datos relevantes.</ng-template>
+                            <div fxLayout="row" fxLayoutAlign="space-evenly">
+                                <div class="form-group">
+                                    <mat-form-field>
+                                        <mat-label>Fecha de nacimiento (m/d/yyyy)</mat-label>
+                                        <input matInput [matDatepicker]="fechaNac" name ="fecha" [ngModel]="user.fecha" #fecha="ngModel" [min]="minDate" [max]="maxDate" >
+                                        <mat-datepicker-toggle matSuffix [for]="fechaNac"></mat-datepicker-toggle>
+                                        <mat-datepicker #fechaNac></mat-datepicker>      
+                                    </mat-form-field>
+                                </div>
+                                <div class="form-group">
+                                    <mat-form-field>
+                                        <mat-label>Telefono</mat-label>
+                                        <input type="tel" name="telefono" matInput placeholder="Introduzca su numero de telefono" class="form-control"
+                                        [(ngModel)]="userRegister.telefono" #telefono="ngModel" pattern="[0-9]{9}">
+                                        <mat-error *ngIf="telefono.invalid && (telefono.dirty || telefono.touched)" >
+                                            <mat-error *ngIf="telefono.errors['pattern']">Introduzca un numeoro de telefono válido</mat-error>
+                                        </mat-error>
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <div fxLayout="row" fxLayoutAlign="space-evenly">
+                                <div class="form-group">
+                                    <mat-form-field>
+                                        <mat-label>Código postal</mat-label>
+                                        <input type="text" name="codigoPostal" matInput placeholder="Introduzca su código postal" class="form-control"
+                                        [(ngModel)]="userRegister.codigoPostal" #codigoPostal="ngModel" pattern="[0-9]{5}">
+                                        <mat-error *ngIf="codigoPostal.invalid && (codigoPostal.dirty || codigoPostal.touched)" >
+                                            <mat-error *ngIf="codigoPostal.errors['pattern']">Introduzca un CP válido</mat-error>
+                                        </mat-error>
+                                    </mat-form-field>
+                                </div>
+                            </div>
+
+                            <div fxLayout="row" fxLayoutAlign="space-evenly">
+                                    <button type="button" mat-raised-button color="warn" matStepperPrevious>Back <mat-icon>cancel</mat-icon></button>
+                                    <button  type="submit" mat-raised-button color="accent">Finalizar <mat-icon>check</mat-icon></button>
+                                    <input id ="fileToUpload" type="file" style="display:none;">    
+                            </div>
+                        </mat-step>
+
+                        
                     </mat-horizontal-stepper>
                 </form>
             </mat-card-content>

@@ -10,6 +10,8 @@ export class User{
         public telefono: String,
         public image: String,
         public tipo: Number,
+        public fecha: Date,
+        public codigoPostal: String,
         
         //Datos futbolísticos
         public piebueno: String,

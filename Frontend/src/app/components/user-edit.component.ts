@@ -19,7 +19,11 @@ export class UserEditComponent implements OnInit{
     constructor(
         private _userService:UserService
     ){
+        this.user = new User('', '', '', '', '', '', '',0,null,'', '', '', 0, 0 );
+        
         this.titulo= 'Mis datos';
+
+        //LocalStorage
         this.identity = this._userService.getIdentity;
         this.token = this._userService.getToken();
     }

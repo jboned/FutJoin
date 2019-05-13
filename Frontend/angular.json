@@ -43,7 +43,7 @@
               "src/assets"
             ],
             "styles": [
-             "src/styles.scss"
+             "src/themes/styles.scss"
             ],
             "scripts": [],
             "es5BrowserSupport": true

@@ -9,7 +9,9 @@ var UserSchema = schema({
     nombre: String,
     tipo: Number,
 
+    fecha: Date,
     telefono: String,
+    codigoPostal: String,
     image: String,
     
     piebueno: String,
