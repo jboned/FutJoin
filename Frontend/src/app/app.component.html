@@ -11,30 +11,28 @@
         <img class=bg src="../assets/img/gris.png">
         <router-outlet></router-outlet>
 
-        <div>
-
+        <div fxLayout="column">
           <mat-toolbar color="primary" class="barra">
-
             <mat-toolbar-row>
               <button mat-icon-button><mat-icon>menu</mat-icon></button><img src = "../assets/img/Logo barra.png" style="width:50px;height:50px"><img src = "../assets/img/Palabra barra.png" style="width:100px;height:25px">
               <div fxFlex fxLayout fxLayoutAlign="start">
-                <div fxLayout fxLayoutGap="40px">
-                  <div></div><div></div><div></div>
+                <div fxLayout fxLayoutGap="20px">
+                  <div></div><div></div><div></div><div></div><div></div><div></div>
                   <div>
-                    <a href="#" mat-button><mat-icon>home</mat-icon>Inicio</a>
+                    <a href="#" mat-button><mat-icon>home</mat-icon >Inicio</a>
                   </div>
                   <div>
-                    <button mat-button><mat-icon>filter_tilt_shift</mat-icon>Mis partidos.</button>
+                    <button mat-button><mat-icon>filter_tilt_shift</mat-icon> Mis partidos.</button>
                   </div>
                   <div>
-                    <button mat-button><mat-icon>help</mat-icon>FAQ</button>
+                    <button mat-button><mat-icon>help</mat-icon> FAQ</button>
                   </div>
                 </div>
               </div>
               <div fxFlex fxLayout fxLayoutAlign="end">
                 <div fxLayout fxLayoutGap="40px">
                   <div>
-                    <a [routerLink]="['mis-datos']" mat-button><mat-icon>account_circle</mat-icon>Mi perfil</a>
+                    <a [routerLink]="['mis-datos']" mat-button><mat-icon>account_circle</mat-icon> Mi perfil</a>
                   </div>
                   <div>
                     <a [routerLink]="['']" mat-raised-button color="warn" (click)="logout()"><mat-icon>logout</mat-icon>Logout</a>
@@ -202,9 +200,9 @@
                                 <div class="form-group">
                                     <mat-form-field>
                                         <mat-label>Fecha de nacimiento (m/d/yyyy)</mat-label>
-                                        <input matInput [matDatepicker]="fechaNac" name ="fecha" [ngModel]="user.fecha" #fecha="ngModel" [min]="minDate" [max]="maxDate" >
+                                        <input matInput [matDatepicker]="fechaNac" name ="fecha" [(ngModel)]="userRegister.fecha" #fecha="ngModel" [min]="minDate" [max]="maxDate" >
                                         <mat-datepicker-toggle matSuffix [for]="fechaNac"></mat-datepicker-toggle>
-                                        <mat-datepicker #fechaNac></mat-datepicker>      
+                                        <mat-datepicker #fechaNac></mat-datepicker>
                                     </mat-form-field>
                                 </div>
                                 <div class="form-group">
@@ -234,11 +232,11 @@
                             <div fxLayout="row" fxLayoutAlign="space-evenly">
                                     <button type="button" mat-raised-button color="warn" matStepperPrevious>Back <mat-icon>cancel</mat-icon></button>
                                     <button  type="submit" mat-raised-button color="accent">Finalizar <mat-icon>check</mat-icon></button>
-                                    <input id ="fileToUpload" type="file" style="display:none;">    
+                                    <input id ="fileToUpload" type="file" style="display:none;">
                             </div>
                         </mat-step>
 
-                        
+
                     </mat-horizontal-stepper>
                 </form>
             </mat-card-content>

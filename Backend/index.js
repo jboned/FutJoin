@@ -5,6 +5,7 @@ var app = require('./app');
 var port = process.env.PORT || 3000;
 
 mongoose.connect('mongodb://localhost:27017/futJoin',{ useNewUrlParser: true },function(err, res){
+mongoose.set('useFindAndModify', false);
     if(err){
         throw err;
     }else{

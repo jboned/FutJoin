@@ -1,1 +1,130 @@
-<h1> MIS DATOS</h1><h1> MIS DATOS</h1><h1> MIS DATOS</h1><h1> MIS DATOS</h1><h1> MIS DATOS</h1><h1> MIS DATOS</h1>
+<div class="margen" fxLayout="column" fxLayoutAlign="center">
+
+
+
+  <form name="updateForm" #updateForm="ngForm" (ngSubmit)="updateForm.form.valid && onSubmit()"  [mustMatch]="['password', 'confirmPassword']">
+      <div class ="form-group" fxLayoutAlign="center center">
+          <div class="box21">
+            <img src="{{url + 'get-image-user/' + user.image}}" style="height:200px; width:200px">
+            <div class="box-content">
+                <p class="title">Imagen de perfil</p>
+                <button type="button" mat-raised-button (click)="fileInput.click()">Cambiar imagen</button>
+                <input type="file" id="file" #fileInput placeholder = "subir Imagen..." hidden (change) = "fileChangeEvent($event)">
+            </div>
+          </div>
+        </div>
+
+      <br/>
+
+    <mat-accordion class="example-headers-align">
+    <mat-expansion-panel hideToggle>
+      <mat-expansion-panel-header>
+        <mat-panel-title>Datos personales obligatorios</mat-panel-title>
+        <mat-panel-description>Modifica tu email y nombre completo.<mat-icon>account_circle</mat-icon></mat-panel-description>
+      </mat-expansion-panel-header>
+
+      <div fxLayout="row" fxLayoutAlign="space-evenly">
+        <div class="form-group">
+          <mat-form-field>
+              <input type="text" name="email" matInput placeholder="Email" class="form-control"
+                  [(ngModel)]="user.email" #email="ngModel" required email />
+              <mat-error *ngIf="email.invalid && (email.dirty || email.touched)">
+                  <mat-error *ngIf="email.errors['required']">El email es obligatorio.</mat-error>
+                  <mat-error *ngIf="email.errors['email']">Por favor, introduce un email válido.</mat-error>
+              </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="form-group">
+            <mat-form-field>
+                <input type="text" name="nombre" matInput placeholder="Nombre Completo" class="form-control"
+                            [(ngModel)]="user.nombre" #nombre="ngModel" required>
+                    <mat-error *ngIf="nombre.invalid && (nombre.dirty || nombre.touched)" >
+                        <mat-error *ngIf="nombre.errors['required']">Introduzca su nombre completo.</mat-error>
+                    </mat-error>
+            </mat-form-field>
+        </div>
+      </div>
+    </mat-expansion-panel>
+
+    <mat-expansion-panel hideToggle>
+      <mat-expansion-panel-header>
+        <mat-panel-title>Datos futbolísticos</mat-panel-title>
+        <mat-panel-description>Modifica sus datos futbolísticos.<mat-icon>pets</mat-icon></mat-panel-description>
+      </mat-expansion-panel-header>
+
+        <div fxLayout="row" fxLayoutAlign="space-evenly">
+          <div class="form-group">
+            <mat-form-field>
+                <mat-label>Pie bueno</mat-label>
+                <mat-select class="form-control" [(ngModel)]="user.piebueno"
+                            placeholder="Seleccione su pierna buena" name="piebueno">
+                    <mat-option value="Derecho">Derecho</mat-option>
+                    <mat-option value="Izquierdo">Izquierdo</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+
+        <div class="form-group">
+            <mat-form-field>
+                <mat-label>Posicion</mat-label>
+                <mat-select name="posicion" lass="form-control" [(ngModel)]="user.posicion" #posicion="ngModel">
+                    <mat-option value="Delantero">Delantero</mat-option>
+                    <mat-option value="Centrocampista">Centrocampista</mat-option>
+                    <mat-option value="Defensa">Defensa</mat-option>
+                    <mat-option value="Portero">Portero</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+      </div>
+
+      <div class ="form-group" fxLayoutAlign="center center">
+        <mat-form-field>
+            <input type="number" name="altura" matInput placeholder="Introduzca su altura en cm." class="form-control"
+            [(ngModel)]="user.altura" #altura="ngModel" min="100" max="250">
+        </mat-form-field>
+      </div>
+
+    </mat-expansion-panel>
+
+    <mat-expansion-panel hideToggle>
+      <mat-expansion-panel-header>
+        <mat-panel-title>Otros datos relevantes</mat-panel-title>
+        <mat-panel-description>Modifica tus otros datos.<mat-icon>date_range</mat-icon></mat-panel-description>
+      </mat-expansion-panel-header>
+
+      <div fxLayout="row" fxLayoutAlign="space-evenly">
+        <div class="form-group">
+            <mat-form-field>
+                <mat-label>Fecha de nacimiento (m/d/yyyy)</mat-label>
+                <input matInput [matDatepicker]="fechaNac" name ="fecha" [(ngModel)]="user.fecha" #fecha="ngModel" [min]="minDate" [max]="maxDate" >
+                <mat-datepicker-toggle matSuffix [for]="fechaNac"></mat-datepicker-toggle>
+                <mat-datepicker #fechaNac></mat-datepicker>
+            </mat-form-field>
+        </div>
+
+        <div class="form-group">
+            <mat-form-field>
+                <mat-label>Telefono</mat-label>
+                <input type="tel" name="telefono" matInput placeholder="Introduzca su numero de telefono" class="form-control"
+                [(ngModel)]="user.telefono" #telefono="ngModel" pattern="[0-9]{9}">
+                <mat-error *ngIf="telefono.invalid && (telefono.dirty || telefono.touched)" >
+                    <mat-error *ngIf="telefono.errors['pattern']">Introduzca un numeoro de telefono válido</mat-error>
+                </mat-error>
+            </mat-form-field>
+        </div>
+      </div>
+
+      <div class ="form-group" fxLayoutAlign="center center">
+        <mat-form-field>
+            <input type="text" name="codigoPostal" matInput placeholder="Introduzca su código postal" class="form-control"
+            [(ngModel)]="user.codigoPostal" #codigoPostal="ngModel" pattern="[0-9]{5}">
+            <mat-error *ngIf="codigoPostal.invalid && (codigoPostal.dirty || codigoPostal.touched)" >
+                <mat-error *ngIf="codigoPostal.errors['pattern']">Introduzca un CP válido</mat-error>
+            </mat-error>
+        </mat-form-field>
+      </div>
+    </mat-expansion-panel>
+  </mat-accordion>
+  <div class="boton-submit"><button mat-raised-button color="primary" type="submit" fxLayoutAlign = "end">Actualizar usuario</button></div>
+ </form>
+</div>

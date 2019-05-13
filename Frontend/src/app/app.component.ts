@@ -66,7 +66,7 @@ export class AppComponent implements OnInit{
   public message;
   public estado;
 
-  public minDate; 
+  public minDate;
   public maxDate;
 
 
@@ -161,10 +161,10 @@ export class AppComponent implements OnInit{
   }
 
   public onRegisterSubmit(){
+   console.log(this.userRegister);
     this._userService.register(this.userRegister).subscribe(
       response => {
        let user = response.user;
-       console.log(user);
        this.userRegister = user;
 
         if(!user._id){

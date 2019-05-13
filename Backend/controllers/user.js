@@ -10,14 +10,27 @@ function saveUser(req, res){
     var user = new User();
     var params = req.body;
 
-    user.email = params.email;
-    user.image = 'null';
+    //Obligatorios
+    user.email = params.email.toLowerCase();
+    user.nombre = params.nombre;
 
+
+    user.tipo = 1; //Siempre que se registre un usuario, es tipo usuario normal
+
+    //Opcionales
+    user.fecha = params.fecha;
+    user.telefono = params.telefono;
+    user.codigoPostal = params.codigoPostal;
+    
+    //Futbol
+    user.partidosJugados=0;
     user.piebueno = params.piebueno;
     user.posicion = params.posicion;
     user.altura = params.altura;
-    user.tipo = 1; //Siempre que se registre un usuario, es tipo usuario normal
-    user.partidosJugados=0;
+
+    //Imagen
+    user.image = "zrb2koSyK81YLZy3zoIGkEZY.png";
+
     bcrypt.hash(params.password, null, null, function(err, hash){
         user.password = hash;
         user.save((err, userStored) =>{
@@ -29,6 +42,8 @@ function saveUser(req, res){
         });
     });
 }
+
+
 
 
 function loginUser(req, res){
@@ -63,10 +78,14 @@ function loginUser(req, res){
     });
 }
 
+
 function updateUser(req,res){
     var userId = req.params.id;
     var update = req.body; 
-
+    
+    if(userId != req.user.sub){
+        return res.status(500).send({message:"No tienes permiso para actualizar este usuario"});
+    }
     User.findOneAndUpdate(userId, update, (err,userUpdated) => {
         if(err){
             res.status(500).send({message:'Error al actualizar el usuario'});
@@ -87,21 +106,21 @@ function uploadImage(req,res){
         
         var ext_split = file_name.split('.');
         var file_ext = ext_split[1];
-
         if(file_ext == 'png' || file_ext == 'jpg'){
-            User.findByIdAndUpdate(userId,{image:file_name}, function(err,Userupdated){
+            User.findByIdAndUpdate(userId,{image:file_name}, function(err,userUpdated){
                 if(err){
                     res.status(500).send({message:'Error al actualizar el usuario'});
                 }else{
-                    res.status(200).send ({user:userUpdated});
+                    
+                    res.status(200).send({image: file_name, user: userUpdated});
                 }
             });
         }else{
-            res.status(200).send({message:'Extension no valida'});
+            res.status(404).send({message:'Extension no valida'});
         }
 
     }else{
-        req.status(200).send({message: "No has subido ninguna imagen"});
+        res.status(404).send({message: "No has subido ninguna imagen"});
     }
 }
 

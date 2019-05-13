@@ -5,7 +5,9 @@ import {map} from 'rxjs/operators'
 import {Observable} from 'rxjs/Observable';
 import { GLOBAL } from './global';
 
-@Injectable()
+@Injectable({
+  providedIn:'root',
+})
 export class UserService{
   public url: string;
   public identity;
@@ -33,11 +35,11 @@ export class UserService{
       return this._http.post(this.url+'register', params, {headers: headers}).pipe(map(res => res));
 
   }
-  public update_user(user_to_update):Observable<any>{
+  public updateUser(user_to_update):Observable<any>{
       let params= JSON.stringify(user_to_update);
-      let headers = new HttpHeaders();
-      headers.append('Content-Type','application/json');
-      headers.append('Authorization',this.getToken());
+      let headers: HttpHeaders = new HttpHeaders();
+      headers = headers.append('Content-Type','application/json');
+      headers = headers.append('Authorization',this.getToken());
       return this._http.put(this.url+'updateUser/'+user_to_update._id, params, {headers: headers}).pipe(map(res => res));
   }
 
