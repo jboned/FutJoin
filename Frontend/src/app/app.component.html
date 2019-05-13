@@ -7,10 +7,46 @@
 </head>
 <body>
 
-  <div *ngIf="identity" class="logueado" [@fadeInOut] >
+  <div *ngIf="identity" [@fadeInOut] >
         <img class=bg src="../assets/img/gris.png">
-        <button (click) = "logout()"></button>
-    <h1>LOGUEADO</h1>
+
+        <div>
+
+          <mat-toolbar color="primary" class="barra">
+
+            <mat-toolbar-row>
+              <button mat-icon-button><mat-icon>menu</mat-icon></button><img src = "../assets/img/Logo barra.png" style="width:50px;height:50px"><img src = "../assets/img/Palabra barra.png" style="width:100px;height:25px">
+              <div fxFlex fxLayout fxLayoutAlign="start">
+                <div fxLayout fxLayoutGap="40px">
+                  <div></div><div></div><div></div>
+                  <div>
+                    <button mat-button><mat-icon>home</mat-icon>Inicio</button>
+                  </div>
+                  <div>
+                    <button mat-button><mat-icon>filter_tilt_shift</mat-icon>Mis partidos.</button>
+                  </div>
+                  <div>
+                    <button mat-button><mat-icon>help</mat-icon>FAQ</button>
+                  </div>
+                </div>
+              </div>
+              <div fxFlex fxLayout fxLayoutAlign="end">
+                <div fxLayout fxLayoutGap="40px">
+                  <div>
+                    <button mat-button><mat-icon>account_circle</mat-icon>Mi perfil</button>
+                  </div>
+                  <div>
+                    <button mat-raised-button color="warn"><mat-icon>logout</mat-icon>Logout</button>
+                  </div>
+                </div>
+              </div>
+
+            </mat-toolbar-row>
+
+          </mat-toolbar>
+            <br/> <br/> <br/> <br/> <br/>
+            <button mat-raised-button color="accent" (click)="logout()">LOGOUT</button>
+        </div>
   </div>
 
     <div fxLayout="column" fxLayoutAlign="center center" *ngIf="!identity" [@fadeInOut]>
@@ -90,7 +126,7 @@
                             <br/><br/>
 
                             <div fxLayout="row" fxLayoutAlign="space-evenly">
-                         
+
                                 <div class="form-group">
                                     <mat-form-field>
                                         <input type="text" name="nombre" matInput placeholder="Nombre Completo" class="form-control"
@@ -100,7 +136,7 @@
                                             </mat-error>
                                     </mat-form-field>
                                 </div>
-                                
+
                                 <div class="form-group">
                                     <mat-form-field>
                                         <input type="password" name="confirmPassword" matInput placeholder="Confirma la contraseña" class="form-control"
@@ -116,7 +152,7 @@
                             <br/>
                             <div fxLayout="row" fxLayoutAlign="space-evenly">
                                 <button type="button" mat-raised-button color="warn" (click) = "estado='login'">Back <mat-icon>cancel</mat-icon></button>
-                                <button  type="button" ng-Model="next" [disabled]="email.invalid || password.invalid || confirmPassword.invalid" 
+                                <button  type="button" ng-Model="next" [disabled]="email.invalid || password.invalid || confirmPassword.invalid"
                                         mat-raised-button color="primary" matStepperNext>Next <mat-icon>arrow_forward</mat-icon></button>
                             </div>
                         </mat-step>
@@ -128,7 +164,7 @@
                                 <div class="form-group">
                                     <mat-form-field>
                                         <mat-label>Pie bueno</mat-label>
-                                        <mat-select class="form-control" [(ngModel)]="userRegister.piebueno" 
+                                        <mat-select class="form-control" [(ngModel)]="userRegister.piebueno"
                                                     placeholder="Seleccione su pierna buena" name="piebueno">
                                             <mat-option value="Derecho">Derecho</mat-option>
                                             <mat-option value="Izquierdo">Izquierdo</mat-option>
@@ -154,7 +190,7 @@
                                         [(ngModel)]="userRegister.altura" #altura="ngModel" min="100" max="250">
                                     </mat-form-field>
                                 </div>
-                              
+
                             </div>
 
                             <div fxLayout="row" fxLayoutAlign="space-evenly">

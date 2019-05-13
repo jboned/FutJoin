@@ -4,6 +4,7 @@ import {UserService} from './services/user.service'
 import { ToastrService } from 'ngx-toastr';
 import {HttpErrorResponse} from  '@angular/common/http';
 import { trigger, state, style, animate, transition } from '@angular/animations';
+import {UserEditComponent} from './components/user-edit.component';
 
 
 
@@ -106,7 +107,7 @@ export class AppComponent implements OnInit{
     this._userService.signup(this.user).subscribe(
         response => {
 
-          let identity = response.user;  
+          let identity = response.user;
           this.identity = identity;
 
           if(!this.identity._id){
@@ -140,7 +141,7 @@ export class AppComponent implements OnInit{
 
           this.message = error.error.message;
           this.showToaster();
-          
+
         }
     );
   }
@@ -164,9 +165,9 @@ export class AppComponent implements OnInit{
           this.showToaster();
         }else{
           this.message="El registro se ha realizado correctamente."
-          this.showToasterBueno();   
+          this.showToasterBueno();
           this.userRegister = new User('', '', '', '', '', '', '',0, '', '', 0, 0 );
-          this.estado = "login";  
+          this.estado = "login";
         }
       },
       (error:HttpErrorResponse)=>{

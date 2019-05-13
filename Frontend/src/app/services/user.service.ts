@@ -38,10 +38,10 @@ export class UserService{
       let headers = new HttpHeaders();
       headers.append('Content-Type','application/json');
       headers.append('Authorization',this.getToken());
-      return this._http.post(this.url+'updateUser/'+user_to_update._id, params, {headers: headers}).pipe(map(res => res));
+      return this._http.put(this.url+'updateUser/'+user_to_update._id, params, {headers: headers}).pipe(map(res => res));
   }
 
-  
+
 
   public getIdentity(){
     let identity = JSON.parse(localStorage.getItem('identity'));
@@ -52,7 +52,7 @@ export class UserService{
     }
     return this.identity;
   }
-  
+
   public getToken(){
     let token = localStorage.getItem('token');
     if(token!= "undefined"){
@@ -62,9 +62,9 @@ export class UserService{
     }
     return this.token;
   }
-  
 
-  
+
+
 
 
 }

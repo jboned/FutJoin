@@ -13,6 +13,7 @@ import {HttpClientModule} from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import {MustMatchDirective} from './_helpers/must-match.directive'
+import { UserEditComponent } from './components/user-edit.component';
 
 //import {routing, appRoutingProviders} from './app.routing';
 
@@ -20,7 +21,8 @@ import {MustMatchDirective} from './_helpers/must-match.directive'
 @NgModule({
   declarations: [
     AppComponent,
-    MustMatchDirective
+    MustMatchDirective,
+    UserEditComponent
   ],
   imports: [
     BrowserModule,
