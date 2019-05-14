@@ -62,13 +62,51 @@ img.bg {
   position: fixed;
   left: 0;
   top:0;
-  z-index: 995;
+  right:0;
+  z-index: 998;
   width: 100% !important;
 }
 
 .toolbar-title {
   margin: 0 16px 0 16px;
 }
+
+.contenido{
+  margin-top: 5%
+}
+
+
+.mat-sidenav{
+  background-color: white;
+  position:fixed;
+  height:100%;
+  min-width: 30%;
+}
+.app{
+  height:100%;
+  display: flex;
+}
+
+.header{
+  height:30%;
+  top:0;
+  background-color: rgba(173,255,47,0.4);
+
+}
+
+.info_user{
+  font-family: Arial, Helvetica, sans-serif;
+  margin-left: 15px;
+}
+.nombre-user{
+  font-size: 18px;
+}
+.email-user{
+  font-size: 13px;
+  margin-top: 4px;
+
+}
+
 
 
 

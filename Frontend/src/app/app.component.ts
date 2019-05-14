@@ -1,11 +1,11 @@
-import { Component, OnInit,EventEmitter, Output } from '@angular/core';
+import { Component, OnInit,ViewChild} from '@angular/core';
 import {User} from './models/user';
 import {UserService} from './services/user.service'
 import { ToastrService } from 'ngx-toastr';
 import {HttpErrorResponse} from  '@angular/common/http';
 import { trigger, state, style, animate, transition } from '@angular/animations';
-import {UserEditComponent} from './components/user-edit.component';
 import {GLOBAL} from './services/global';
+import {MatSidenav} from '@angular/material';
 
 
 
@@ -53,7 +53,11 @@ import {GLOBAL} from './services/global';
 
 export class AppComponent implements OnInit{
   public title = 'FutJoin';
-  @Output() toggleSidenav = new EventEmitter<void>();
+
+  //SideNav
+  @ViewChild(MatSidenav) sidenav: MatSidenav;
+  opened = false;
+
 
   //Login.
   public user: User;
@@ -72,7 +76,6 @@ export class AppComponent implements OnInit{
   public maxDate;
 
   public url;
-
 
 
   constructor(
