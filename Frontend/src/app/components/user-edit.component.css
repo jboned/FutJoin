@@ -9,7 +9,7 @@
 }
 
 .margen{
-  margin-top: 10%;
+  margin-top: 5%;
 }
 
 .boton-submit{
@@ -18,9 +18,9 @@
 }
 
 .box21{overflow:hidden}
-.mt-30{margin-top:30px}
+/*mt-30{margin-top:30px}
 .mt-40{margin-top:40px}
-.mb-30{margin-bottom:30px}
+.mb-30{margin-bottom:30px}*/
 .box21{/*box-shadow:0 0 5px #a3a3a3*/}
 .box21{text-align:center;position:relative}
 .box21:after,.box21:before{content:"";width:2px;height:2px;border-radius:50%;background:rgba(0,0,0,.35);position:absolute;top:50%;left:50%;-webkit-transform:scale(0);-moz-transform:scale(0);-ms-transform:scale(0);-o-transform:scale(0);transform:scale(0)}

@@ -29,7 +29,7 @@ function saveUser(req, res){
     user.altura = params.altura;
 
     //Imagen
-    user.image = "zrb2koSyK81YLZy3zoIGkEZY.png";
+    user.image = "wCtxANxebqR5RM8m6E5519nn.png";
 
     bcrypt.hash(params.password, null, null, function(err, hash){
         user.password = hash;

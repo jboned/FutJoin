@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,EventEmitter, Output } from '@angular/core';
 import {User} from './models/user';
 import {UserService} from './services/user.service'
 import { ToastrService } from 'ngx-toastr';
 import {HttpErrorResponse} from  '@angular/common/http';
 import { trigger, state, style, animate, transition } from '@angular/animations';
 import {UserEditComponent} from './components/user-edit.component';
+import {GLOBAL} from './services/global';
 
 
 
@@ -52,6 +53,7 @@ import {UserEditComponent} from './components/user-edit.component';
 
 export class AppComponent implements OnInit{
   public title = 'FutJoin';
+  @Output() toggleSidenav = new EventEmitter<void>();
 
   //Login.
   public user: User;
@@ -69,6 +71,8 @@ export class AppComponent implements OnInit{
   public minDate;
   public maxDate;
 
+  public url;
+
 
 
   constructor(
@@ -78,6 +82,8 @@ export class AppComponent implements OnInit{
     this.user = new User('', '', '', '', '', '', '',0,null,'', '', '', 0, 0 );
     this.userRegister = new User('', '', '', '', '', '', '',0,null,'', '', '', 0, 0 );
     this.estado = "login";
+
+    this.url = GLOBAL.url;
 
     this.minDate = new Date(1900,0,1);
     this.maxDate = new Date();

@@ -1,11 +1,8 @@
 <div class="margen" fxLayout="column" fxLayoutAlign="center">
-
-
-
   <form name="updateForm" #updateForm="ngForm" (ngSubmit)="updateForm.form.valid && onSubmit()"  [mustMatch]="['password', 'confirmPassword']">
       <div class ="form-group" fxLayoutAlign="center center">
           <div class="box21">
-            <img src="{{url + 'get-image-user/' + user.image}}" style="height:200px; width:200px">
+            <img src="{{url + 'get-image-user/' + identity.image}}" style="height:200px; width:200px">
             <div class="box-content">
                 <p class="title">Imagen de perfil</p>
                 <button type="button" mat-raised-button (click)="fileInput.click()">Cambiar imagen</button>

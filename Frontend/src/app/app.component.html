@@ -9,39 +9,51 @@
 
   <div *ngIf="identity" [@fadeInOut] >
         <img class=bg src="../assets/img/gris.png">
-        <router-outlet></router-outlet>
-
+        
         <div fxLayout="column">
-          <mat-toolbar color="primary" class="barra">
-            <mat-toolbar-row>
-              <button mat-icon-button><mat-icon>menu</mat-icon></button><img src = "../assets/img/Logo barra.png" style="width:50px;height:50px"><img src = "../assets/img/Palabra barra.png" style="width:100px;height:25px">
-              <div fxFlex fxLayout fxLayoutAlign="start">
-                <div fxLayout fxLayoutGap="20px">
-                  <div></div><div></div><div></div><div></div><div></div><div></div>
-                  <div>
-                    <a href="#" mat-button><mat-icon>home</mat-icon >Inicio</a>
-                  </div>
-                  <div>
-                    <button mat-button><mat-icon>filter_tilt_shift</mat-icon> Mis partidos.</button>
-                  </div>
-                  <div>
-                    <button mat-button><mat-icon>help</mat-icon> FAQ</button>
-                  </div>
+         <mat-sidenav-container>
+          <mat-sidenav #sidenav mode="over">
+            <mat-nav-list>
+                <button><mat-icon matListIcon class="app-nav-list-icon"></mat-icon>Ejemplo</button>
+                <mat-divider></mat-divider>
+            </mat-nav-list>
+           </mat-sidenav>
+
+           <mat-sidenav-content>
+            <mat-toolbar color="primary" class="barra" (toggleSidenav)="sidenav.toggle()">
+             <mat-toolbar-row>
+                <button mat-icon-button (click)="toggleSidenav.emit()"><mat-icon>menu</mat-icon></button>
+                <img src = "../assets/img/Logo barra.png" style="width:50px;height:50px"><img src = "../assets/img/Palabra barra.png" style="width:100px;height:25px">
+                <div fxFlex fxLayout fxLayoutAlign="start">
+                    <div fxLayout fxLayoutGap="20px">
+                    <div></div><div></div><div></div><div></div><div></div><div></div>
+                    <div>
+                        <a href="#" mat-button><mat-icon>home</mat-icon >Inicio</a>
+                    </div>
+                    <div>
+                        <button mat-button><mat-icon>filter_tilt_shift</mat-icon> Mis partidos.</button>
+                    </div>
+                    <div>
+                        <button mat-button><mat-icon>help</mat-icon> FAQ</button>
+                    </div>
+                    </div>
                 </div>
-              </div>
-              <div fxFlex fxLayout fxLayoutAlign="end">
-                <div fxLayout fxLayoutGap="40px">
-                  <div>
-                    <a [routerLink]="['mis-datos']" mat-button><mat-icon>account_circle</mat-icon> Mi perfil</a>
-                  </div>
-                  <div>
-                    <a [routerLink]="['']" mat-raised-button color="warn" (click)="logout()"><mat-icon>logout</mat-icon>Logout</a>
-                  </div>
+                <div fxFlex fxLayout fxLayoutAlign="end">
+                    <div fxLayout fxLayoutGap="40px">
+                    <div>
+                        <a [routerLink]="['mis-datos']" mat-button><img src="{{url + 'get-image-user/' + this.identity.image }}" style="width:45px; height:45px"> Mi perfil</a>
+                    </div>
+                    <div>
+                        <a [routerLink]="['']" mat-raised-button color="warn" (click)="logout()"><mat-icon>logout</mat-icon>Logout</a>
+                    </div>
+                    </div>
                 </div>
-              </div>
-            </mat-toolbar-row>
-          </mat-toolbar>
-        </div>
+             </mat-toolbar-row>
+            </mat-toolbar>
+            <router-outlet></router-outlet>
+         </mat-sidenav-content> 
+        </mat-sidenav-container>
+    </div>
   </div>
 
     <div *ngIf="!identity" fxLayout="column" fxLayoutAlign="center center"  [@fadeInOut]>
