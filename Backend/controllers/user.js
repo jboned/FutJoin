@@ -44,8 +44,6 @@ function saveUser(req, res){
 }
 
 
-
-
 function loginUser(req, res){
     var params = req.body;
 
@@ -136,10 +134,38 @@ function getImageFile(req,res){
     });
 }
 
+
+function saveUserComplejoDeportivo(req, res){
+    var user = new User();
+    var params = req.body;
+
+    //Obligatorios
+    user.email = params.email.toLowerCase();
+    user.nombre = params.nombre;
+    user.tipo = 2; //Siempre que se registre un usuario, es tipo usuario normal
+    user.telefono = params.telefono;
+    user.codigoPostal = params.codigoPostal;
+
+    //Imagen
+    user.image = "wCtxANxebqR5RM8m6E5519nn.png";
+
+    bcrypt.hash(params.password, null, null, function(err, hash){
+        user.password = hash;
+        user.save((err, userStored) =>{
+            if(err){
+                res.status(500).send({message:'Error al guardar usuario'});
+            }else{
+                res.status(200).send({user:userStored});
+            }
+        });
+    });
+}
+
 module.exports = {
     saveUser,
     loginUser,
     updateUser,
     uploadImage,
-    getImageFile
+    getImageFile,
+    saveUserComplejoDeportivo
 };
