@@ -8,25 +8,27 @@
 <body>
 
   <div *ngIf="identity" [@fadeInOut] >
-    <mat-sidenav-container fullscreen autosize>
-      <mat-sidenav mode="over">
-          <mat-nav-list class ="header" [class.mat-elevation-z7] = "true">
-              <div fxLayoutAlign="center center">
-                  <img src="{{url + 'get-image-user/' + this.identity.image }}" style="height: 120px; width: 120px">
-              </div>
-              <p></p>
-              <div fxLayout="row" fxLayoutAlign="space-between">
-                <div class="info_user">
-                  <div class="nombre-user">{{identity.nombre}}</div>
-                  <div class="email-user">{{identity.email}}</div>
-                </div>
-                <div style="margin-right: 25px !important"><a (click)="sidenav.close()" [routerLink]= "['mis-datos']" mat-button matTooltip="Modificar mis datos"aria-label="Datos">Mis Datos <mat-icon>settings</mat-icon></a></div>
-              </div>
-          </mat-nav-list>
-          <mat-nav-list>
+    <mat-sidenav-container fullscreen autosize >
+      <mat-sidenav mode="over" class="sidenav-app">
 
+          <mat-nav-list class ="header">
+              <div fxLayout="row" fxLayoutGap="20px" style="margin-top:2px;margin-left: 20px;">
+                  <div><img src="{{url + 'get-image-user/' + this.identity.image }}" style="height: 70px; width: 70px"></div>
+                  <div fxLayout="column" fxLayoutGap="7px" class="info_user"><div class="nombre-user">Bienvenido {{identity.nombre}}</div><div class="email-user">{{identity.email}}</div></div>
+                </div>
           </mat-nav-list>
+
+          <mat-nav-list class ="menu-sidenav">
+              <mat-list-item></mat-list-item>
+              <a mat-list-item (click)="sidenav.close()" [routerLink]= "['mis-datos']" routerLinkActive="active-list-item" #state="routerLinkActive"><div class="icon"><mat-icon [inline]="true">settings</mat-icon></div> Mis Datos
+                <div *ngIf="state" fxFlex fxLayout class="icon-selected" fxLayoutAlign="end"><mat-icon [inline]="true">arrow_left</mat-icon></div></a>
+              <a mat-list-item (click)="sidenav.close()" [routerLink]= "['#']" routerLinkActive="active-list-item">ejemplo</a>
+          </mat-nav-list>
+
+
+
       </mat-sidenav>
+
       <mat-sidenav-content>
           <mat-toolbar color="primary" class="barra">
               <mat-toolbar-row>
@@ -38,7 +40,7 @@
                           <button mat-icon-button [matMenuTriggerFor]="menu"><mat-icon>more_vert</mat-icon></button>
                           <mat-menu #menu="matMenu">
                             <a [routerLink]= "['']" mat-menu-item><mat-icon>help</mat-icon>FAQ</a>
-                            <a [routerLink]="['']" mat-menu-item (click)="logout()"><mat-icon>logout</mat-icon>Logout</a>
+                            <a [routerLink]="['']" mat-menu-item (click)="logout()"><mat-icon>power_settings_new</mat-icon>Logout</a>
                           </mat-menu>
                         </div>
                     </div>
@@ -116,7 +118,7 @@
                                 <div class="form-group">
                                     <mat-form-field>
                                         <input type="password" name="password" matInput placeholder="Contraseña" class="form-control"
-                                                [(ngModel)]="userRegister.password" #password="ngModel" required pattern="^(?=.*[0-9]+.*)(?=.*[a-zA-Z]+.*)[0-9a-zA-Z]{6,}$"/>
+                                                [(ngModel)]="userRegister.password" #password="ngModel" required pattern="^(?=.*[0-9]+.*)(?=.*[a-zA-Z]+.*)[0-9a-zA-Z!?-]{6,}$"/>
                                         <mat-error *ngIf="password.invalid && (password.dirty || password.touched)" >
                                             <mat-error *ngIf="password.errors['required']">Introduzca la contraseña.</mat-error>
                                             <mat-error *ngIf="password.errors['pattern']"> La contraseña debe contener por lo menos un numero y tener más de 8 carácteres. </mat-error>

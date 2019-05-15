@@ -63,7 +63,8 @@ export class UserEditComponent implements OnInit{
             localStorage.setItem('identity', JSON.stringify(this.user));
 
             if(!this.filesToUpload){
-              //Nada
+              this.message= "El usuario se ha actualizado correctamente.";
+              this.showToasterBueno();
             }else{
               let url = this.url + 'upload-image-user/'+ this.user._id;
               this.makeFileRequest(url,[],this.filesToUpload).then(
@@ -80,6 +81,7 @@ export class UserEditComponent implements OnInit{
                     this.showToaster();
                 });
             }
+
 
 
           }

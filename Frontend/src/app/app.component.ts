@@ -56,7 +56,6 @@ export class AppComponent implements OnInit{
 
   //SideNav
   @ViewChild(MatSidenav) sidenav: MatSidenav;
-  opened = false;
 
 
   //Login.

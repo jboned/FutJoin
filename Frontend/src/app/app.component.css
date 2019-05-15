@@ -77,10 +77,9 @@ img.bg {
 
 
 .mat-sidenav{
-  background-color: white;
   position:fixed;
   height:100%;
-  min-width: 30%;
+  min-width: 20%;
 }
 .app{
   height:100%;
@@ -88,25 +87,54 @@ img.bg {
 }
 
 .header{
-  height:30%;
-  top:0;
-  background-color: rgba(173,255,47,0.4);
-
+  height:80px;
+  border-bottom: 3px solid #647789
 }
 
 .info_user{
-  font-family: Arial, Helvetica, sans-serif;
-  margin-left: 15px;
+  color:#ced4d7;
+  margin-right: 10px;
+  margin-top:20px
 }
 .nombre-user{
-  font-size: 18px;
+  font-size: 14px
 }
 .email-user{
-  font-size: 13px;
-  margin-top: 4px;
 
+  font-size: 11px;
 }
 
+.sidenav-app{
+  background-color:#384b5f;
+  color: white;
+  font-family: Arial, Helvetica, sans-serif;
+}
+.mat-list-item{
+  color: #ced4d7;
+  font-size: 13px;
+  font-weight: 500;
+
+}
+.active-list-item{
+  background-color:#2c3e50 !important;
+  font-weight: 700;
+  color: #FFF;
+}
+.icon{
+  font-size: 14px;
+  padding-right: 6px;
+  padding-top: 3px
+}
+.icon-selected{
+  font-size: 25px;
+}
+
+.menu-sidenav{
+  padding-top: 0px !important;
+}
+.mat-list-item{
+  border-bottom: 1px solid #647789;
+}
 
 
 
