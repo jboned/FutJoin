@@ -24,10 +24,11 @@
               <a mat-list-item (click)="sidenav.close()" [routerLink]= "['mis-datos']" routerLinkActive="active-list-item" #state="routerLinkActive"><div class="icon"><mat-icon [inline]="true">settings</mat-icon></div> Mis Datos
                 <div *ngIf="state.isActive" fxFlex fxLayout class="icon-selected" fxLayoutAlign="end"><mat-icon [inline]="true">arrow_left</mat-icon></div></a>
 
-                <div *ngIf="identity.tipo == 3" MatSubheader class="menu-category">Administrador</div>
-                <a mat-list-item (click)="sidenav.close()" [routerLink]= "['crear-complejo']" routerLinkActive="active-list-item" #state2="routerLinkActive"><div class="icon"><mat-icon [inline]="true">supervised_user_circle</mat-icon></div> Crear Complejo Deportivo
-                    <div *ngIf="state2.isActive" fxFlex fxLayout class="icon-selected" fxLayoutAlign="end"><mat-icon [inline]="true">arrow_left</mat-icon></div></a>
-                
+                <div *ngIf="identity.tipo == 3" >
+                  <div MatSubheader class="menu-category">Administrador</div>
+                  <a mat-list-item (click)="sidenav.close()" [routerLink]= "['crear-complejo']" routerLinkActive="active-list-item" #state2="routerLinkActive"><div class="icon"><mat-icon [inline]="true">supervised_user_circle</mat-icon></div> Crear Complejo Deportivo
+                      <div *ngIf="state2.isActive" fxFlex fxLayout class="icon-selected" fxLayoutAlign="end"><mat-icon [inline]="true">arrow_left</mat-icon></div></a>
+                </div>
           </mat-nav-list>
 
 
@@ -246,7 +247,7 @@
                             <div fxLayout="row" fxLayoutAlign="space-evenly">
                                     <button type="button" mat-raised-button color="warn" matStepperPrevious>Back <mat-icon>cancel</mat-icon></button>
                                     <button  type="submit" mat-raised-button color="accent">Finalizar <mat-icon>check</mat-icon></button>
-                                    <input id ="fileToUpload" type="file" style="display:none;">
+
                             </div>
                         </mat-step>
 

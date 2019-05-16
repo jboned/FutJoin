@@ -1,23 +1,23 @@
 'use strict'
 
+var bcrypt = require('bcrypt-nodejs');
 var fs = require('fs');
 var path = require('path');
-
-var user = require('../models/user');
-var complejoDeportivo = require('../models/complejodeportivo')
+var jwt = require('../services/jwt');
+var User = require('../models/user');
+var ComplejoDeportivo = require('../models/complejodeportivo')
 
 function saveComplejoDeportivo(req,res){
-    var complejoDeportivo = new complejoDeportivo();
+    var complejoDeportivo = new ComplejoDeportivo();
     var user = new User();
-
-    let params = req.body();
-    user.email = params.email.toLowerCase();
-    user.nombre = params.nombre;
+    let params = req.body;
+    user.email = params.propietario.email.toLowerCase();
+    user.nombre = params.propietario.nombre;
     user.tipo = 2;
-    user.telefono = params.telefono;
-    user.codigoPostal = params.codigoPostal;
-    user.image = "wCtxANxebqR5RM8m6E5519nn.png";
-    bcrypt.hash(params.password, null, null, function(err, hash){
+    user.telefono = params.propietario.telefono;
+    user.codigoPostal = params.propietario.codigoPostal;
+    
+    bcrypt.hash(params.propietario.password, null, null, function(err, hash){
         user.password = hash;
         user.save((err, userStored) =>{
             if(err){
@@ -29,17 +29,9 @@ function saveComplejoDeportivo(req,res){
         });
     });
 
-    complejoDeportivo.user = user;
+    complejoDeportivo.propietario = user;
     complejoDeportivo.direccion = params.direccion;
-    complejoDeportivo.save((err, complejoDeportivoStored) =>{
-        if(err){
-            res.status(500).send({message:'Error al guardar complejo'});
-        }else{
-            user = userStored;
-            res.status(200).send({complejoDeportivo:complejoDeportivoStored);
-        }
-    });
-
+    complejoDeportivo.save();
 }
 
 module.exports = {

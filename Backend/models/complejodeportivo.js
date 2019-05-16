@@ -1,8 +1,8 @@
 'use strict'
 var mongoose = require('mongoose');
-var schema = mongoose.Schema;
+var Schema = mongoose.Schema;
 
-var ComplejoDeportivo = schema({
+var ComplejoDeportivoSchema = Schema({
     direccion: String,
     propietario: {type: Schema.ObjectId, ref:'User'}
     //user: email, password, nombre, telefono, codigoPostal,image

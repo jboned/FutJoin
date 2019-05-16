@@ -9,7 +9,7 @@ app.use(bodyParser.json());
 
 //carga rutas
 var user_routes = require('./routes/user');
-
+var complejo_routes = require('./routes/complejodeportivo');
 
 
 //configurar cabeceras http
@@ -23,6 +23,7 @@ app.use((req,res,next) => {
 
 //rutas base
 app.use('/api',user_routes);
+app.use('/api',complejo_routes);
 app.use(cors());
 
 module.exports = app;

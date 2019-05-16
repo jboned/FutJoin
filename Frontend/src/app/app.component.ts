@@ -117,7 +117,7 @@ export class AppComponent implements OnInit{
 
 
   public onSubmit() {
-
+    console.log(this.user);
     this._userService.signup(this.user).subscribe(
         response => {
 

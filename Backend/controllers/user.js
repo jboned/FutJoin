@@ -35,7 +35,7 @@ function saveUser(req, res){
         user.password = hash;
         user.save((err, userStored) =>{
             if(err){
-                res.status(500).send({message:'Error al guardar usuario'});
+                res.status(500).send({message:'El email de usuario ya existe.'});
             }else{
                 res.status(200).send({user:userStored});
             }
@@ -49,7 +49,7 @@ function loginUser(req, res){
 
     var email = params.email;
     var password = params.password;
-  
+   
 
     User.findOne({email: email.toLowerCase()},(err,user)=>{
         if(err){
@@ -79,13 +79,16 @@ function loginUser(req, res){
 
 function updateUser(req,res){
     var userId = req.params.id;
-    var update = req.body; 
+    var update = req.body;
+    console.log(userId); 
+    console.log(update);
     
     if(userId != req.user.sub){
         return res.status(500).send({message:"No tienes permiso para actualizar este usuario"});
     }
-    User.findOneAndUpdate(userId, update, (err,userUpdated) => {
+    User.findByIdAndUpdate(userId, update, (err,userUpdated) => {
         if(err){
+            console.log(err);
             res.status(500).send({message:'Error al actualizar el usuario'});
         }else{
             res.status(200).send ({user:userUpdated});
@@ -135,37 +138,10 @@ function getImageFile(req,res){
 }
 
 
-function saveUserComplejoDeportivo(req, res){
-    var user = new User();
-    var params = req.body;
-
-    //Obligatorios
-    user.email = params.email.toLowerCase();
-    user.nombre = params.nombre;
-    user.tipo = 2; //Siempre que se registre un usuario, es tipo usuario normal
-    user.telefono = params.telefono;
-    user.codigoPostal = params.codigoPostal;
-
-    //Imagen
-    user.image = "wCtxANxebqR5RM8m6E5519nn.png";
-
-    bcrypt.hash(params.password, null, null, function(err, hash){
-        user.password = hash;
-        user.save((err, userStored) =>{
-            if(err){
-                res.status(500).send({message:'Error al guardar usuario'});
-            }else{
-                res.status(200).send({user:userStored});
-            }
-        });
-    });
-}
-
 module.exports = {
     saveUser,
     loginUser,
     updateUser,
     uploadImage,
-    getImageFile,
-    saveUserComplejoDeportivo
+    getImageFile
 };
