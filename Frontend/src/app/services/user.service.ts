@@ -33,8 +33,8 @@ export class UserService{
       let params= JSON.stringify(user_to_register);
       let headers = new HttpHeaders().set('Content-Type','application/json');
       return this._http.post(this.url+'register', params, {headers: headers}).pipe(map(res => res));
-
   }
+  
   public updateUser(user_to_update):Observable<any>{
       let params= JSON.stringify(user_to_update);
       let headers: HttpHeaders = new HttpHeaders();

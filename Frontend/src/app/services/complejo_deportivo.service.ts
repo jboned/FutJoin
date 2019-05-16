@@ -8,7 +8,7 @@ import { GLOBAL } from './global';
 @Injectable({
   providedIn:'root',
 })
-export class UserService{
+export class ComplejoDeportivoService{
   public url: string;
   public identity;
   public token;
@@ -17,6 +17,11 @@ export class UserService{
     this.url = GLOBAL.url;
   }
 
+  public register(complejo_to_register):Observable<any>{
+    let params= JSON.stringify(complejo_to_register);
+    let headers = new HttpHeaders().set('Content-Type','application/json');
+    return this._http.post(this.url+'saveComplejo', params, {headers: headers}).pipe(map(res => res));
+}
 
 
 
@@ -40,9 +45,4 @@ export class UserService{
     }
     return this.token;
   }
-
-
-
-
-
 }

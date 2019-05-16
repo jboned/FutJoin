@@ -133,10 +133,6 @@ img.bg {
 .menu-sidenav{
   padding-top: 0px !important;
 }
-.mat-list-item{
-  border-bottom: 1px solid #23776e;
-}
-
 
 .menu-category {
     position: relative;
@@ -160,14 +156,10 @@ img.bg {
   height: 0;
   border-top: 1px dashed #fff;
   vertical-align: middle;
-  margin-left: 1 rem;
+  margin-left: 1rem;
   opacity: 0.3;
   position: absolute;
   top: 50%;
-}
-.menu-admin{
-  position:absolute;
-  bottom:0px;
 }
 
 
