@@ -12,17 +12,19 @@
       <mat-sidenav mode="over" class="sidenav-app">
 
           <mat-nav-list class ="header">
-              <div fxLayout="row" fxLayoutGap="20px" style="margin-top:2px;margin-left: 20px;">
-                  <div><img src="{{url + 'get-image-user/' + this.identity.image }}" style="height: 70px; width: 70px"></div>
-                  <div fxLayout="column" fxLayoutGap="7px" class="info_user"><div class="nombre-user">Bienvenido {{identity.nombre}}</div><div class="email-user">{{identity.email}}</div></div>
+              <div fxLayout="row" fxLayoutGap="15px" style="margin-top:2px;margin-left: 3%;">
+                  <div><img src="{{url + 'get-image-user/' + this.identity.image }}" style="height: 60px; width: 60px"></div>
+                  <div fxLayout="column" fxLayoutGap="3px" class="info_user"><div class="nombre-user">{{identity.nombre}}</div><div class="email-user">{{identity.email}}</div></div>
                 </div>
           </mat-nav-list>
 
           <mat-nav-list class ="menu-sidenav">
-              <mat-list-item></mat-list-item>
+              <div MatSubheader class="menu-category"> Preview</div>
+
               <a mat-list-item (click)="sidenav.close()" [routerLink]= "['mis-datos']" routerLinkActive="active-list-item" #state="routerLinkActive"><div class="icon"><mat-icon [inline]="true">settings</mat-icon></div> Mis Datos
                 <div *ngIf="state" fxFlex fxLayout class="icon-selected" fxLayoutAlign="end"><mat-icon [inline]="true">arrow_left</mat-icon></div></a>
-              <a mat-list-item (click)="sidenav.close()" [routerLink]= "['#']" routerLinkActive="active-list-item">ejemplo</a>
+
+                <div *ngIf="user.tipo == 3" MatSubheader class="menu-category menu-admin"> Administrador</div>
           </mat-nav-list>
 
 
