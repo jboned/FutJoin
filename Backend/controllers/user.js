@@ -80,15 +80,13 @@ function loginUser(req, res){
 function updateUser(req,res){
     var userId = req.params.id;
     var update = req.body;
-    console.log(userId); 
-    console.log(update);
+
     
     if(userId != req.user.sub){
         return res.status(500).send({message:"No tienes permiso para actualizar este usuario"});
     }
     User.findByIdAndUpdate(userId, update, (err,userUpdated) => {
         if(err){
-            console.log(err);
             res.status(500).send({message:'Error al actualizar el usuario'});
         }else{
             res.status(200).send ({user:userUpdated});
@@ -107,7 +105,7 @@ function uploadImage(req,res){
         
         var ext_split = file_name.split('.');
         var file_ext = ext_split[1];
-        if(file_ext == 'png' || file_ext == 'jpg'){
+        if(file_ext == 'raw' || file_ext == 'tif' || file_ext == 'png' || file_ext == 'jpg' || file_ext == 'jpeg' || fiel_ext=='bmp'){
             User.findByIdAndUpdate(userId,{image:file_name}, function(err,userUpdated){
                 if(err){
                     res.status(500).send({message:'Error al actualizar el usuario'});
@@ -117,7 +115,7 @@ function uploadImage(req,res){
                 }
             });
         }else{
-            res.status(404).send({message:'Extension no valida'});
+            res.status(500).send({message:'Extension no valida'});
         }
 
     }else{

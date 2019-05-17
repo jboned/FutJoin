@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 import {CreateComplejoComponent} from './components/create-complejo.component';
 
 const appRoutes: Routes = [
-    {path: '', component: AppComponent},
+    {path: 'home', component: AppComponent},
     {path: 'mis-datos', component: UserEditComponent},
     {path: 'crear-complejo', component: CreateComplejoComponent}
 ]

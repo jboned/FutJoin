@@ -16,6 +16,7 @@ function saveComplejoDeportivo(req,res){
     user.tipo = 2;
     user.telefono = params.propietario.telefono;
     user.codigoPostal = params.propietario.codigoPostal;
+    user.image = "wCtxANxebqR5RM8m6E5519nn.png";
     
     bcrypt.hash(params.propietario.password, null, null, function(err, hash){
         user.password = hash;

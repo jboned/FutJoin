@@ -20,32 +20,32 @@
 
           <mat-nav-list class ="menu-sidenav">
               <div MatSubheader class="menu-category"> Preview</div>
+              
+              <a mat-list-item (click)="inicio=true" (click)="sidenav.close()" [routerLink]= "['home']" routerLinkActive="active-list-item" #state3="routerLinkActive"><div class="icon"><mat-icon [inline]="true">home</mat-icon></div> Inicio
+                <div *ngIf="state3.isActive" fxFlex fxLayout class="icon-selected" fxLayoutAlign="end"><mat-icon [inline]="true">arrow_left</mat-icon></div></a>
 
-              <a mat-list-item (click)="sidenav.close()" [routerLink]= "['mis-datos']" routerLinkActive="active-list-item" #state="routerLinkActive"><div class="icon"><mat-icon [inline]="true">settings</mat-icon></div> Mis Datos
+              <a mat-list-item (click)="inicio=false" (click)="sidenav.close()" [routerLink]= "['mis-datos']" routerLinkActive="active-list-item" #state="routerLinkActive"><div class="icon"><mat-icon [inline]="true">settings</mat-icon></div> Mis Datos
                 <div *ngIf="state.isActive" fxFlex fxLayout class="icon-selected" fxLayoutAlign="end"><mat-icon [inline]="true">arrow_left</mat-icon></div></a>
 
                 <div *ngIf="identity.tipo == 3" >
                   <div MatSubheader class="menu-category">Administrador</div>
-                  <a mat-list-item (click)="sidenav.close()" [routerLink]= "['crear-complejo']" routerLinkActive="active-list-item" #state2="routerLinkActive"><div class="icon"><mat-icon [inline]="true">supervised_user_circle</mat-icon></div> Crear Complejo Deportivo
+                  <a mat-list-item (click)="inicio=false" (click)="sidenav.close()" [routerLink]= "['crear-complejo']" routerLinkActive="active-list-item" #state2="routerLinkActive"><div class="icon"><mat-icon [inline]="true">supervised_user_circle</mat-icon></div> Crear Complejo Deportivo
                       <div *ngIf="state2.isActive" fxFlex fxLayout class="icon-selected" fxLayoutAlign="end"><mat-icon [inline]="true">arrow_left</mat-icon></div></a>
                 </div>
           </mat-nav-list>
-
-
-
-      </mat-sidenav>
+     </mat-sidenav>
 
       <mat-sidenav-content>
           <mat-toolbar color="primary" class="barra">
               <mat-toolbar-row>
                   <button mat-icon-button (click)="sidenav.toggle()"><mat-icon>menu</mat-icon></button>
-                  <a href="#" mat-button><img src = "../assets/img/Logo barra.png" style="width:50px;height:50px"><img src = "../assets/img/Palabra barra.png" style="width:100px;height:25px"></a>
+                  <a [routerLink]= "['']" (click)="inicio=true" mat-button><img src = "../assets/img/Logo barra.png" style="width:50px;height:50px"><img src = "../assets/img/Palabra barra.png" style="width:100px;height:25px"></a>
                   <div fxFlex fxLayout fxLayoutAlign="end">
                       <div fxLayout fxLayoutGap="10px">
                         <div>
                           <button mat-icon-button [matMenuTriggerFor]="menu"><mat-icon>more_vert</mat-icon></button>
                           <mat-menu #menu="matMenu">
-                            <a [routerLink]= "['']" mat-menu-item><mat-icon>help</mat-icon>FAQ</a>
+                            <a (click)="inicio=false" [routerLink]= "['']" mat-menu-item><mat-icon>help</mat-icon>FAQ</a>
                             <a [routerLink]="['']" mat-menu-item (click)="logout()"><mat-icon>power_settings_new</mat-icon>Logout</a>
                           </mat-menu>
                         </div>
@@ -54,7 +54,10 @@
               </mat-toolbar-row>
           </mat-toolbar>
           <img class=bg src="../assets/img/gris.png">
-          <div class="contenido"><router-outlet></router-outlet></div>
+          <div class="contenido">
+              <div *ngIf="inicio"></div>
+              <div *ngIf="!inicio"><router-outlet></router-outlet></div>
+        </div>
       </mat-sidenav-content>
     </mat-sidenav-container>
 </div>

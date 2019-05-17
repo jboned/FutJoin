@@ -73,7 +73,7 @@ export class AppComponent implements OnInit{
 
   public minDate;
   public maxDate;
-
+  public inicio;
   public url;
 
 
@@ -84,9 +84,8 @@ export class AppComponent implements OnInit{
     this.user = new User('', '', '', '', '', '', '',0,null,'', '', '', 0, 0 );
     this.userRegister = new User('', '', '', '', '', '', '',0,null,'', '', '', 0, 0 );
     this.estado = "login";
-
     this.url = GLOBAL.url;
-
+    this.inicio = true;
     this.minDate = new Date(1900,0,1);
     this.maxDate = new Date();
   }
@@ -152,7 +151,7 @@ export class AppComponent implements OnInit{
           }
         },
         (error: HttpErrorResponse) =>{
-
+          
           this.message = error.error.message;
           this.showToaster();
 
@@ -166,6 +165,7 @@ export class AppComponent implements OnInit{
     localStorage.clear();
     this.identity = null;
     this.token = null;
+    this.inicio = "false";
   }
 
   public onRegisterSubmit(){

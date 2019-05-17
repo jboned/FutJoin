@@ -71,21 +71,14 @@ export class UserEditComponent implements OnInit{
                 (result:any) => {
                   this.user.image = result.image;
                   localStorage.setItem('identity', JSON.stringify(this.user));
-                  console.log(this.identity);
-
                   this.message= "El usuario se ha actualizado correctamente.";
                   this.showToasterBueno();
-                  }).catch(e =>{
-                    console.log(e);
-                    this.message = e.message;
-                    this.showToaster();
-                });
-            }
-
-
-
+                }).catch(e =>{
+                  this.showToaster();
+                  this.message = e.message;
+                })
+              }
           }
-
         },
         (error: HttpErrorResponse) =>{
           this.message = error.error.message;
