@@ -20,6 +20,7 @@ import { AppComponent } from './app.component';
 import { MustMatchDirective } from './_helpers/must-match.directive'
 import { UserEditComponent } from './components/user-edit.component';
 import { CreateComplejoComponent } from './components/create-complejo.component';
+import { ComplejosDeportivosComponent } from './components/complejos-deportivos';
 
 
 
@@ -28,7 +29,8 @@ import { CreateComplejoComponent } from './components/create-complejo.component'
     AppComponent,
     MustMatchDirective,
     UserEditComponent,
-    CreateComplejoComponent
+    CreateComplejoComponent,
+    ComplejosDeportivosComponent
   ],
   imports: [
     BrowserModule,

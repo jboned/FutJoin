@@ -20,7 +20,7 @@
 
           <mat-nav-list class ="menu-sidenav">
               <div MatSubheader class="menu-category"> Preview</div>
-              
+
               <a mat-list-item (click)="inicio=true" (click)="sidenav.close()" [routerLink]= "['home']" routerLinkActive="active-list-item" #state3="routerLinkActive"><div class="icon"><mat-icon [inline]="true">home</mat-icon></div> Inicio
                 <div *ngIf="state3.isActive" fxFlex fxLayout class="icon-selected" fxLayoutAlign="end"><mat-icon [inline]="true">arrow_left</mat-icon></div></a>
 
@@ -55,7 +55,9 @@
           </mat-toolbar>
           <img class=bg src="../assets/img/gris.png">
           <div class="contenido">
-              <div *ngIf="inicio"></div>
+              <div *ngIf="inicio">
+                <h1>Bienvenido a Futjoin</h1><h2>Empieza a utilizar nuestra aplicación. Mira nuestros complejos deportivos.</h2>
+              </div>
               <div *ngIf="!inicio"><router-outlet></router-outlet></div>
         </div>
       </mat-sidenav-content>
