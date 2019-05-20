@@ -6,6 +6,7 @@ import {HttpErrorResponse} from  '@angular/common/http';
 import { trigger, state, style, animate, transition } from '@angular/animations';
 import {GLOBAL} from './services/global';
 import {MatSidenav} from '@angular/material';
+import { Router } from '@angular/router';
 
 
 
@@ -79,13 +80,13 @@ export class AppComponent implements OnInit{
 
   constructor(
     private _userService:UserService,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    public router: Router
   ){
     this.user = new User('', '', '', '', '', '', '',0,null,'', '', '', 0, 0 );
     this.userRegister = new User('', '', '', '', '', '', '',0,null,'', '', '', 0, 0 );
     this.estado = "login";
     this.url = GLOBAL.url;
-    this.inicio = true;
     this.minDate = new Date(1900,0,1);
     this.maxDate = new Date();
   }
@@ -94,6 +95,7 @@ export class AppComponent implements OnInit{
   ngOnInit(){
     this.identity = this._userService.getIdentity();
     this.token = this._userService.getToken();
+    this.inicio = true;
   }
 
   showToaster(){
@@ -141,6 +143,7 @@ export class AppComponent implements OnInit{
                   }else{
                     localStorage.setItem('token',token);
                     this.user = new User('', '', '', '', '', '', '',0,null,'', '', '', 0, 0 );
+                    this.router.navigate(['home']);
                   }
               },
               (error: HttpErrorResponse) =>{
@@ -151,7 +154,7 @@ export class AppComponent implements OnInit{
           }
         },
         (error: HttpErrorResponse) =>{
-          
+
           this.message = error.error.message;
           this.showToaster();
 

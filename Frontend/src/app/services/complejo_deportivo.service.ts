@@ -23,6 +23,11 @@ export class ComplejoDeportivoService{
     return this._http.post(this.url+'saveComplejo', params, {headers: headers}).pipe(map(res => res));
 }
 
+public getComplejos():Observable<any>{
+  let headers = new HttpHeaders().set('Content-Type','application/json');
+  return this._http.post(this.url+'getComplejos', '', {headers: headers}).pipe(map(res => res));
+}
+
 
 
 

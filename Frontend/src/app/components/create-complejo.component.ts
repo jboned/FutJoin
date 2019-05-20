@@ -19,13 +19,20 @@ export class CreateComplejoComponent implements OnInit{
     public userComplejo: User;
     public complejo: ComplejoDeportivo;
     public message;
+    public identity;
+    public token;
 
     constructor(
       private _complejoService:ComplejoDeportivoService,
+      private _userService:UserService,
       private toastr: ToastrService
     ){
       this.userComplejo = new User('', '', '', '', '', '', '',0,null,'', '', '', 0, 0 );
       this.complejo = new ComplejoDeportivo('',null);
+
+      //LocalStorage
+      this.identity = this._userService.getIdentity();
+      this.token = this._userService.getToken();
 
     }
 

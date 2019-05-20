@@ -11,6 +11,8 @@ var api = express.Router();
 
 api.post('/saveComplejo',complejoDeportivoController.saveComplejoDeportivo);
 
+api.post('/getComplejos',complejoDeportivoController.getComplejosDeportivo);
+
 
 
 module.exports = api;

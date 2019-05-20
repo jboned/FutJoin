@@ -1,0 +1,33 @@
+.outer {
+  display: table;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+}
+
+.middle {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+.inner {
+  margin-left: auto;
+  margin-right: auto;
+  width: 800px;
+  -webkit-box-shadow: 10px 9px 31px 13px rgba(92,133,65,0.4);
+  -moz-box-shadow: 10px 9px 31px 13px rgba(92,133,65,0.4);
+  box-shadow: 10px 9px 31px 13px rgba(92,133,65,0.4);
+  /*whatever width you want*/
+}
+
+
+
+img {
+	max-width: 100%;
+	}
+img.imagen {
+	width: 800px;
+	height: 500px;
+	}

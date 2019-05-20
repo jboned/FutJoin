@@ -35,6 +35,30 @@ function saveComplejoDeportivo(req,res){
     complejoDeportivo.save();
 }
 
+function getComplejosDeportivo(req,res){
+     let find = ComplejoDeportivo.find({});
+     find.populate({
+         path:'propietario',
+         model:'User',
+         match: {tipo: 2}
+     }).exec(function(err, complejos){
+         if(err){
+             res.status(500).send({message: 'Error en la peticion'});
+         }else{
+             if(!complejos){
+                 res.status(404).send({message:'No hay complejos'});
+             }else{
+                 complejos = complejos.filter(function(complejo){
+                     return complejo.propietario;
+                  });
+                 res.status(200).send({complejos});
+             }
+         }
+     });
+}
+
 module.exports = {
-    saveComplejoDeportivo
+    saveComplejoDeportivo,
+    getComplejosDeportivo
+
 }
