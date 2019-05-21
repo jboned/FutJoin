@@ -95,7 +95,7 @@
                         </mat-form-field>
                     </div>
                   <br/><br/>
-                    <div fxLayout="row" fxLayoutAlign="space-between">
+                    <div fxLayout="row" fxLayoutAlign="space-between"><!--Aqui hay que poner el boton de login en grande, abajo facebook y google y mas anajo No tienes cuenta u olvidaste-->
                         <button mat-raised-button color="accent" type="submit" style="position:left">Iniciar sesion</button>
                         <a mat-button color="primary" (click) = "estado='register'">¿No tienes cuenta? Regístrate</a>
                     </div>
@@ -163,7 +163,7 @@
 
                             <br/>
                             <div fxLayout="row" fxLayoutAlign="space-evenly">
-                                <button type="button" mat-raised-button color="warn" (click) = "estado='login'">Back <mat-icon>cancel</mat-icon></button>
+                                <button type="button" mat-raised-button color="warn" (click) = "estado='login'">Cancel <mat-icon>cancel</mat-icon></button>
                                 <button  type="button" ng-Model="next" [disabled]="email.invalid || password.invalid || confirmPassword.invalid"
                                         mat-raised-button color="primary" matStepperNext>Next <mat-icon>arrow_forward</mat-icon></button>
                             </div>
@@ -206,7 +206,7 @@
                             </div>
 
                             <div fxLayout="row" fxLayoutAlign="space-evenly">
-                                    <button type="button" mat-raised-button color="warn" matStepperPrevious>Back <mat-icon>cancel</mat-icon></button>
+                                    <button type="button" mat-raised-button color="warn" matStepperPrevious>Back <mat-icon>backspace</mat-icon></button>
                                     <button type="button" ng-Model="next"mat-raised-button color="primary" matStepperNext>Next <mat-icon>arrow_forward</mat-icon></button>
                             </div>
                         </mat-step>
@@ -247,8 +247,8 @@
                             </div>
 
                             <div fxLayout="row" fxLayoutAlign="space-evenly">
-                                    <button type="button" mat-raised-button color="warn" matStepperPrevious>Back <mat-icon>cancel</mat-icon></button>
-                                    <button  type="submit" mat-raised-button color="accent">Finalizar <mat-icon>check</mat-icon></button>
+                                    <button type="button" mat-raised-button color="warn" matStepperPrevious>Back <mat-icon>backspace</mat-icon></button>
+                                    <button  type="submit" mat-raised-button class="fin">Finalizar <mat-icon>check</mat-icon></button>
 
                             </div>
                         </mat-step>

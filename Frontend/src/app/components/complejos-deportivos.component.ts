@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {ComplejoDeportivoService} from '../services/complejo_deportivo.service';
 import { User } from '../models/user';
 import { ComplejoDeportivo } from '../models/complejodeportivo';
@@ -6,8 +6,9 @@ import {GLOBAL} from '../services/global';
 import { ToastrService } from 'ngx-toastr';
 import {HttpErrorResponse} from  '@angular/common/http';
 import { UserService } from '../services/user.service';
-
-import { DomSanitizer} from '@angular/platform-browser';
+import { NgxCarousel3dModule }  from 'ngx-carousel-3d'
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/catch';
 
 
 @Component({
@@ -18,45 +19,66 @@ import { DomSanitizer} from '@angular/platform-browser';
 })
 
 export class ComplejosDeportivosComponent implements OnInit{
-    public complejos: ComplejoDeportivo[];
+
     public identity;
     public token;
     public message;
     public url;
+    public complejos: ComplejoDeportivo[] = [];
+
+    @ViewChild('carousel') carousel:any;
+
+
+    options : Object = {
+        clicking: true,
+        sourceProp: 'src',
+        visible: 2,
+        perspective: 4,
+        startSlide: 0,
+        border: 0,
+        dir: 'ltr',
+        width: 800,
+        height: 555,
+        space: 500,
+        autoRotationSpeed: 20000,
+        loop: true
+    }
+
 
 
     constructor(
       private _complejoService:ComplejoDeportivoService,
       private toastr: ToastrService,
       private _userService:UserService,
-      private _sanitizer: DomSanitizer
     ){
       //LocalStorage
       this.identity = this._userService.getIdentity();
       this.token = this._userService.getToken();
       this.url = GLOBAL.url;
+      this.getComplejos().subscribe(_=>{;
+        console.log(this.complejos);
+      });
     }
+    ngOnInit(){}
 
-    ngOnInit(){
-      this.getComplejos();
-    }
+
+
+
 
     getComplejos(){
-      this._complejoService.getComplejos().subscribe(
-        response=>{
-          var complejos = response.complejos;
+      return this._complejoService.getComplejos().map(
+        (complejos) => {
           if(complejos.length==0){
             this.message = "No hay complejos deportivos.";
             this.showToaster();
           }else{
-            this.complejos = complejos;
+            this.complejos = complejos.complejos;
           }
-        },
-        (error: HttpErrorResponse) =>{
-          this.message = error.error.message;
-          this.showToaster();
-        }
-      );
+        })
+       .catch((error) => {
+          console.log('error ' + error);
+          throw error;
+        });
     }
 
     showToaster(){
@@ -76,13 +98,4 @@ export class ComplejosDeportivosComponent implements OnInit{
         timeOut: 2500
       });
     }
-
-    getImage(complejo){
-      let vari = this.url + 'get-image-user/' + complejo.propietario.image
-
-      let sano = this._sanitizer.bypassSecurityTrustStyle('url('+vari+')');
-
-      return sano;
-    }
-
   }

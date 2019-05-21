@@ -51,6 +51,7 @@ function getComplejosDeportivo(req,res){
                  complejos = complejos.filter(function(complejo){
                      return complejo.propietario;
                   });
+                  
                  res.status(200).send({complejos});
              }
          }

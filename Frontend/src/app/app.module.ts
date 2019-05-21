@@ -21,7 +21,7 @@ import { MustMatchDirective } from './_helpers/must-match.directive'
 import { UserEditComponent } from './components/user-edit.component';
 import { CreateComplejoComponent } from './components/create-complejo.component';
 import { ComplejosDeportivosComponent } from './components/complejos-deportivos.component';
-import { MatCarouselModule } from '@ngmodule/material-carousel';
+import { NgxCarousel3dModule }  from 'ngx-carousel-3d';
 
 
 
@@ -43,10 +43,11 @@ import { MatCarouselModule } from '@ngmodule/material-carousel';
     MatFormFieldModule,
     HttpClientModule,
     ToastrModule.forRoot(),
-    MatCarouselModule,
+    NgxCarousel3dModule,
     routing
   ],
   providers: [ appRoutingProviders],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}
