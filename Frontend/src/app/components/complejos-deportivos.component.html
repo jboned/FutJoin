@@ -7,11 +7,7 @@
               <mat-card-title>{{complejo.propietario.nombre}}</mat-card-title>
               <mat-card-subtitle>{{complejo.direccion}},  {{complejo.propietario.codigoPostal}}</mat-card-subtitle>
             </mat-card-header>
-            <div>
-              <button mat-mini-fab style="margin-top:15%; position: absolute; margin-left:4%;" onclick="document.getElementById('next').click()"><mat-icon>keyboard_arrow_left</mat-icon></button>
               <img mat-card-image class="slide-img" src="{{url + 'get-image-user/' + complejo.propietario.image}}" style="margin-left: 15%;">
-              <button mat-mini-fab style="margin-top:15%; position: absolute; right:6%;"><mat-icon>keyboard_arrow_right</mat-icon></button>
-            </div>
             <mat-card-content>
               <mat-list>
                 <mat-divider></mat-divider>
@@ -23,7 +19,7 @@
             </mat-card-content>
             <mat-card-actions>
               <div fxLayout="row" fxLayoutAlign="space-evenly">
-                <button mat-raised-button color="accent" (click)=carousel.goNext()>Futbol 7</button>
+                <button mat-raised-button color="accent">Futbol 7</button>
                 <button class="rosa" mat-raised-button>Futbol 11</button>
                 <button mat-raised-button color="accent">Futbol Sala</button>
             </div>
