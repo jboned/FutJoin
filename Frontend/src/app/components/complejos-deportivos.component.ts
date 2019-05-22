@@ -6,7 +6,6 @@ import {GLOBAL} from '../services/global';
 import { ToastrService } from 'ngx-toastr';
 import {HttpErrorResponse} from  '@angular/common/http';
 import { UserService } from '../services/user.service';
-import { NgxCarousel3dModule }  from 'ngx-carousel-3d'
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 
@@ -32,15 +31,15 @@ export class ComplejosDeportivosComponent implements OnInit{
     options : Object = {
         clicking: true,
         sourceProp: 'src',
-        visible: 2,
-        perspective: 4,
+        visible: 3,
+        perspective: 3,
         startSlide: 0,
         border: 0,
         dir: 'ltr',
         width: 800,
         height: 555,
         space: 500,
-        autoRotationSpeed: 20000,
+        autoRotationSpeed: 20000000,
         loop: true
     }
 
@@ -61,8 +60,9 @@ export class ComplejosDeportivosComponent implements OnInit{
     }
     ngOnInit(){}
 
-
-
+    goNext(){
+      this.carousel.goNext();
+    }
 
 
     getComplejos(){
