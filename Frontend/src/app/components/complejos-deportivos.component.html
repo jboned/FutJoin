@@ -1,6 +1,6 @@
 
 
-<ngx-carousel-3d  [slides]="complejos" [options]="options"  #carousel style="margin-top:20%">
+<ngx-carousel-3d  [slides]="complejos" [options]="options"  #carousel style="margin-top:23%">
     <ngx-carousel-3d-slide class ="pointer"  *ngFor="let complejo of complejos; let i = index;" (click)="carousel.goSlide(i)">
         <mat-card class="example-card">
             <mat-card-header>
@@ -9,19 +9,22 @@
             </mat-card-header>
               <img mat-card-image class="slide-img" src="{{url + 'get-image-user/' + complejo.propietario.image}}" style="margin-left: 15%;">
             <mat-card-content>
-              <mat-list>
+
                 <mat-divider></mat-divider>
-                <mat-list-item>Correo: {{complejo.propietario.email}}</mat-list-item>
+
+                  <div fxLayout="row" fxLayoutAlign="space-evenly">
+                    <div class ="datos"><b>Correo:</b> {{complejo.propietario.email}}</div>
+                    <div class ="datos"><b>Telefono:</b> {{complejo.propietario.telefono }}</div>
+                  </div>
+
                 <mat-divider></mat-divider>
-                <mat-list-item>Telefono: {{complejo.propietario.telefono }}</mat-list-item>
-                <mat-divider></mat-divider>
-              </mat-list>
+
             </mat-card-content>
             <mat-card-actions>
               <div fxLayout="row" fxLayoutAlign="space-evenly">
-                <button mat-raised-button color="accent">Futbol 7</button>
-                <button class="rosa" mat-raised-button>Futbol 11</button>
-                <button mat-raised-button color="accent">Futbol Sala</button>
+                <button mat-raised-button style="background-color:#f19203">Futbol 7</button>
+                <button mat-raised-button style="background-color:#58ee12">Futbol 11</button>
+                <button mat-raised-button style="background-color:#318ED3">Futbol Sala</button>
             </div>
             </mat-card-actions>
           </mat-card>

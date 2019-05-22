@@ -21,11 +21,14 @@
           <mat-nav-list class ="menu-sidenav">
               <div MatSubheader class="menu-category"> Preview</div>
 
-              <a mat-list-item  (click)="sidenav.close()" [routerLink]= "['home']" routerLinkActive="active-list-item" #state3="routerLinkActive"><div class="icon"><mat-icon [inline]="true">home</mat-icon></div> Inicio
+              <a mat-list-item  (click)="sidenav.close()" [routerLink]= "['complejos']" routerLinkActive="active-list-item" #state3="routerLinkActive"><div class="icon"><mat-icon [inline]="true">home</mat-icon></div> Inicio
                 <div *ngIf="state3.isActive" fxFlex fxLayout class="icon-selected" fxLayoutAlign="end"><mat-icon [inline]="true">arrow_left</mat-icon></div></a>
 
               <a mat-list-item  (click)="sidenav.close()" [routerLink]= "['mis-datos']" routerLinkActive="active-list-item" #state="routerLinkActive"><div class="icon"><mat-icon [inline]="true">settings</mat-icon></div> Mis Datos
                 <div *ngIf="state.isActive" fxFlex fxLayout class="icon-selected" fxLayoutAlign="end"><mat-icon [inline]="true">arrow_left</mat-icon></div></a>
+
+                <a mat-list-item  (click)="sidenav.close()" [routerLink]= "['complejos']" routerLinkActive="active-list-item" #state2="routerLinkActive"><div class="icon"><mat-icon [inline]="true">fitness_center</mat-icon></div> Complejos Deportivos
+                  <div *ngIf="state2.isActive" fxFlex fxLayout class="icon-selected" fxLayoutAlign="end"><mat-icon [inline]="true">arrow_left</mat-icon></div></a>
 
                 <div *ngIf="identity.tipo == 3" >
                   <div MatSubheader class="menu-category">Administrador</div>

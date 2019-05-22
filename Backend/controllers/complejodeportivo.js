@@ -40,7 +40,6 @@ function getComplejosDeportivo(req,res){
      find.populate({
          path:'propietario',
          model:'User',
-         match: {tipo: 2}
      }).exec(function(err, complejos){
          if(err){
              res.status(500).send({message: 'Error en la peticion'});

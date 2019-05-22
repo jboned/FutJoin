@@ -7,8 +7,9 @@ import {CreateComplejoComponent} from './components/create-complejo.component';
 import { ComplejosDeportivosComponent } from './components/complejos-deportivos.component';
 
 const appRoutes: Routes = [
+    {path: '', component: UserEditComponent},
     {path: 'undefined', component: ComplejosDeportivosComponent},
-    {path: 'home', component: ComplejosDeportivosComponent},
+    {path: 'complejos', component: ComplejosDeportivosComponent},
     {path: 'mis-datos', component: UserEditComponent},
     {path: 'crear-complejo', component: CreateComplejoComponent}
 ]
