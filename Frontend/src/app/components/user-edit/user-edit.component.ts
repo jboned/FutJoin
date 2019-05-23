@@ -1,11 +1,11 @@
 import {Component, OnInit} from '@angular/core';
-import {UserService} from '../services/user.service';
+import {UserService} from '../../services/user.service';
 import {HttpErrorResponse} from  '@angular/common/http';
 
 
-import {User} from '../models/user';
+import {User} from '../../models/user';
 import { ToastrService } from 'ngx-toastr';
-import {GLOBAL} from '../services/global'
+import {GLOBAL} from '../../services/global';
 
 @Component({
     selector: 'user-edit',

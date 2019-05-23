@@ -1,0 +1,40 @@
+public nombre: String,
+public tipo: Number,
+public largo: Number,
+public ancho: Number,
+public superficie: String,
+public aforoGrada: Number,
+public sistemaIluminacion: Boolean,
+
+<div class ="formulario-simple">
+  <form class ="formulario" name="form" #campoForm="ngForm" (ngSubmit)="campoForm.form.valid && onSubmit()" >
+      <div class="form-group">
+          <mat-form-field>
+              <input type="text" name="nombre" matInput placeholder="Nombre Completo" class="form-control"
+                          [(ngModel)]="campo.nombre" #nombre="ngModel" required>
+                  <mat-error *ngIf="nombre.invalid && (nombre.dirty || nombre.touched)" >
+                      <mat-error *ngIf="nombre.errors['required']">Introduzca su nombre completo.</mat-error>
+                  </mat-error>
+          </mat-form-field>
+      </div>
+
+      <div class="form-group">
+          <mat-form-field>
+              <mat-label>Posicion</mat-label>
+              <mat-select name="posicion" lass="form-control" [(ngModel)]="campo.posicion" #posicion="ngModel">
+                  <mat-option value="1">Futbol 7</mat-option>
+                  <mat-option value="2">Futbol 11</mat-option>
+                  <mat-option value="3">Futbol Sala</mat-option>
+              </mat-select>
+          </mat-form-field>
+      </div>
+
+  
+      <div class="form-group">
+          <mat-form-field>
+              <input type="number" name="largo" matInput placeholder="Introduzca el largo del campo en metros." class="form-control"
+              [(ngModel)]="campo.largo" #largo="ngModel" min="10" max="200">
+          </mat-form-field>
+      </div>
+</form>
+</div>

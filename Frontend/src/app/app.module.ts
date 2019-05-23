@@ -18,9 +18,9 @@ import {routing, appRoutingProviders} from './app.routing';
 //Componentes
 import { AppComponent } from './app.component';
 import { MustMatchDirective } from './_helpers/must-match.directive'
-import { UserEditComponent } from './components/user-edit.component';
-import { CreateComplejoComponent } from './components/create-complejo.component';
-import { ComplejosDeportivosComponent } from './components/complejos-deportivos.component';
+import { UserEditComponent } from './components/user-edit/user-edit.component';
+import { CreateComplejoComponent } from './components/create-complejos/create-complejo.component';
+import { ComplejosDeportivosComponent } from './components/complejos-deportivos/complejos-deportivos.component';
 import { NgxCarousel3dModule }  from 'ngx-carousel-3d';
 
 

@@ -1,11 +1,11 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import {ComplejoDeportivoService} from '../services/complejo_deportivo.service';
-import { User } from '../models/user';
-import { ComplejoDeportivo } from '../models/complejodeportivo';
-import {GLOBAL} from '../services/global';
+import {ComplejoDeportivoService} from '../../services/complejo_deportivo.service';
+import { User } from '../../models/user';
+import { ComplejoDeportivo } from '../../models/complejodeportivo';
+import {GLOBAL} from '../../services/global';
 import { ToastrService } from 'ngx-toastr';
 import {HttpErrorResponse} from  '@angular/common/http';
-import { UserService } from '../services/user.service';
+import { UserService } from '../../services/user.service';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 
