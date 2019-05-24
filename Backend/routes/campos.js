@@ -1,14 +1,20 @@
 'use strict'
 
 var express = require('express');
-var campo = require('../controllers/campo');
-var md_auth = require('../middlewares/authenticated')
+var campoController = require('../controllers/campo');
+var md_auth = require('../middlewares/authenticated');
+var multipart= require('connect-multiparty');
+var md_upload = multipart({uploadDir: './uploads/camposs'});
 
 
 var api = express.Router();
 
-api.post('/getCampos',campo.getCampos);
-api.post('/saveCampo',campo.saveCampo);
+api.post('/getCampos',campoController.getCampos);
+api.post('/saveCampo',campoController.saveCampo);
+api.post('/upload-image-campo/:id',[md_auth.ensureAuth, md_upload], campoController.uploadImageCampo);
+api.get('/get-image-campo/:imageFile', campoController.getImageFileCampo);
+
+
 
 
 
