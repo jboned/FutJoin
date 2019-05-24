@@ -1,5 +1,4 @@
 
-
 <ngx-carousel-3d  [slides]="complejos" [options]="options"  #carousel style="margin-top:23%">
     <ngx-carousel-3d-slide class ="pointer"  *ngFor="let complejo of complejos; let i = index;" (click)="carousel.goSlide(i)">
         <mat-card class="example-card">
@@ -22,9 +21,9 @@
             </mat-card-content>
             <mat-card-actions>
               <div fxLayout="row" fxLayoutAlign="space-evenly">
-                <button mat-raised-button style="background-color:#f19203">Futbol 7</button>
-                <button mat-raised-button style="background-color:#58ee12">Futbol 11</button>
-                <button mat-raised-button style="background-color:#318ED3">Futbol Sala</button>
+                <button mat-raised-button [routerLink]="['campos',complejo._id,1 ]" style="background-color:#f19203">Futbol 7</button>
+                <button mat-raised-button [routerLink]="['campos',complejo._id,2 ]" style="background-color:#58ee12">Futbol 11</button>
+                <button mat-raised-button [routerLink]="['campos',complejo._id,3 ]" style="background-color:#318ED3">Futbol Sala</button>
             </div>
             </mat-card-actions>
           </mat-card>

@@ -10,6 +10,7 @@ var CampoSchema = Schema({
     superficie: String,
     aforoGrada: Number,
     sistemaIluminacion: Boolean,
+    image: String,
     complejo: {type: Schema.ObjectId, ref:'ComplejoDeportivo'}
 })
 

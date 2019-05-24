@@ -8,7 +8,7 @@ import { GLOBAL } from './global';
 @Injectable({
   providedIn:'root',
 })
-export class ComplejoDeportivoService{
+export class CampoService{
   public url: string;
   public identity;
   public token;
@@ -17,24 +17,11 @@ export class ComplejoDeportivoService{
     this.url = GLOBAL.url;
   }
 
-  public register(complejo_to_register):Observable<any>{
-    let params= JSON.stringify(complejo_to_register);
+  public create(campo_to_create):Observable<any>{
+    let params= JSON.stringify(campo_to_create);
     let headers = new HttpHeaders().set('Content-Type','application/json');
-    return this._http.post(this.url+'saveComplejo', params, {headers: headers}).pipe(map(res => res));
-}
-
-public getComplejos():Observable<any>{
-  let headers = new HttpHeaders().set('Content-Type','application/json');
-  return this._http.post(this.url+'getComplejos', '', {headers: headers}).pipe(map(res => res));
-}
-
-public getComplejo(id_complejo):Observable<any>{
-  let params= JSON.stringify({id: id_complejo});
-  let headers = new HttpHeaders().set('Content-Type','application/json');
-  return this._http.post(this.url+'getComplejo/', params, {headers: headers}).pipe(map(res => res));
-}
-
-
+    return this._http.post(this.url+'saveCampo', params, {headers: headers}).pipe(map(res => res));
+  }
 
 
 

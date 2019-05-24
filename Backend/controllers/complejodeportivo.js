@@ -57,8 +57,27 @@ function getComplejosDeportivo(req,res){
      });
 }
 
+function getOneComplejoDeportivo(req,res){
+    let find = ComplejoDeportivo.findById(req.body.id);
+    find.populate({
+        path:'propietario',
+        model:'User',
+    }).exec(function(err, complejo){
+        if(err){
+            res.status(500).send({message: 'Error en la peticion'});
+        }else{
+            if(!complejo){
+                res.status(404).send({message:'No existe complejo con ese id'});
+            }else{
+                res.status(200).send({complejo});
+            }
+        }
+    });
+}
+
 module.exports = {
     saveComplejoDeportivo,
-    getComplejosDeportivo
+    getComplejosDeportivo,
+    getOneComplejoDeportivo
 
 }

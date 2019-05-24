@@ -8,6 +8,7 @@ var md_auth = require('../middlewares/authenticated')
 var api = express.Router();
 
 api.post('/getCampos',campo.getCampos);
+api.post('/saveCampo',campo.saveCampo);
 
 
 

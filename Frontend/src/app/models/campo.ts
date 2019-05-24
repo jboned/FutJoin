@@ -9,7 +9,8 @@ export class Campo{
       public superficie: String,
       public aforoGrada: Number,
       public sistemaIluminacion: Boolean,
-      public complejo: ComplejoDeportivo
+      public complejo: ComplejoDeportivo,
+      public image: String,
        
   ){}
 }

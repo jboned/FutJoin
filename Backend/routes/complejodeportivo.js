@@ -13,6 +13,8 @@ api.post('/saveComplejo',complejoDeportivoController.saveComplejoDeportivo);
 
 api.post('/getComplejos',complejoDeportivoController.getComplejosDeportivo);
 
+api.post('/getComplejo',complejoDeportivoController.getOneComplejoDeportivo);
+
 
 
 module.exports = api;

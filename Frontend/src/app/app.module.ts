@@ -22,6 +22,8 @@ import { UserEditComponent } from './components/user-edit/user-edit.component';
 import { CreateComplejoComponent } from './components/create-complejos/create-complejo.component';
 import { ComplejosDeportivosComponent } from './components/complejos-deportivos/complejos-deportivos.component';
 import { NgxCarousel3dModule }  from 'ngx-carousel-3d';
+import { CreateCampoComponent } from './components/create-campos/create-campo.component';
+import { CamposComponent } from './components/campos/campos.component';
 
 
 
@@ -31,7 +33,9 @@ import { NgxCarousel3dModule }  from 'ngx-carousel-3d';
     MustMatchDirective,
     UserEditComponent,
     CreateComplejoComponent,
-    ComplejosDeportivosComponent
+    ComplejosDeportivosComponent,
+    CamposComponent,
+    CreateCampoComponent
   ],
   imports: [
     BrowserModule,

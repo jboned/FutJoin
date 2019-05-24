@@ -30,8 +30,29 @@ function getCampos(req,res){
         }
     });
 }
+
+function saveCampo(req,res){
+    let params = req.body;
+    let campo = new Campo();
+    campo.nombre = params.nombre;
+    campo.largo = params.largo;
+    campo.ancho = params.ancho;
+    campo.superficie = params.superficie;
+    campo.aforoGrada = params.aforoGrada;
+    campo.sistemaIluminacion = params.sistemaIluminacion;
+    campo.complejo = params.complejo;
+    campo.image = "wCtxANxebqR5RM8m6E5519nn.png";
+    campo.save((err, campoStored) =>{
+        if(err){
+            res.status(500).send({message:'Ya existe ese campo'});
+        }else{
+            res.status(200).send({campo:campoStored});
+        }
+    });
+}
  
 module.exports = {
-    getCampos
+    getCampos,
+    saveCampo
 
 }
