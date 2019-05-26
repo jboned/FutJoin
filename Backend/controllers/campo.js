@@ -5,17 +5,22 @@ var fs = require('fs');
 var path = require('path');
 var jwt = require('../services/jwt');
 var User = require('../models/user');
-var Campo = require('../models/campo')
+var Campo = require('../models/campo');
+var Complejo = require('../models/complejodeportivo')
 
 
 function getCampos(req,res){
-    let tipo = req.params.tipo;
-    let find= Campo.find({tipo:tipo});
+    let params = req.body;
+    let tipo = params.tipo;
+    let idcomplejo = params.idcomplejo;
+    console.log(idcomplejo);
+
+    let find= Campo.find({tipo:tipo,complejo:idcomplejo});
     find.populate({
         path:'complejo',
         populate: {
             path:'propietario',
-            model:'User'
+            model:'User',
         },
         model:'ComplejoDeportivo',
     }).exec(function(err,campos){
@@ -41,6 +46,7 @@ function saveCampo(req,res){
     campo.aforoGrada = params.aforoGrada;
     campo.sistemaIluminacion = params.sistemaIluminacion;
     campo.complejo = params.complejo;
+    campo.tipo = params.tipo;
     campo.image = "wCtxANxebqR5RM8m6E5519nn.png";
     campo.save((err, campoStored) =>{
         if(err){
@@ -63,7 +69,7 @@ function uploadImageCampo(req,res){
         var ext_split = file_name.split('.');
         var file_ext = ext_split[1];
         if(file_ext == 'raw' || file_ext == 'tif' || file_ext == 'png' || file_ext == 'jpg' || file_ext == 'jpeg' || fiel_ext=='bmp'){
-            User.findByIdAndUpdate(campoId,{image:file_name}, function(err,campoUpdated){
+            Campo.findByIdAndUpdate(campoId,{image:file_name}, function(err,campoUpdated){
                 if(err){
                     res.status(500).send({message:'Error al actualizar imagen de Campo'});
                 }else{

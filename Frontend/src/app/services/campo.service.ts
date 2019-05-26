@@ -20,9 +20,14 @@ export class CampoService{
   public create(campo_to_create):Observable<any>{
     let params= JSON.stringify(campo_to_create);
     let headers = new HttpHeaders().set('Content-Type','application/json');
-    return this._http.post(this.url+'saveCampo', params, {headers: headers}).pipe(map(res => res));
+    return this._http.post(this.url+'campos/saveCampo', params, {headers: headers}).pipe(map(res => res));
   }
 
+  public getCampos(tipo,idcomplejo):Observable<any>{
+    let params= JSON.stringify({tipo: tipo, idcomplejo:idcomplejo});
+    let headers = new HttpHeaders().set('Content-Type','application/json');
+    return this._http.post(this.url+'campos/getCampos', params, {headers: headers}).pipe(map(res => res));
+  }
 
 
   public getIdentity(){

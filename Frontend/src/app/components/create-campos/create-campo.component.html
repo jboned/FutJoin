@@ -1,63 +1,82 @@
 <mat-toolbar class="barra">
-    <mat-toolbar-row style="background-color:#b3b1b1; color:white;">Formulario para crear campo de complejo.</mat-toolbar-row>
+    <mat-toolbar-row style="background-color:#b3b1b1; color:white;">
+      <!--<button mat-fab color="warn" [routerLink]="['complejos/campos',idComplejo,tipo]"><mat-icon>arrow_back</mat-icon></button>-->
+      <button mat-mini-fab style="background-color:#ffffff;" routerLink="['complejos/campos',idComplejo,tipo]"><mat-icon style="color:red">arrow_back</mat-icon></button>
+      <p style="margin-left:25px;">Formulario para crear campo de complejo.</p>
+
+    </mat-toolbar-row>
 </mat-toolbar>
 
-<div style="height:700px; margin-top:2%" fxLayout="row" fxLayoutAlign="space evenly" >
-    <div class ="cuadrado">
-        <form name="form" #campoForm="ngForm" (ngSubmit)="campoForm.form.valid && onSubmit()">
-            <div class="form-group">
-                <label>Nombre del campo: </label>
-                <mat-form-field>
-                    <input type="text" name="nombreCampo" matInput placeholder="Nombre Completo" class="form-control"
-                                [(ngModel)]="campo.nombre" #nombreCampo="ngModel" required>
-                        <mat-error *ngIf="nombreCampo.invalid && (nombreCampo.dirty || nombreCampo.touched)" >
-                            <mat-error *ngIf="nombreCampo.errors['required']">Introduzca su nombre completo.</mat-error>
-                        </mat-error>
-                </mat-form-field>
-            </div>
-            <div class="form-group">
-                    <label>Dimensiones (en metros): </label>
-                    <mat-form-field class="dimension">
-                        <input style="text-align:center" type="Number" name="largoCampo" matInput placeholder="Largo" class="form-control"
-                                [(ngModel)]="campo.largo" #largoCampo="ngModel"  min="10" max="500" required>
-                    <mat-error *ngIf="largoCampo.invalid && (largoCampo.dirty || largoCampo.touched)">
-                        <mat-error *ngIf="largoCampo.errors['required']"></mat-error>
-                    </mat-error>
-                    </mat-form-field>
-                    <label>x</label>
-                    <mat-form-field class="dimension">     
-                        <input style="text-align:center" type="Number" name="anchoCampo" matInput placeholder="Ancho" class="form-control"
-                        [(ngModel)]="campo.ancho" #anchoCampo="ngModel"  min="5" max="500" required>
-                        <mat-error *ngIf="anchoCampo.invalid && (anchoCampo.dirty || anchoCampo.touched)" >
-                            <mat-error *ngIf="anchoCampo.errors['required']"></mat-error>
-                        </mat-error>
-                    </mat-form-field>
-            </div>
-            <div class="form-group">
-                <label>Seleccione la Superficie: </label>
-                <mat-form-field>
-                    <mat-label>Superficie</mat-label>
-                    <mat-select class="form-control" [(ngModel)]="campo.superficie"
-                                placeholder="Superficie del campo" name="superficie">
-                        <mat-option *ngIf="tipo!=3" value="Cesped Artificial">Cesped Artificial</mat-option>
-                        <mat-option *ngIf="tipo!=3" value="Cesped Natural">Cesped Natural</mat-option>
-                        <mat-option *ngIf="tipo!=3" value="Arena">Arena</mat-option>
-                        <mat-option *ngIf="tipo==3" value="Cesped Artificial">Cushion</mat-option>
-                        <mat-option *ngIf="tipo==3" value="Cesped Natural">Taraflex</mat-option>
+<div fxLayout="colum" fxLayoutAlign="center center">
+  <div style="height:700px; margin-top:2%;" fxLayout="row" fxLayoutAlign="space evenly" >
+      <div class ="cuadrado">
+          <form name="form" #campoForm="ngForm" (ngSubmit)="campoForm.form.valid && onSubmit()">
+              <div class="form-group">
+                  <label>Nombre del campo: </label>
+                  <mat-form-field>
+                      <input type="text" name="nombreCampo" matInput placeholder="Nombre Completo" class="form-control"
+                                  [(ngModel)]="campo.nombre" #nombreCampo="ngModel" required>
+                          <mat-error *ngIf="nombreCampo.invalid && (nombreCampo.dirty || nombreCampo.touched)" >
+                              <mat-error *ngIf="nombreCampo.errors['required']">Introduzca su nombre completo.</mat-error>
+                          </mat-error>
+                  </mat-form-field>
+              </div>
+              <div class="form-group">
+                      <label>Dimensiones (en metros): </label>
+                      <mat-form-field class="dimension">
+                          <input style="text-align:center" type="Number" name="largoCampo" matInput placeholder="Largo" class="form-control"
+                                  [(ngModel)]="campo.largo" #largoCampo="ngModel"  min="10" max="500" required>
+                      <mat-error *ngIf="largoCampo.invalid && (largoCampo.dirty || largoCampo.touched)">
+                          <mat-error *ngIf="largoCampo.errors['required']"></mat-error>
+                      </mat-error>
+                      </mat-form-field>
+                      <label>x</label>
+                      <mat-form-field class="dimension">
+                          <input style="text-align:center" type="Number" name="anchoCampo" matInput placeholder="Ancho" class="form-control"
+                          [(ngModel)]="campo.ancho" #anchoCampo="ngModel"  min="5" max="500" required>
+                          <mat-error *ngIf="anchoCampo.invalid && (anchoCampo.dirty || anchoCampo.touched)" >
+                              <mat-error *ngIf="anchoCampo.errors['required']"></mat-error>
+                          </mat-error>
+                      </mat-form-field>
+              </div>
+              <div class="form-group">
+                  <label>Seleccione la Superficie: </label>
+                  <mat-form-field>
+                      <mat-label>Superficie</mat-label>
+                      <mat-select class="form-control" [(ngModel)]="campo.superficie"
+                                  placeholder="Superficie del campo" name="superficie">
+                          <mat-option *ngIf="tipo!=3" value="Cesped Artificial">Cesped Artificial</mat-option>
+                          <mat-option *ngIf="tipo!=3" value="Cesped Natural">Cesped Natural</mat-option>
+                          <mat-option *ngIf="tipo!=3" value="Arena">Arena</mat-option>
+                          <mat-option *ngIf="tipo==3" value="Cesped Artificial">Cushion</mat-option>
+                          <mat-option *ngIf="tipo==3" value="Cesped Natural">Taraflex</mat-option>
 
-                    </mat-select>
-                </mat-form-field>
-            </div>
-            <div class="form-group">
-                <label>Aforo de la grada: </label>
-                <mat-form-field>
-                    <input type="number" name="aforo" matInput placeholder= "0 si no tiene" class="form-control"
-                    [(ngModel)]="campo.aforoGrada" #aforo = "ngModel">
-                </mat-form-field>
-            </div>
-            <mat-slide-toggle ngModel name="iluminacion" [(ngModel)]="campo.sistemaIluminacion" #aforo = "ngModel">¿Tiene el campo sistema de iluminación?</mat-slide-toggle>
-            <div style="margin-top:20px;"><button mat-raised-button type="submit" style="background-color:#3ef86d">Crear Campo</button></div>
-        </form>
-    </div>
-    <div class="cuadrado" *ngIf="campo.image != ''">IMAGEN</div>
+                      </mat-select>
+                  </mat-form-field>
+              </div>
+              <div class="form-group">
+                  <label>Aforo de la grada: </label>
+                  <mat-form-field>
+                      <input type="number" name="aforo" matInput placeholder= "0 si no tiene" class="form-control"
+                      [(ngModel)]="campo.aforoGrada" #aforo = "ngModel">
+                  </mat-form-field>
+              </div>
+              <mat-slide-toggle ngModel name="iluminacion" [(ngModel)]="campo.sistemaIluminacion" #aforo = "ngModel">¿Tiene el campo sistema de iluminación?</mat-slide-toggle>
+              <div style="margin-top:20px;"><button mat-raised-button type="submit" style="background-color:#3ef86d">Crear Campo</button></div>
+          </form>
+      </div>
+      <div class="cuadrado" *ngIf="campo.image" >
+        <p class="title">Imagen de perfil</p>
+        <div class="box21">
+          <img src="{{url + 'campos/get-image-campo/' + campo.image}}" style="height:200px; width:200px">
+          <div class="box-content">
+              <p class="title">Imagen de perfil</p>
+              <button type="button" mat-raised-button (click)="fileInput.click()">Seleccionar imagen</button>
+              <input type="file" id="file" #fileInput placeholder = "subir Imagen..." hidden (change) = "fileChangeEvent($event)">
+          </div>
+        </div>
+        <p *ngIf="subida == true" style="font-family:system-ui">Imagen subida. Pulsa el siguiente boton para cambiarla.</p>
+        <button type="button" mat-raised-button color="primary" (click)="subirImagen()">Cambiar imagen</button>
+      </div>
+   </div>
 </div>

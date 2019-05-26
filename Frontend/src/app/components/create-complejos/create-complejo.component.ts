@@ -28,7 +28,7 @@ export class CreateComplejoComponent implements OnInit{
       private toastr: ToastrService
     ){
       this.userComplejo = new User('', '', '', '', '', '', '',0,null,'', '', '', 0, 0 );
-      this.complejo = new ComplejoDeportivo('',null);
+      this.complejo = new ComplejoDeportivo('','',null);
 
       //LocalStorage
       this.identity = this._userService.getIdentity();
@@ -48,7 +48,7 @@ export class CreateComplejoComponent implements OnInit{
           this.showToasterBueno();
         });
         this.userComplejo= new User('', '', '', '', '', '', '',0,null,'', '', '', 0, 0 );
-        this.complejo = new ComplejoDeportivo('',null);
+        this.complejo = new ComplejoDeportivo('','',null);
     }
 
 

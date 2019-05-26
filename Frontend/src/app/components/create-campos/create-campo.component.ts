@@ -7,6 +7,8 @@ import { ActivatedRoute } from '@angular/router';
 import { ComplejoDeportivoService } from 'src/app/services/complejo_deportivo.service';
 import { HttpErrorResponse } from '@angular/common/http/http';
 import { CampoService } from 'src/app/services/campo.service';
+import { GLOBAL } from 'src/app/services/global';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
     selector: 'create-campo',
@@ -20,9 +22,11 @@ import { CampoService } from 'src/app/services/campo.service';
     public token;
     public message;
     public url;
+    public subida:Boolean;
+
     public campo: Campo;
     public complejo: ComplejoDeportivo;
-    
+
     public idComplejo;
     public tipo;
 
@@ -31,10 +35,15 @@ import { CampoService } from 'src/app/services/campo.service';
       private toastr: ToastrService,
       private route: ActivatedRoute,
       private _complejoDeportivoService:ComplejoDeportivoService,
+      private _userService:UserService,
       private _campoService: CampoService
     ){
-      this.campo = new Campo('',0,0,0,'',0,false,null,'');
-      
+      this.campo = new Campo('','',0,0,0,'',0,false,null,'');
+      this.url = GLOBAL.url;
+      this.subida = false;
+      this.identity = this._userService.getIdentity();
+      this.token = this._userService.getToken();
+
     }
 
     ngOnInit(): void {
@@ -42,6 +51,7 @@ import { CampoService } from 'src/app/services/campo.service';
         this.idComplejo = params['complejo_id'];
         this.tipo = parseInt(params['tipo'],10);
         });
+
       this._complejoDeportivoService.getComplejo(this.idComplejo).subscribe(
         response => {
           if(!response.complejo){
@@ -56,6 +66,8 @@ import { CampoService } from 'src/app/services/campo.service';
           this.showToaster();
         }
       );
+      console.log(this.tipo);
+
     }
 
     onSubmit(){
@@ -81,9 +93,62 @@ import { CampoService } from 'src/app/services/campo.service';
         });
     }
 
-    
-    
-    
+
+    subirImagen(){
+      let url = this.url + 'campos/upload-image-campo/'+ this.campo._id;
+      this.makeFileRequest(url,[],this.filesToUpload).then(
+        (result:any) => {
+          this.campo.image = result.image;
+          this.message= "La imagen del campo se ha cambiado correctamente.";
+          this.showToasterBueno();
+        }).catch(e =>{
+          this.showToaster();
+          this.message = e.message;
+        })
+    }
+
+    public filesToUpload: Array<File> = null;
+
+    fileChangeEvent(fileInput: any){
+      this.filesToUpload = <Array<File>>fileInput.target.files;
+      this.subida = true;
+    }
+
+    makeFileRequest(url: string, params: Array<string>, files:Array<File>){
+      var token  = this.token;
+
+      return new Promise(function(resolve, reject){
+        var formData:any = new FormData();
+        var xhr = new XMLHttpRequest();
+
+        for(var i = 0; i< files.length; i++){
+          formData.append('image',files[i], files[i].name);
+        }
+        xhr.open('POST',url,true);
+        xhr.setRequestHeader('Authorization',token);
+        xhr.responseType = 'json'
+        xhr.send(formData);
+
+        xhr.onload = function (){
+          if(xhr.readyState == 4){
+            if(xhr.status == 200){
+              resolve(xhr.response);
+            }
+          }else{
+            reject({message: "Error al introducir imagen"});
+          }
+        }
+      });
+    }
+
+
+
+
+
+
+
+
+
     showToaster(){
       this.toastr.error(this.message,'Error',{
         progressBar : true,
@@ -100,6 +165,12 @@ import { CampoService } from 'src/app/services/campo.service';
         timeOut: 2500
       });
     }
+
+
+
+
+
+
   }
- 
-  
+
+

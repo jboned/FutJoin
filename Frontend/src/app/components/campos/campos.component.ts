@@ -4,6 +4,10 @@ import {animate, state, style, transition, trigger} from '@angular/animations';
 import { Campo} from '../../models/campo'
 import { UserService } from 'src/app/services/user.service';
 import { ToastrService } from 'ngx-toastr';
+import { ComplejoDeportivo } from 'src/app/models/complejodeportivo';
+import { GLOBAL } from 'src/app/services/global';
+import { ActivatedRoute } from '@angular/router';
+import { CampoService } from 'src/app/services/campo.service';
 
 @Component({
     selector: 'campos',
@@ -11,9 +15,9 @@ import { ToastrService } from 'ngx-toastr';
     templateUrl: 'campos.component.html',
     animations: [
       trigger('detailExpand', [
-        state('collapsed', style({height: '0px', minHeight: '0', display: 'none'})),
+        state('collapsed', style({height: '0px', minHeight: '0'})),
         state('expanded', style({height: '*'})),
-        transition('expanded <=> collapsed', animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)')),
+        transition('expanded <=> collapsed', animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)'))
       ]),
     ],
   })
@@ -24,21 +28,71 @@ import { ToastrService } from 'ngx-toastr';
     public token;
     public message;
     public url;
-    
-    dataSource: Campo[];
-    columnsToDisplay = ['nombre', 'largo', 'ancho', 'tipo'];
+
+    public campo: Campo;
+    public campos: Campo[] = [];
+
+    public idComplejo;
+    public tipo;
+
+
+    columnsToDisplay = ['Nombre', 'Largo', 'Ancho', 'Superficie'];
     expandedElement: Campo | null;
 
     constructor (
       private _userService:UserService,
       private toastr: ToastrService,
-    
+      private route: ActivatedRoute,
+      private _campoService:CampoService
+
     ){
-      
+
+      this.url = GLOBAL.url;
+
+      this.identity = this._userService.getIdentity();
+      this.token = this._userService.getToken();
+
+
     }
-    ngOnInit(): void {};
 
+    ngOnInit(): void {
+      this.route.params.subscribe(params => {
+        this.idComplejo = params['complejo_id'];
+        this.tipo = parseInt(params['tipo'],10);
+      });
+      this.getCampos().subscribe(_=>{;
+        console.log(this.campos);
+      });
+    }
 
+    getCampos(){
+      return this._campoService.getCampos(this.tipo,this.idComplejo).map(
+        (campos) => {
+            this.campos = campos.campos;
+        })
+       .catch((error) => {
+          console.log('error ' + error);
+          throw error;
+        });
+    }
+
+    showToaster(){
+      this.toastr.error(this.message,'Error',{
+        progressBar : true,
+        closeButton: true,
+        positionClass: 'toast-top-center',
+        timeOut: 3000
+      });
+    }
+
+    showToasterBueno(){
+      this.toastr.success(this.message,'Éxito',{
+        progressBar : true,
+        closeButton: true,
+        positionClass: 'toast-top-center',
+        timeOut: 2500
+      });
+    }
   }
-  
-  
+
+

@@ -9,11 +9,11 @@ var api = express.Router();
 
 
 
-api.post('/saveComplejo',complejoDeportivoController.saveComplejoDeportivo);
+api.post('/complejos/saveComplejo',complejoDeportivoController.saveComplejoDeportivo);
 
-api.post('/getComplejos',complejoDeportivoController.getComplejosDeportivo);
+api.post('/complejos/getComplejos',complejoDeportivoController.getComplejosDeportivo);
 
-api.post('/getComplejo',complejoDeportivoController.getOneComplejoDeportivo);
+api.post('/complejos/getComplejo',complejoDeportivoController.getOneComplejoDeportivo);
 
 
 
