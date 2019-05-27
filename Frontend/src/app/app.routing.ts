@@ -14,6 +14,7 @@ const appRoutes: Routes = [
     {path: 'complejos', component: ComplejosDeportivosComponent},
     {path: 'complejos/campos/:complejo_id/:tipo', component: CamposComponent},
     {path: 'complejos/createcampo/:complejo_id/:tipo', component: CreateCampoComponent},
+    {path: 'complejos/createcampo/:campo_id', component: CreateCampoComponent},
     {path: 'mis-datos', component: UserEditComponent},
     {path: 'crear-complejo', component: CreateComplejoComponent}
 ]

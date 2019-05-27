@@ -1,5 +1,5 @@
 
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {animate, state, style, transition, trigger} from '@angular/animations';
 import { Campo} from '../../models/campo'
 import { UserService } from 'src/app/services/user.service';
@@ -8,6 +8,7 @@ import { ComplejoDeportivo } from 'src/app/models/complejodeportivo';
 import { GLOBAL } from 'src/app/services/global';
 import { ActivatedRoute } from '@angular/router';
 import { CampoService } from 'src/app/services/campo.service';
+import { MatPaginator,MatTableDataSource } from '@angular/material';
 
 @Component({
     selector: 'campos',
@@ -23,19 +24,24 @@ import { CampoService } from 'src/app/services/campo.service';
   })
 
   export class CamposComponent implements OnInit{
-
+    
+    //Parametros de sesion.
     public identity;
     public token;
     public message;
     public url;
 
+    //Parametros para componente
     public campo: Campo;
     public campos: Campo[] = [];
 
+    //Parametros que llegan por URL.
     public idComplejo;
     public tipo;
 
-
+    //Parametros para la tabla
+    @ViewChild(MatPaginator) paginator: MatPaginator;
+    public dataSource: MatTableDataSource<Campo>;
     columnsToDisplay = ['Nombre', 'Largo', 'Ancho', 'Superficie'];
     expandedElement: Campo | null;
 
@@ -61,8 +67,10 @@ import { CampoService } from 'src/app/services/campo.service';
         this.tipo = parseInt(params['tipo'],10);
       });
       this.getCampos().subscribe(_=>{;
-        console.log(this.campos);
+        this.dataSource = new MatTableDataSource(this.campos);
+        this.dataSource.paginator = this.paginator;
       });
+      
     }
 
     getCampos(){

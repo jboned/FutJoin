@@ -18,17 +18,21 @@ import { UserService } from 'src/app/services/user.service';
 
   export class CreateCampoComponent implements OnInit{
 
+    //Parametros sesion
     public identity;
     public token;
     public message;
     public url;
-    public subida:Boolean;
 
+    //Parametros componente
+    public subida:Boolean;
     public campo: Campo;
     public complejo: ComplejoDeportivo;
 
+    //Parametros url 
     public idComplejo;
     public tipo;
+    public campoId;
 
 
     constructor (
@@ -38,7 +42,6 @@ import { UserService } from 'src/app/services/user.service';
       private _userService:UserService,
       private _campoService: CampoService
     ){
-      this.campo = new Campo('','',0,0,0,'',0,false,null,'');
       this.url = GLOBAL.url;
       this.subida = false;
       this.identity = this._userService.getIdentity();
@@ -48,49 +51,75 @@ import { UserService } from 'src/app/services/user.service';
 
     ngOnInit(): void {
       this.route.params.subscribe(params => {
-        this.idComplejo = params['complejo_id'];
-        this.tipo = parseInt(params['tipo'],10);
-        });
-
-      this._complejoDeportivoService.getComplejo(this.idComplejo).subscribe(
-        response => {
-          if(!response.complejo){
-            this.message="No se ha encontado el complejo";
-            this.showToaster;
-          }else{
-            this.complejo = response.complejo;
-          }
-        },
-        (error: HttpErrorResponse) =>{
-          this.message = error.error.message;
-          this.showToaster();
+       
+        this.campoId = params.get['campo_id'];
+        console.log(params);
+        if(this.campoId){
+          this._campoService.getCampo(this.campoId).subscribe(
+            response => {
+              this.campo = response.campo;
+              this.subida = true;
+            },
+            (error:HttpErrorResponse)=>{
+              this.message = error.error.message;
+              this.showToaster();
+            }
+          );
+        }else{
+          this.idComplejo = params['complejo_id'];
+          this.tipo = parseInt(params['tipo'],10); 
+          this._complejoDeportivoService.getComplejo(this.idComplejo).subscribe(
+            response => {
+              if(!response.complejo){
+                this.message="No se ha encontado el complejo";
+                this.showToaster;
+              }else{
+                this.campo = new Campo('','',0,0,0,'',0,false,null,'');
+                this.campo.complejo = response.complejo;
+                this.campo.tipo = this.tipo;
+              }
+            },
+            (error: HttpErrorResponse) =>{
+              this.message = error.error.message;
+              this.showToaster();
+            }
+          );  
         }
-      );
-      console.log(this.tipo);
-
+      });
     }
 
     onSubmit(){
-      this.campo.complejo = this.complejo;
-      this.campo.tipo = this.tipo;
-      console.log("algo");
-      this._campoService.create(this.campo).subscribe(
-        response => {
-         let campo = response.campo;
+      if(!this.campo._id){
+        this._campoService.create(this.campo).subscribe(
+          response => {
+          let campo = response.campo;
 
-          if(!campo._id){
-            this.message = "Error al crear campo";
+            if(!campo._id){
+              this.message = "Error al crear campo";
+              this.showToaster();
+            }else{
+              this.message="Campo creado correctamente"
+              this.campo = campo;
+              this.showToasterBueno();
+            }
+          },
+          (error:HttpErrorResponse)=>{
+            this.message = error.error.message;
             this.showToaster();
-          }else{
-            this.message="Campo creado correctamente"
-            this.campo = campo;
-            this.showToasterBueno();
-          }
-        },
-        (error:HttpErrorResponse)=>{
-          this.message = error.error.message;
-          this.showToaster();
-        });
+          });
+        }else{
+          this._campoService.update(this.campo).subscribe(
+            response => {
+              this.campo = response.campo;
+              this.message = 'Campo actualizado correctamente';
+              this.showToaster();
+            },
+            (error:HttpErrorResponse) => {
+              this.message = error.error.message;
+              this.showToaster();
+
+            });
+        }
     }
 
 

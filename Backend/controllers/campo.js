@@ -36,6 +36,47 @@ function getCampos(req,res){
     });
 }
 
+function getCampoById(req,res){
+    let id = req.body.id;
+    let find = Campo.findById(id);
+    find.populate({
+        path:'complejo',
+        populate: {
+            path:'propietario',
+            model:'User',
+        },
+        model:'ComplejoDeportivo',
+    }).exec(function(err,campo){
+        if(err){
+            res.status(500).send({message:'Error en la peticion'});
+        }else{
+            if(!campo){
+                res.status(500).send({message:'No existe el campo'});
+            }else{
+                res.status(200).send({campo:campo});
+            }
+        }
+    });
+}
+
+function updateCampo(req,res){
+    var campoId = req.params.id;
+    var update = req.body;
+
+    
+    if(userId != req.user.sub){
+        return res.status(500).send({message:"No tienes permiso para actualizar este usuario"});
+    }
+    Campo.findByIdAndUpdate(campoId, update, (err,campoUpdated) => {
+        if(err){
+            res.status(500).send({message:'Error al actualizar el campo'});
+        }else{
+            res.status(200).send ({campo:campoUpdated});
+        }
+    });
+    
+}
+
 function saveCampo(req,res){
     let params = req.body;
     let campo = new Campo();
@@ -103,6 +144,8 @@ module.exports = {
     getCampos,
     saveCampo,
     uploadImageCampo,
-    getImageFileCampo
+    getImageFileCampo,
+    getCampoById,
+    updateCampo
 
 }

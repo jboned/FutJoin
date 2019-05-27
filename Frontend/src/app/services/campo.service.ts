@@ -20,6 +20,21 @@ export class CampoService{
   public create(campo_to_create):Observable<any>{
     let params= JSON.stringify(campo_to_create);
     let headers = new HttpHeaders().set('Content-Type','application/json');
+    headers = headers.append('Authorization',this.getToken());
+    return this._http.post(this.url+'campos/saveCampo', params, {headers: headers}).pipe(map(res => res));
+  }
+
+  public update(campo_to_update):Observable<any>{
+    let params= JSON.stringify(campo_to_update);
+    let headers = new HttpHeaders().set('Content-Type','application/json');
+    headers = headers.append('Authorization',this.getToken());
+    return this._http.put(this.url+'campos/updateCampo/'+campo_to_update._id, params, {headers: headers}).pipe(map(res => res));
+  }
+
+  public getCampo(idCampo):Observable<any>{
+    let params= JSON.stringify({id:idCampo});
+    let headers = new HttpHeaders().set('Content-Type','application/json');
+    headers = headers.append('Authorization',this.getToken());
     return this._http.post(this.url+'campos/saveCampo', params, {headers: headers}).pipe(map(res => res));
   }
 
