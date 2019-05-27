@@ -61,12 +61,14 @@ function getCampoById(req,res){
 
 function updateCampo(req,res){
     var campoId = req.params.id;
+    var userId = req.params.user_id;
     var update = req.body;
 
     
     if(userId != req.user.sub){
         return res.status(500).send({message:"No tienes permiso para actualizar este usuario"});
     }
+
     Campo.findByIdAndUpdate(campoId, update, (err,campoUpdated) => {
         if(err){
             res.status(500).send({message:'Error al actualizar el campo'});
@@ -89,11 +91,24 @@ function saveCampo(req,res){
     campo.complejo = params.complejo;
     campo.tipo = params.tipo;
     campo.image = "wCtxANxebqR5RM8m6E5519nn.png";
-    campo.save((err, campoStored) =>{
+    console.log(campo);
+    let save = campo.save();
+    save.populate({
+        path:'complejo',
+        populate: {
+            path:'propietario',
+            model:'User',
+        },
+        model:'ComplejoDeportivo',
+    }).exec(function(err,campo){
         if(err){
-            res.status(500).send({message:'Ya existe ese campo'});
+            res.status(500).send({message:'Error en la peticion'});
         }else{
-            res.status(200).send({campo:campoStored});
+            if(!campo){
+                res.status(500).send({message:'No existe el campo'});
+            }else{
+                res.status(200).send({campo:campo});
+            }
         }
     });
 }

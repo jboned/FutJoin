@@ -38,8 +38,8 @@ export class ComplejosDeportivosComponent implements OnInit{
         dir: 'ltr',
         width: 800,
         height: 467,
-        space: 450,
-        autoRotationSpeed: 500000,
+        space: 300,
+        autoRotationSpeed: 5000,
         loop: true,
         controls: true
     }

@@ -11,23 +11,25 @@
              [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
              <table>
                <tbody>
-                 <tr>
-                   <td style="width:420px">
+                <td style="width:420px">
                       <img src="{{url + 'campos/get-image-campo/' + element.image}}" class="foto-campo">
                    </td>
-                   <td style="padding:20px">
-                      <p class="campo-expanded"><strong style="color:#1A237E">Sistema de iluminacion: </strong> 
+                   <td>
+                      <p class="campo-expanded"><strong style="color:#1A237E">Sistema de iluminacion: </strong>
                         <mat-icon *ngIf="!element.sistemaIluminacion" style="color: green;vertical-align: bottom;">check_circle</mat-icon>
                         <mat-icon *ngIf="element.sistemaIluminacion" style="color: red;vertical-align: bottom;">cancel</mat-icon> </p>
-                      <p class="campo-expanded"><strong style="color:#1A237E">Aforo de la grada: </strong>{{element.aforoGrada}}</p>
+                      <p class="campo-expanded"><strong style="color:#1A237E">Aforo de la grada: </strong>{{element.aforoGrada}} personas.</p>
+                      <div><button *ngIf ="identity._id == element.complejo.propietario._id" (click)="redirect(element._id)"
+                            mat-raised-button color="accent">Editar campo  <mat-icon> border_color</mat-icon></button></div>
                    </td>
-                 </tr>
+                   <td>
+                    <button class="myButton">Ver reservas <mat-icon>calendar_today</mat-icon></button>
+                  </td>
                </tbody>
              </table>
         </div>
       </td>
     </ng-container>
-
     <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
     <tr mat-row *matRowDef="let element; columns: columnsToDisplay;"
         class="example-element-row"

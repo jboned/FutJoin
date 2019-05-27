@@ -1,3 +1,4 @@
+<div *ngIf="dataLoaded==true">
 <mat-toolbar class="barra">
     <mat-toolbar-row style="background-color:#b3b1b1; color:white;">
       <!--<button mat-fab color="warn" [routerLink]="['complejos/campos',idComplejo,tipo]"><mat-icon>arrow_back</mat-icon></button>-->
@@ -62,7 +63,10 @@
                   </mat-form-field>
               </div>
               <mat-slide-toggle ngModel name="iluminacion" [(ngModel)]="campo.sistemaIluminacion" #aforo = "ngModel">¿Tiene el campo sistema de iluminación?</mat-slide-toggle>
-              <div style="margin-top:20px;"><button mat-raised-button type="submit" style="background-color:#3ef86d">Crear Campo</button></div>
+              <div style="margin-top:20px;">
+                <button *ngIf ="!campo._id" mat-raised-button type="submit" style="background-color:#3ef86d">Crear Campo</button>
+                <button *ngIf ="campo._id" mat-raised-button type="submit" style="background-color:#3ef86d">Actualizar Campo</button>
+            </div>
           </form>
       </div>
       <div class="cuadrado" *ngIf="campo.image" >
@@ -79,4 +83,6 @@
         <button type="button" mat-raised-button color="primary" (click)="subirImagen()">Cambiar imagen</button>
       </div>
    </div>
+</div>
+
 </div>

@@ -1,4 +1,4 @@
-import { Component, OnInit,ViewChild} from '@angular/core';
+import { Component, OnInit,ViewChild, Inject, ElementRef} from '@angular/core';
 import {User} from './models/user';
 import {UserService} from './services/user.service'
 import { ToastrService } from 'ngx-toastr';
@@ -7,6 +7,7 @@ import { trigger, state, style, animate, transition } from '@angular/animations'
 import {GLOBAL} from './services/global';
 import {MatSidenav} from '@angular/material';
 import { Router } from '@angular/router';
+
 
 
 
@@ -22,17 +23,6 @@ import { Router } from '@angular/router';
       })),
       transition('void <=> *', animate(1000)),
     ]),
-    trigger('EnterLeave', [
-      state('flyIn', style({ transform: 'translateX(0)' })),
-      transition(':enter', [
-        style({ transform: 'translateX(-100%)' }),
-       // animate('0.5s 300ms ease-in')
-       animate('0.3s ease-in')
-      ]),
-      transition(':leave', [
-        animate('0.3s ease-out', style({ transform: 'translateX(100%)' }))
-      ])
-    ]),
     trigger('changeDivSize', [
       state('login', style({
         height:'280px',
@@ -40,15 +30,22 @@ import { Router } from '@angular/router';
         backgroundColor:	'#F3F5F4'
       })),
       state('register', style({
-        height:'400px',
+        height:'320px',
         width:'850px',
         backgroundColor:'#F3F5F4'
       })),
       transition('login=>register', animate('500ms')),
       transition('register=>login', animate('500ms'))
     ]),
-
-
+    trigger('changeSidenav', [
+      state('1', style({
+        width:'60px'
+      })),
+      state('2', style({
+        width:'200px'
+      })),
+      transition('1<=>2', animate('200ms')),
+    ])
   ]
 })
 
@@ -76,12 +73,14 @@ export class AppComponent implements OnInit{
   public maxDate;
   public inicio;
   public url;
+  public vari = '1';
+
 
 
   constructor(
     private _userService:UserService,
     private toastr: ToastrService,
-    public router: Router
+    public router: Router,
   ){
     this.user = new User('', '', '', '', '', '', '',0,null,'', '', '', 0, 0 );
     this.userRegister = new User('', '', '', '', '', '', '',0,null,'', '', '', 0, 0 );
@@ -89,6 +88,7 @@ export class AppComponent implements OnInit{
     this.url = GLOBAL.url;
     this.minDate = new Date(1900,0,1);
     this.maxDate = new Date();
+
   }
 
 
@@ -194,5 +194,12 @@ export class AppComponent implements OnInit{
       });
   }
 
+expandir(){
+  if(this.vari == '1'){
+    this.vari = '2';
+  }else{
+    this.vari = '1';
+  }
+}
 
 }

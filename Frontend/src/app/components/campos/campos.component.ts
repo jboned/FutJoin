@@ -6,7 +6,7 @@ import { UserService } from 'src/app/services/user.service';
 import { ToastrService } from 'ngx-toastr';
 import { ComplejoDeportivo } from 'src/app/models/complejodeportivo';
 import { GLOBAL } from 'src/app/services/global';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CampoService } from 'src/app/services/campo.service';
 import { MatPaginator,MatTableDataSource } from '@angular/material';
 
@@ -24,7 +24,7 @@ import { MatPaginator,MatTableDataSource } from '@angular/material';
   })
 
   export class CamposComponent implements OnInit{
-    
+
     //Parametros de sesion.
     public identity;
     public token;
@@ -49,6 +49,7 @@ import { MatPaginator,MatTableDataSource } from '@angular/material';
       private _userService:UserService,
       private toastr: ToastrService,
       private route: ActivatedRoute,
+      private router: Router,
       private _campoService:CampoService
 
     ){
@@ -70,7 +71,7 @@ import { MatPaginator,MatTableDataSource } from '@angular/material';
         this.dataSource = new MatTableDataSource(this.campos);
         this.dataSource.paginator = this.paginator;
       });
-      
+
     }
 
     getCampos(){
@@ -82,6 +83,10 @@ import { MatPaginator,MatTableDataSource } from '@angular/material';
           console.log('error ' + error);
           throw error;
         });
+    }
+
+    redirect(campoid){
+      this.router.navigate(['../../../createcampo/'+campoid], { relativeTo: this.route });
     }
 
     showToaster(){

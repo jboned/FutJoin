@@ -1,5 +1,5 @@
 
-<ngx-carousel-3d  [slides]="complejos" [options]="options"  #carousel style="margin-top:23%">
+<ngx-carousel-3d  [slides]="complejos" [options]="options"  #carousel>
     <ngx-carousel-3d-slide class ="pointer"  *ngFor="let complejo of complejos; let i = index;" (click)="carousel.goSlide(i)">
         <mat-card class="example-card">
             <mat-card-header>

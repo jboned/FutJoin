@@ -1,6 +1,6 @@
 
 #logo{
-  width: 20em;
+  width: 15em;
 }
 /*
 .login{
@@ -37,9 +37,6 @@
   margin-bottom: 15px;
   text-align: center;
 }
-.olvidar{
-  left:25%;
-}
 
 img.bg {
     /* Set rules to fill background */
@@ -65,6 +62,7 @@ img.bg {
   right:0;
   z-index: 998;
   width: 100% !important;
+  min-height:64px !important;
 }
 
 .toolbar-title {
@@ -79,7 +77,11 @@ img.bg {
 .mat-sidenav{
   position:fixed;
   height:100%;
-  width: 20%;
+
+  width: 200px;
+  /*width:60px;
+  margin-top:64.4px;*/
+
 }
 .app{
   height:100%;
@@ -87,7 +89,7 @@ img.bg {
 }
 
 .header{
-  height:80px;
+  height:60px;
   background-color: #627999;
   /*border-bottom: 3px solid #23776e*/
 }
@@ -96,7 +98,6 @@ img.bg {
   /*color:#ced4d7;*/
   color:white;
   margin-right: 2%;
-  margin-top:7%
 }
 .nombre-user{
   font-size: 14px
@@ -111,12 +112,12 @@ img.bg {
   background-color: #3f4a59;
   color: white;
   font-family: Arial, Helvetica, sans-serif;
+  z-index:998;
 }
 .mat-list-item{
   color: white;
   font-size: 13px;
   font-weight: 500;
-
 }
 .active-list-item{
   background-color:rgb(78, 210, 197)!important;
@@ -132,6 +133,9 @@ img.bg {
 }
 .menu-sidenav{
   padding-top: 0px !important;
+}
+:host /deep/ .mat-list-item-content {
+  padding-left: 10px !important;
 }
 
 .menu-category {

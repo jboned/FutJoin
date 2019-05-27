@@ -3,7 +3,7 @@ import {Component, OnInit} from '@angular/core';
 import { Campo } from '../../models/campo'
 import { ComplejoDeportivo } from '../../models/complejodeportivo'
 import { ToastrService } from 'ngx-toastr';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ComplejoDeportivoService } from 'src/app/services/complejo_deportivo.service';
 import { HttpErrorResponse } from '@angular/common/http/http';
 import { CampoService } from 'src/app/services/campo.service';
@@ -28,8 +28,9 @@ import { UserService } from 'src/app/services/user.service';
     public subida:Boolean;
     public campo: Campo;
     public complejo: ComplejoDeportivo;
+    public dataLoaded = false;
 
-    //Parametros url 
+    //Parametros url
     public idComplejo;
     public tipo;
     public campoId;
@@ -40,7 +41,8 @@ import { UserService } from 'src/app/services/user.service';
       private route: ActivatedRoute,
       private _complejoDeportivoService:ComplejoDeportivoService,
       private _userService:UserService,
-      private _campoService: CampoService
+      private _campoService: CampoService,
+      private router: Router,
     ){
       this.url = GLOBAL.url;
       this.subida = false;
@@ -51,13 +53,12 @@ import { UserService } from 'src/app/services/user.service';
 
     ngOnInit(): void {
       this.route.params.subscribe(params => {
-       
-        this.campoId = params.get['campo_id'];
-        console.log(params);
+        this.campoId = params.campo_id;
         if(this.campoId){
           this._campoService.getCampo(this.campoId).subscribe(
             response => {
               this.campo = response.campo;
+              console.log(this.campo);
               this.subida = true;
             },
             (error:HttpErrorResponse)=>{
@@ -66,8 +67,8 @@ import { UserService } from 'src/app/services/user.service';
             }
           );
         }else{
-          this.idComplejo = params['complejo_id'];
-          this.tipo = parseInt(params['tipo'],10); 
+          this.idComplejo = params.complejo_id;
+          this.tipo = parseInt(params.tipo,10);
           this._complejoDeportivoService.getComplejo(this.idComplejo).subscribe(
             response => {
               if(!response.complejo){
@@ -83,9 +84,11 @@ import { UserService } from 'src/app/services/user.service';
               this.message = error.error.message;
               this.showToaster();
             }
-          );  
+          );
         }
       });
+      this.dataLoaded = true;
+      console.log(this.campo);
     }
 
     onSubmit(){
@@ -108,11 +111,11 @@ import { UserService } from 'src/app/services/user.service';
             this.showToaster();
           });
         }else{
-          this._campoService.update(this.campo).subscribe(
+          this._campoService.update(this.campo,this.campo.complejo.propietario._id).subscribe(
             response => {
-              this.campo = response.campo;
               this.message = 'Campo actualizado correctamente';
-              this.showToaster();
+              this.showToasterBueno();
+              this.router.navigate(['../../campos/'+this.campo.complejo._id+'/'+this.campo.tipo], { relativeTo: this.route });
             },
             (error:HttpErrorResponse) => {
               this.message = error.error.message;
@@ -130,6 +133,8 @@ import { UserService } from 'src/app/services/user.service';
           this.campo.image = result.image;
           this.message= "La imagen del campo se ha cambiado correctamente.";
           this.showToasterBueno();
+          console.log(this.campo);
+         // this.router.navigate(['../../../campos/'+this.campo.complejo._id+'/'+this.campo.tipo], { relativeTo: this.route });
         }).catch(e =>{
           this.showToaster();
           this.message = e.message;
