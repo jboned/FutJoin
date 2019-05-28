@@ -62,8 +62,9 @@
       </mat-sidenav-content>
     </mat-sidenav-container>
   -->
-  <mat-sidenav-container fullscreen autosize >
-      <mat-sidenav id="sidenav" mode="side" class="sidenav-app" style="width:60px;margin-top:64.4px" opened [@changeSidenav] = "vari">
+
+  <mat-sidenav-container fullscreen >
+      <mat-sidenav id="sidenav" mode="side" class="sidenav-app" style="width:60px;margin-top:64px" opened [@changeSidenav] = "vari">
 
           <mat-nav-list class ="header">
               <div fxLayout="row" fxLayoutGap="15px" style="margin-top:2px;margin-left: 3%;">
@@ -95,7 +96,7 @@
       <mat-sidenav-content>
           <mat-toolbar color="primary" class="barra">
               <mat-toolbar-row>
-                  <button mat-icon-button (click)="expandir()"><mat-icon>menu</mat-icon></button>
+                  <button mat-icon-button style="margin-left: -10px;" (click)="expandir()"><mat-icon>menu</mat-icon></button>
                   <a [routerLink]= "['']"  mat-button><img src = "../assets/img/Logo barra.png" style="width:50px;height:50px"><img src = "../assets/img/Palabra barra.png" style="width:100px;height:25px"></a>
                   <div fxFlex fxLayout fxLayoutAlign="end">
                       <div fxLayout fxLayoutGap="10px">

@@ -42,7 +42,7 @@ import { Router } from '@angular/router';
         width:'60px'
       })),
       state('2', style({
-        width:'200px'
+        width:'250px'
       })),
       transition('1<=>2', animate('200ms')),
     ])
@@ -74,6 +74,9 @@ export class AppComponent implements OnInit{
   public inicio;
   public url;
   public vari = '1';
+  @ViewChild('container') private _container;
+  public showMenu: boolean = false;
+
 
 
 
@@ -98,22 +101,6 @@ export class AppComponent implements OnInit{
     this.inicio = true;
   }
 
-  showToaster(){
-    this.toastr.error(this.message,'Error',{
-      progressBar : true,
-      closeButton: true,
-      positionClass: 'toast-top-center',
-      timeOut: 3000
-    });
-  }
-  showToasterBueno(){
-    this.toastr.success(this.message,'Éxito',{
-      progressBar : true,
-      closeButton: true,
-      positionClass: 'toast-top-center',
-      timeOut: 2500
-    });
-  }
 
 
 
@@ -200,6 +187,25 @@ expandir(){
   }else{
     this.vari = '1';
   }
+}
+
+
+
+showToaster(){
+  this.toastr.error(this.message,'Error',{
+    progressBar : true,
+    closeButton: true,
+    positionClass: 'toast-top-center',
+    timeOut: 3000
+  });
+}
+showToasterBueno(){
+  this.toastr.success(this.message,'Éxito',{
+    progressBar : true,
+    closeButton: true,
+    positionClass: 'toast-top-center',
+    timeOut: 2500
+  });
 }
 
 }
