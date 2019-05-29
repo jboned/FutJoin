@@ -176,6 +176,9 @@ import { UserService } from 'src/app/services/user.service';
     }
 
 
+    redirect(){
+      this.router.navigate(['complejos/campos/'+this.idComplejo+'/'+this.tipo]);
+    }
 
 
 

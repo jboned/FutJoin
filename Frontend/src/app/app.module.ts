@@ -9,6 +9,7 @@ import {FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatFormFieldModule} from '@angular/material/form-field';
 import { ToastrModule } from 'ngx-toastr';
+import { NgxFloatButtonModule } from 'ngx-float-button';
 
 //Http y routing
 import { HttpClientModule } from '@angular/common/http';
@@ -48,6 +49,7 @@ import { CamposComponent } from './components/campos/campos.component';
     HttpClientModule,
     ToastrModule.forRoot(),
     NgxCarousel3dModule,
+    NgxFloatButtonModule,
     routing
   ],
   providers: [ appRoutingProviders],

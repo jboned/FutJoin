@@ -76,13 +76,13 @@
           <mat-nav-list class ="menu-sidenav">
               <div MatSubheader class="menu-category"> Preview</div>
 
-              <a mat-list-item [routerLink]= "['complejos']" routerLinkActive="active-list-item" #state3="routerLinkActive"><div class="icon"><mat-icon [inline]="true" style="font-size:35px">home</mat-icon></div>&nbsp;&nbsp;&nbsp;INICIO
+              <a mat-list-item (click)="vari=1"[routerLink]= "['complejos']" routerLinkActive="active-list-item" #state3="routerLinkActive"><div class="icon"><mat-icon [inline]="true" style="font-size:35px">home</mat-icon></div>&nbsp;&nbsp;&nbsp;INICIO
                 <div *ngIf="state3.isActive" fxFlex fxLayout class="icon-selected" fxLayoutAlign="end"><mat-icon [inline]="true">arrow_left</mat-icon></div></a>
 
-              <a mat-list-item  [routerLink]= "['mis-datos']" routerLinkActive="active-list-item" #state="routerLinkActive"><div class="icon"><mat-icon [inline]="true" style="font-size:35px">person</mat-icon></div>&nbsp;&nbsp;&nbsp;MIS&nbsp;&nbsp;DATOS
+              <a mat-list-item (click)="vari=1" [routerLink]= "['mis-datos']" routerLinkActive="active-list-item" #state="routerLinkActive"><div class="icon"><mat-icon [inline]="true" style="font-size:35px">person</mat-icon></div>&nbsp;&nbsp;&nbsp;MIS&nbsp;&nbsp;DATOS
                 <div *ngIf="state.isActive" fxFlex fxLayout class="icon-selected" fxLayoutAlign="end"><mat-icon [inline]="true">arrow_left</mat-icon></div></a>
 
-                <a mat-list-item  [routerLink]= "['complejos']" routerLinkActive="active-list-item" #state2="routerLinkActive"><div class="icon"><mat-icon [inline]="true" style="font-size:35px">fitness_center</mat-icon></div>&nbsp;&nbsp;&nbsp;COMPLEJOS<br> &nbsp;&nbsp;&nbsp;DEPORTIVOS
+                <a mat-list-item (click)="vari=1" [routerLink]= "['complejos']" routerLinkActive="active-list-item" #state2="routerLinkActive"><div class="icon"><mat-icon [inline]="true" style="font-size:35px">fitness_center</mat-icon></div>&nbsp;&nbsp;&nbsp;COMPLEJOS<br> &nbsp;&nbsp;&nbsp;DEPORTIVOS
                   <div *ngIf="state2.isActive" fxFlex fxLayout class="icon-selected" fxLayoutAlign="end"><mat-icon [inline]="true">arrow_left</mat-icon></div></a>
 
                 <div *ngIf="identity.tipo == 3" >

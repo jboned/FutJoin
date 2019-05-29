@@ -44,7 +44,7 @@ import { Router } from '@angular/router';
       state('2', style({
         width:'250px'
       })),
-      transition('1<=>2', animate('200ms')),
+      transition('1<=>2', animate('100ms')),
     ])
   ]
 })
@@ -111,7 +111,7 @@ export class AppComponent implements OnInit{
 
           let identity = response.user;
           this.identity = identity;
-
+          console.log(identity);
           if(!this.identity._id){
             this.message = "El usuario no está correctamente identificado";
           }else{
@@ -159,7 +159,11 @@ export class AppComponent implements OnInit{
   }
 
   public onRegisterSubmit(){
-   console.log(this.userRegister);
+    if(this.userRegister.fecha != null){
+      var fecha = new Date(this.convertDate(this.userRegister.fecha.toString())).toISOString();
+      console.log(fecha);
+      this.userRegister.fecha = fecha;
+    }
     this._userService.register(this.userRegister).subscribe(
       response => {
        let user = response.user;
@@ -207,5 +211,11 @@ showToasterBueno(){
     timeOut: 2500
   });
 }
+
+convertDate(d:string){
+  var parts = d.split(" ");
+  var months = {Jan: "01",Feb: "02",Mar: "03",Apr: "04",May: "05",Jun: "06",Jul: "07",Aug: "08",Sep: "09",Oct: "10",Nov: "11",Dec: "12"};
+  return parts[3]+"-"+months[parts[1]]+"-"+parts[2];
+ }
 
 }

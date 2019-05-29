@@ -9,6 +9,8 @@ import { GLOBAL } from 'src/app/services/global';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CampoService } from 'src/app/services/campo.service';
 import { MatPaginator,MatTableDataSource } from '@angular/material';
+import { ComplejoDeportivoService } from 'src/app/services/complejo_deportivo.service';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
     selector: 'campos',
@@ -34,6 +36,7 @@ import { MatPaginator,MatTableDataSource } from '@angular/material';
     //Parametros para componente
     public campo: Campo;
     public campos: Campo[] = [];
+    public complejo: ComplejoDeportivo;
 
     //Parametros que llegan por URL.
     public idComplejo;
@@ -50,19 +53,21 @@ import { MatPaginator,MatTableDataSource } from '@angular/material';
       private toastr: ToastrService,
       private route: ActivatedRoute,
       private router: Router,
-      private _campoService:CampoService
-
+      private _campoService:CampoService,
+      private _complejoService:ComplejoDeportivoService
     ){
 
       this.url = GLOBAL.url;
 
       this.identity = this._userService.getIdentity();
       this.token = this._userService.getToken();
+      
 
 
     }
 
     ngOnInit(): void {
+
       this.route.params.subscribe(params => {
         this.idComplejo = params['complejo_id'];
         this.tipo = parseInt(params['tipo'],10);
@@ -72,6 +77,20 @@ import { MatPaginator,MatTableDataSource } from '@angular/material';
         this.dataSource.paginator = this.paginator;
       });
 
+      this._complejoService.getComplejo(this.idComplejo).subscribe(
+        response => {
+          if(!response.complejo){
+            this.message="No se ha encontado el complejo";
+            this.showToaster;
+          }else{
+            this.complejo = response.complejo;
+          }
+        },
+        (error: HttpErrorResponse) =>{
+          this.message = error.error.message;
+          this.showToaster();
+        }
+      );
     }
 
     getCampos(){
@@ -88,6 +107,11 @@ import { MatPaginator,MatTableDataSource } from '@angular/material';
     redirect(campoid){
       this.router.navigate(['../../../createcampo/'+campoid], { relativeTo: this.route });
     }
+    redirect_create(){
+      this.router.navigate(['../../../createcampo/'+this.idComplejo+'/'+this.tipo], { relativeTo: this.route });
+    }
+
+
 
     showToaster(){
       this.toastr.error(this.message,'Error',{

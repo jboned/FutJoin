@@ -11,7 +11,7 @@ import { CreateCampoComponent } from './components/create-campos/create-campo.co
 const appRoutes: Routes = [
     {path: '', component: AppComponent, pathMatch: 'full'},
     {path: 'complejos', component: ComplejosDeportivosComponent,pathMatch: 'full'},
-    {path: 'complejos/campos/:complejo_id/:tipo', component: CamposComponent},
+    {path: 'complejos/campos/:complejo_id/:tipo', component: CamposComponent,pathMatch: 'full'},
     {path: 'complejos/createcampo/:complejo_id/:tipo', component: CreateCampoComponent},
     {path: 'complejos/createcampo/:campo_id', component: CreateCampoComponent},
     {path: 'mis-datos', component: UserEditComponent,pathMatch: 'full'},

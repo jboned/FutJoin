@@ -2,7 +2,7 @@
 <mat-toolbar class="barra">
     <mat-toolbar-row style="background-color:#b3b1b1; color:white;">
       <!--<button mat-fab color="warn" [routerLink]="['complejos/campos',idComplejo,tipo]"><mat-icon>arrow_back</mat-icon></button>-->
-      <button mat-mini-fab style="background-color:#ffffff;" routerLink="['complejos/campos',idComplejo,tipo]"><mat-icon style="color:red">arrow_back</mat-icon></button>
+      <button mat-mini-fab style="background-color:#ffffff;" (click)="redirect()" ><mat-icon style="color:red">arrow_back</mat-icon></button>
       <p style="margin-left:25px;">Formulario para crear campo de complejo.</p>
 
     </mat-toolbar-row>

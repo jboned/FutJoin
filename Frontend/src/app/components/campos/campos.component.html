@@ -39,4 +39,8 @@
     <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="example-detail-row"></tr>
   </table>
   <mat-paginator [pageSizeOptions]="[3, 5, 7, 10]"></mat-paginator>
+  <ngx-float-button *ngIf ="identity._id == complejo.propietario._id" color="black" icon="add" direction="bottom" style="right: 5px; margin-top: 20px;">
+    <ngx-float-item-button 
+      (click)="redirect_create()" icon="person_add" content="Añadir campo"></ngx-float-item-button>
+  </ngx-float-button>
 </div>
