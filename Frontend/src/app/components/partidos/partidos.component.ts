@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {Component, OnInit, ViewChild, ElementRef, Inject, HostListener} from '@angular/core';
 import { UserService } from 'src/app/services/user.service';
 import { ToastrService } from 'ngx-toastr';
 import { GLOBAL } from 'src/app/services/global';
@@ -21,7 +21,9 @@ import { GLOBAL } from 'src/app/services/global';
      public days = ['Lu','Mar','Mi','Ju','Vi','Sa','Do'];
      public semana = [];
      public hoy = new Date();
-     
+     public horas=["09:00 - 10:00","10:00 - 11:00","11:00 - 12:00","12:00 - 13:00","13:00 - 14:00", "14:00 - 15:00",
+                   "15:00 - 16:00","17:00 - 18:00","18:00 - 19:00","19:00 - 20:00","21:00 - 22:00","22:00 - 23:00"];
+
     constructor (
       private _userService:UserService,
       private toastr: ToastrService,
@@ -34,8 +36,11 @@ import { GLOBAL } from 'src/app/services/global';
 
     ngOnInit(): void {
       this.semana = this.getDias(new Date());
-      console.log(this.semana);
     }
+
+
+
+
 
     getDias(hoy){
       let dias = Array(7);
@@ -51,7 +56,7 @@ import { GLOBAL } from 'src/app/services/global';
           number_hoy = number_hoy-1;
           dias[number_hoy] = hoy.toLocaleDateString();
       }
-      
+
       for(var i = number_hoy-1; i>=0;i--){
         let dia2 = new Date();
         dia2.setDate(hoy_date-(number_hoy-i));
@@ -65,6 +70,8 @@ import { GLOBAL } from 'src/app/services/global';
       }
       return dias;
     }
+
+
 
 
     showToaster(){
@@ -85,5 +92,4 @@ import { GLOBAL } from 'src/app/services/global';
       });
     }
 
-   
   }

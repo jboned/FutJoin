@@ -1,4 +1,4 @@
-<div fxLayout="column" fxLayoutGap="2px" style="padding-top:30px; padding-left:60px">
+<div fxLayout="column" fxLayoutGap="2px" style="padding-top:30px; padding-left:12%" id="header">
     <div fxLayout="row">
         <div *ngFor = "let day of days" class ="cabeceras">{{day}}</div>
     </div>
@@ -6,16 +6,10 @@
         <div *ngFor = "let sem of semana" class ="cabeceras">{{sem}}</div>
     </div>
 </div>
-<div fxLayout="column" fxLayoutGap="30px" style="padding-left:30px; padding-top:30px;">
-    <div>09:00 - 10:00</div>
-    <div>10:00 - 11:00</div>
-    <div>11:00 - 12:00</div>
-    <div>12:00 - 13:00</div>
-    <div>13:00 - 14:00</div>
-    <div>14:00 - 15:00</div>
-    <div>15:00 - 16:00</div>
-    <div>17:00 - 18:00</div>
-    <div>18:00 - 19:00</div>
+<div fxLayout="column" style="padding-top:2%;">
+    <div *ngFor = "let hora of horas;" fxLayout ="row">
+      <div class="hora">{{hora}}</div>
+      <div *ngFor="let sem of semana; let i = index" class="hora_reserva"
+          #horareserva_{{semana[i]}}_{{hora[0]+hora[1]+hora[8]+hora[9]}}}></div>
+    </div>
 </div>
-
-<table 

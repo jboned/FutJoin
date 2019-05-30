@@ -90,8 +90,10 @@ img.bg {
 
 .header{
   height:60px;
-  background-color: #627999;
+  /*background-color: #627999;*/
   /*border-bottom: 3px solid #23776e*/
+  /*background-color:#F2ECFF;*/
+  background-color: #143642;
 }
 
 .info_user{
@@ -109,7 +111,9 @@ img.bg {
 
 .sidenav-app{
   /*background-color:#05B382 #3ab4a6;*/
-  background-color: #3f4a59;
+  /*background-color: #3f4a59;*/
+ /* background-color: rgb(48, 63, 159); mismo toolbar*/
+ background-color: #143642;
   color: white;
   font-family: Arial, Helvetica, sans-serif;
   z-index:998;
@@ -120,7 +124,8 @@ img.bg {
   font-weight: 500;
 }
 .active-list-item{
-  background-color:rgb(78, 210, 197)!important;
+  /*background-color:#66E89B!important; verde */
+  background-color: #0F8B8D !important;
   color: #FFF;
 }
 .icon{
