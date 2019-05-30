@@ -61,7 +61,6 @@ import { HttpErrorResponse } from '@angular/common/http';
 
       this.identity = this._userService.getIdentity();
       this.token = this._userService.getToken();
-      
 
 
     }
@@ -72,6 +71,7 @@ import { HttpErrorResponse } from '@angular/common/http';
         this.idComplejo = params['complejo_id'];
         this.tipo = parseInt(params['tipo'],10);
       });
+
       this.getCampos().subscribe(_=>{;
         this.dataSource = new MatTableDataSource(this.campos);
         this.dataSource.paginator = this.paginator;

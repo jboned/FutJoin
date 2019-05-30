@@ -13,7 +13,6 @@ function getCampos(req,res){
     let params = req.body;
     let tipo = params.tipo;
     let idcomplejo = params.idcomplejo;
-    console.log(idcomplejo);
 
     let find= Campo.find({tipo:tipo,complejo:idcomplejo});
     find.populate({

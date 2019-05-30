@@ -1,12 +1,13 @@
 import { ModuleWithProviders } from '@angular/core';
 import { Routes, RouterModule}  from '@angular/router';
 
-import { UserEditComponent}  from './components/user-edit/user-edit.component';
+import { UserEditComponent }  from './components/user-edit/user-edit.component';
 import { AppComponent } from './app.component';
 import { CreateComplejoComponent } from './components/create-complejos/create-complejo.component';
 import { ComplejosDeportivosComponent } from './components/complejos-deportivos/complejos-deportivos.component';
 import { CamposComponent } from './components/campos/campos.component';
 import { CreateCampoComponent } from './components/create-campos/create-campo.component';
+import { PartidosComponent } from './components/partidos/partidos.component';
 
 const appRoutes: Routes = [
     {path: '', component: AppComponent, pathMatch: 'full'},
@@ -15,7 +16,8 @@ const appRoutes: Routes = [
     {path: 'complejos/createcampo/:complejo_id/:tipo', component: CreateCampoComponent},
     {path: 'complejos/createcampo/:campo_id', component: CreateCampoComponent},
     {path: 'mis-datos', component: UserEditComponent,pathMatch: 'full'},
-    {path: 'crear-complejo', component: CreateComplejoComponent,pathMatch: 'full'}
+    {path: 'crear-complejo', component: CreateComplejoComponent,pathMatch: 'full'},
+    {path: 'partidos', component:PartidosComponent,pathMatch: 'full'}
 ]
 
 export const appRoutingProviders: any[] = [];

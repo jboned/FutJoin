@@ -3,6 +3,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule}  from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 
+
+
 //Angular material
 import {MaterialModule } from './_helpers/material-module';
 import {FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -25,6 +27,7 @@ import { ComplejosDeportivosComponent } from './components/complejos-deportivos/
 import { NgxCarousel3dModule }  from 'ngx-carousel-3d';
 import { CreateCampoComponent } from './components/create-campos/create-campo.component';
 import { CamposComponent } from './components/campos/campos.component';
+import { PartidosComponent } from './components/partidos/partidos.component';
 
 
 
@@ -36,7 +39,8 @@ import { CamposComponent } from './components/campos/campos.component';
     CreateComplejoComponent,
     ComplejosDeportivosComponent,
     CamposComponent,
-    CreateCampoComponent
+    CreateCampoComponent,
+    PartidosComponent
   ],
   imports: [
     BrowserModule,
