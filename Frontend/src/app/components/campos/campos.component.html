@@ -1,4 +1,5 @@
-<div style="margin-top:5%;" class="mat-elevation-z8">
+<button mat-mini-fab style="background-color:#ffffff;margin-top:3px;margin-left:3px;" (click)="redirect_atras()" ><mat-icon style="color:red;">arrow_back</mat-icon></button>
+<div style="margin-top:1%;" class="mat-elevation-z8"> 
   <table mat-table [dataSource]="dataSource" multiTemplateDataRows>
     <ng-container matColumnDef="{{column}}" *ngFor="let column of columnsToDisplay">
       <th mat-header-cell *matHeaderCellDef> {{column}} </th>
@@ -23,7 +24,7 @@
                             mat-raised-button color="accent">Editar campo  <mat-icon> border_color</mat-icon></button></div>
                    </td>
                    <td>
-                    <button class="myButton">Ver reservas <mat-icon>calendar_today</mat-icon></button>
+                    <button class="myButton" mat-button (click)="redirect_partidos(element._id)">Ver reservas <mat-icon>calendar_today</mat-icon></button>
                   </td>
                </tbody>
              </table>

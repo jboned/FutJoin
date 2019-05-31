@@ -1,0 +1,18 @@
+<h1 mat-dialog-title>Crear Partido</h1>
+<div mat-dialog-content>
+    <p>Usted, va a reservar el {{partido['campo'].nombre}} del {{partido['campo']['complejo']['propietario'].nombre}} </p>
+    <!--<div fxLayout="row" fxLayoutAlign="space-evenly">
+        <mat-form-field>
+            <mat-label>Tipo de partido</mat-label>
+            <mat-select class="form-control" [(ngModel)]="data.tipo"
+                        placeholder="El tipo de partido" name="tipo">
+                <mat-option value="1">Publico</mat-option>
+                <mat-option value="2">Privado</mat-option>
+            </mat-select>
+        </mat-form-field>
+    </div>
+</div>
+-->
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">No Thanks</button>
+</div>

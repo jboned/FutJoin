@@ -52,8 +52,8 @@ import { UserService } from 'src/app/services/user.service';
     }
 
     ngOnInit(): void {
-      this.route.params.subscribe(params => {
-        this.campoId = params.campo_id;
+      this.route.queryParams.subscribe(params => {
+        this.campoId = params['campo_id'];
         if(this.campoId){
           this._campoService.getCampo(this.campoId).subscribe(
             response => {
@@ -67,8 +67,8 @@ import { UserService } from 'src/app/services/user.service';
             }
           );
         }else{
-          this.idComplejo = params.complejo_id;
-          this.tipo = parseInt(params.tipo,10);
+          this.idComplejo = params['complejo_id'];
+          this.tipo = parseInt(params['tipo'],10);
           this._complejoDeportivoService.getComplejo(this.idComplejo).subscribe(
             response => {
               if(!response.complejo){
@@ -88,7 +88,6 @@ import { UserService } from 'src/app/services/user.service';
         }
       });
       this.dataLoaded = true;
-      console.log(this.campo);
     }
 
     onSubmit(){
@@ -177,7 +176,7 @@ import { UserService } from 'src/app/services/user.service';
 
 
     redirect(){
-      this.router.navigate(['complejos/campos/'+this.idComplejo+'/'+this.tipo]);
+      this.router.navigate(['complejos/campos'], {queryParams: {complejo_id : this.campo.complejo._id, tipo: this.campo.tipo},skipLocationChange:true});
     }
 
 

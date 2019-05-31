@@ -67,7 +67,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 
     ngOnInit(): void {
 
-      this.route.params.subscribe(params => {
+      this.route.queryParams.subscribe(params => {
         this.idComplejo = params['complejo_id'];
         this.tipo = parseInt(params['tipo'],10);
       });
@@ -105,10 +105,17 @@ import { HttpErrorResponse } from '@angular/common/http';
     }
 
     redirect(campoid){
-      this.router.navigate(['../../../createcampo/'+campoid], { relativeTo: this.route });
+      this.router.navigate(['complejos/createcampo'], {queryParams: { campo_id: campoid },skipLocationChange:true});
     }
     redirect_create(){
-      this.router.navigate(['../../../createcampo/'+this.idComplejo+'/'+this.tipo], { relativeTo: this.route });
+      this.router.navigate(['complejos/createcampo'], {queryParams: {complejo_id : this.idComplejo, tipo: this.tipo},skipLocationChange:true});
+    }
+    redirect_partidos(campo_id){
+      //this.router.navigate(['complejos/campos/partidos/'+campo_id]);
+      this.router.navigate(['complejos/campos/partidos'], {queryParams: { campo_id: campo_id },skipLocationChange:true});
+    }
+    redirect_atras(){
+      this.router.navigate(['complejos/']);
     }
 
 

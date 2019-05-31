@@ -2,16 +2,16 @@ import { ComplejoDeportivo } from './complejodeportivo';
 
 export class Campo{
   constructor(
-      public _id: String,
-      public nombre: String,
-      public tipo: Number,
-      public largo: Number,
-      public ancho: Number,
-      public superficie: String,
-      public aforoGrada: Number,
-      public sistemaIluminacion: Boolean,
+      public _id: string,
+      public nombre: string,
+      public tipo: number,
+      public largo: number,
+      public ancho: number,
+      public superficie: string,
+      public aforoGrada: number,
+      public sistemaIluminacion: boolean,
       public complejo: ComplejoDeportivo,
-      public image: String,
+      public image: string,
 
   ){}
 }

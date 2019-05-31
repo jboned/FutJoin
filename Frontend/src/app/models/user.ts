@@ -1,23 +1,23 @@
 export class User{
     constructor(
-        public _id: String,
-        public email: String,
-        public password: String,
-        public confirmPassword: String,
-        public nombre: String,
+        public _id: string,
+        public email: string,
+        public password: string,
+        public confirmPassword: string,
+        public nombre: string,
 
         //No obligatorios
-        public telefono: String,
-        public image: String,
-        public tipo: Number,
+        public telefono: string,
+        public image: string,
+        public tipo: number,
         public fecha: string,
-        public codigoPostal: String,
+        public codigoPostal: string,
         
         //Datos futbolísticos
-        public piebueno: String,
-        public posicion: String,
-        public altura: Number,
-        public partidosJugados:Number
+        public piebueno: string,
+        public posicion: string,
+        public altura: number,
+        public partidosJugados:number
     ){}
 
 }

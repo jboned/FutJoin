@@ -2,7 +2,7 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var PartidoSchema = Schema({
-    tipo: String,
+    tipo: Number, //1-> publico, 2->privado
     dia: Date,
     fechaComienzo: Date,
     fechaFin: Date,

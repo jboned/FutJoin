@@ -1,5 +1,5 @@
-
-<ngx-carousel-3d  [slides]="complejos" [options]="options"  #carousel>
+<div fxLayout="column" fxLayoutAlign="center center" style="width:100%">
+<ngx-carousel-3d  [slides]="complejos" [options]="options"  #carousel style="width:100%;margin-right: 4%;">
     <ngx-carousel-3d-slide class ="pointer"  *ngFor="let complejo of complejos; let i = index;" (click)="carousel.goSlide(i)">
         <mat-card class="example-card">
             <mat-card-header>
@@ -21,14 +21,15 @@
             </mat-card-content>
             <mat-card-actions>
               <div fxLayout="row" fxLayoutAlign="space-evenly">
-                <button mat-raised-button [routerLink]="['campos',complejo._id,1]" style="background-color:#f19203">Futbol 7</button>
-                <button mat-raised-button [routerLink]="['campos',complejo._id,2]" style="background-color:#58ee12">Futbol 11</button>
-                <button mat-raised-button [routerLink]="['campos',complejo._id,3]" style="background-color:#318ED3">Futbol Sala</button>
+                <button mat-raised-button [routerLink]="['./campos']" skipLocationChange [queryParams]="{complejo_id:complejo._id, tipo:1}"  style="background-color:#f19203">Futbol 7</button>
+                <button mat-raised-button [routerLink]="['./campos']" skipLocationChange [queryParams]="{complejo_id:complejo._id, tipo:2}" style="background-color:#58ee12">Futbol 11</button>
+                <button mat-raised-button [routerLink]="['./campos']" skipLocationChange [queryParams]="{complejo_id:complejo._id, tipo:3}" style="background-color:#318ED3">Futbol Sala</button>
             </div>
             </mat-card-actions>
           </mat-card>
     </ngx-carousel-3d-slide>
 </ngx-carousel-3d>
+</div>
 
 
 

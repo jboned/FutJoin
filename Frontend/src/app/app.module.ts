@@ -28,6 +28,7 @@ import { NgxCarousel3dModule }  from 'ngx-carousel-3d';
 import { CreateCampoComponent } from './components/create-campos/create-campo.component';
 import { CamposComponent } from './components/campos/campos.component';
 import { PartidosComponent } from './components/partidos/partidos.component';
+import { CreatePartidoComponent } from './components/create-partido/create-partido.component'
 
 
 
@@ -40,7 +41,8 @@ import { PartidosComponent } from './components/partidos/partidos.component';
     ComplejosDeportivosComponent,
     CamposComponent,
     CreateCampoComponent,
-    PartidosComponent
+    PartidosComponent,
+    CreatePartidoComponent 
   ],
   imports: [
     BrowserModule,
@@ -57,7 +59,8 @@ import { PartidosComponent } from './components/partidos/partidos.component';
     routing
   ],
   providers: [ appRoutingProviders],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [CreatePartidoComponent]
 })
 export class AppModule {
 }

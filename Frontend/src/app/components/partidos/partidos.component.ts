@@ -2,6 +2,12 @@ import {Component, OnInit, ViewChild, ElementRef, Inject, HostListener} from '@a
 import { UserService } from 'src/app/services/user.service';
 import { ToastrService } from 'ngx-toastr';
 import { GLOBAL } from 'src/app/services/global';
+import { MatDialog } from '@angular/material/dialog';
+import { Partido } from 'src/app/models/partido';
+import { CreatePartidoComponent } from '../create-partido/create-partido.component';
+import { ActivatedRoute } from '@angular/router';
+import { CampoService } from 'src/app/services/campo.service';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
     selector: 'partidos',
@@ -17,16 +23,23 @@ import { GLOBAL } from 'src/app/services/global';
      public message;
      public url;
 
-     //Arrays para dias.
+     //Arrays para dias y horas.
      public days = ['Lu','Mar','Mi','Ju','Vi','Sa','Do'];
      public semana = [];
      public hoy = new Date();
      public horas=["09:00 - 10:00","10:00 - 11:00","11:00 - 12:00","12:00 - 13:00","13:00 - 14:00", "14:00 - 15:00",
                    "15:00 - 16:00","17:00 - 18:00","18:00 - 19:00","19:00 - 20:00","21:00 - 22:00","22:00 - 23:00"];
+    
+    //Informacion campo partidos.
+    public campoId;
+    public campo;
 
     constructor (
       private _userService:UserService,
       private toastr: ToastrService,
+      public dialog: MatDialog,
+      private route: ActivatedRoute,
+      private _campoService: CampoService
     ){
       this.url = GLOBAL.url;
       this.identity = this._userService.getIdentity();
@@ -35,7 +48,38 @@ import { GLOBAL } from 'src/app/services/global';
 
 
     ngOnInit(): void {
-      this.semana = this.getDias(new Date());
+      this.route.queryParams.subscribe(params => {
+        
+        this.campoId = params['campo_id'];
+        //console.log(this.campoId);
+        this._campoService.getCampo(this.campoId).subscribe(
+          response => {
+            this.campo = response.campo;
+            //console.log(this.campo);
+          },
+          (error:HttpErrorResponse)=>{
+            this.message = error.error.message;
+            this.showToaster();
+          }
+        );
+      }); 
+      this.semana = this.getDias(this.hoy); 
+    }
+
+
+    openDialog(): void {
+      const dialogRef = this.dialog.open(CreatePartidoComponent, {
+        width: '1000px',
+        height:'600px',
+        data: {campo: this.campo},
+        autoFocus:true,
+  
+      });
+  
+      dialogRef.afterClosed().subscribe(result => {
+        console.log('The dialog was closed');
+        //partido = result
+      });
     }
 
 
@@ -71,7 +115,9 @@ import { GLOBAL } from 'src/app/services/global';
       return dias;
     }
 
-
+    redirect_atras(){
+      
+    }
 
 
     showToaster(){
