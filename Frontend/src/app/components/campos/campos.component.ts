@@ -112,7 +112,7 @@ import { HttpErrorResponse } from '@angular/common/http';
     }
     redirect_partidos(campo_id){
       //this.router.navigate(['complejos/campos/partidos/'+campo_id]);
-      this.router.navigate(['complejos/campos/partidos'], {queryParams: { campo_id: campo_id },skipLocationChange:true});
+      this.router.navigate(['complejos/campos/partidos'], {queryParams: { campo_id: campo_id, size:0 },skipLocationChange:true});
     }
     redirect_atras(){
       this.router.navigate(['complejos/']);

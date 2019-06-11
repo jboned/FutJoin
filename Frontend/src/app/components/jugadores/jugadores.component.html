@@ -1,0 +1,12 @@
+<ngx-carousel-3d [slides]="jugadores" [options]="options"  #carousel style="width:100%">
+    <ngx-carousel-3d-slide *ngFor="let jugador of jugadores; let i = index;">
+      <div class="icono" matTooltip="Perfil" matTooltipPosition="above" (click)="perfil(jugador._id)"><mat-icon [inline]=true style="color:white; font-size: 70px;">person</mat-icon></div>
+      <div fxLayout="column" fxLayoutAlign ="center center">
+        <div><img src="{{url + 'get-image-user/' + jugador.image}}" style="height: 300px; width: 300px;margin-left:2px;border-radius:50%;"></div>
+        <div><p style="color: rgb(2, 13, 161); font-size:30px; margin:0">{{jugador.nombre}}</p></div>
+        <div *ngIf="jugador._id != creador._id" class="rol">Participante</div>
+        <div *ngIf="jugador._id == creador._id" class="rol">Creador</div>
+        <div class="rol">Partidos jugados: {{jugador.partidosJugados}}</div>
+      </div>
+      </ngx-carousel-3d-slide>
+</ngx-carousel-3d>

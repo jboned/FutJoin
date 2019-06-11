@@ -85,13 +85,16 @@ import { UserService } from 'src/app/services/user.service';
               this.showToaster();
             }
           );
+
         }
       });
+
       this.dataLoaded = true;
     }
 
     onSubmit(){
       if(!this.campo._id){
+        console.log(this.campo);
         this._campoService.create(this.campo).subscribe(
           response => {
           let campo = response.campo;

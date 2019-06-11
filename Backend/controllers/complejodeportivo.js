@@ -6,6 +6,7 @@ var path = require('path');
 var jwt = require('../services/jwt');
 var User = require('../models/user');
 var ComplejoDeportivo = require('../models/complejodeportivo')
+var Noticia = require('../controllers/noticias');
 
 function saveComplejoDeportivo(req,res){
     var complejoDeportivo = new ComplejoDeportivo();
@@ -33,6 +34,7 @@ function saveComplejoDeportivo(req,res){
     complejoDeportivo.propietario = user;
     complejoDeportivo.direccion = params.direccion;
     complejoDeportivo.save();
+    Noticia.saveNoticia("El complejo deportivo "+complejoDeportivo.propietario.nombre+" ha empezado a colaborar con FutJoin",1);
 }
 
 function getComplejosDeportivo(req,res){

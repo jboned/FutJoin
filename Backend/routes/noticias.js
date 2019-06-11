@@ -9,8 +9,8 @@ var api = express.Router();
 
 
 
-api.get('/noticias/:page?',noticiasController.getNoticias);
-api.delete('/noticias/:id',noticiasController.getNoticias);
+
+api.get('/getNoticias',noticiasController.getNoticias);
 
 
 

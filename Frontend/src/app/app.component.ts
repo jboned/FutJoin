@@ -110,15 +110,14 @@ export class AppComponent implements OnInit{
         response => {
 
           let identity = response.user;
-          this.identity = identity;
-          console.log(identity);
-          if(!this.identity._id){
+          if(!identity._id){
             this.message = "El usuario no está correctamente identificado";
           }else{
             //Guardo la sesion
             localStorage.setItem('identity',JSON.stringify(identity));
             this.message="Login correcto.";
             this.showToasterBueno();
+
             //Conseguir token
             this._userService.signup(this.user,'true').subscribe(
               response => {
@@ -130,6 +129,7 @@ export class AppComponent implements OnInit{
                   }else{
                     localStorage.setItem('token',token);
                     this.user = new User('', '', '', '', '', '', '',0,null,'', '', '', 0, 0 );
+                    this.identity = identity
                     this.router.navigate(['home']);
                   }
               },

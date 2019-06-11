@@ -1,0 +1,12 @@
+@media screen and (max-width: 800px){
+  .dialog{
+    font-size:2.5vw !important;
+  }
+}
+@media screen and (min-width: 1000px){
+  .info{
+    text-align: center;
+    vertical-align: middle;
+    line-height: 60px;
+  }
+}

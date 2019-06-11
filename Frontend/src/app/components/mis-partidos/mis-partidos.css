@@ -1,0 +1,72 @@
+.container{
+  width:80%;
+  height:570px;
+  background-color:white;
+  margin: 100px auto;
+  /* border-radius */
+  -webkit-border-radius: 20px;
+  -moz-border-radius: 20px;
+  border-radius: 20px;
+  /* box-shadow */
+  -webkit-box-shadow: rgba(0,0,0,0.8) 0px 0 20px;
+  -moz-box-shadow: rgba(0,0,0,0.8) 0 0 20px;
+  box-shadow: rgba(0,0,0,0.8) 0 0 20px;
+}
+
+.tabs{
+  -webkit-border-top-left-radius: 20px;
+  -moz-border-top-left-radius: 20px;
+  -webkit-border-top-right-radius: 20px;
+  -moz-border-top-right-radius: 20px;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  /* box-shadow */
+}
+
+
+.mat-tab-labels{
+  background-color:rgb(162, 245, 107);
+  font-weight: 700;
+  text-align:center;
+  box-shadow:10px 5px 5px black;
+}
+/* Styles for the active tab label */
+.mat-tab-label.mat-tab-label-active {
+  color: rgb(1, 34, 126);
+  font-weight: 700;
+}
+.mat-tab-label-content{
+  font-size:15px;
+}
+@media screen and (min-width: 600px) {
+  .icon-f{
+    width:70px;
+    height:70px;
+    margin: 0px 10px;
+  }
+}
+@media screen and (max-width: 800px) {
+.mat-list-text{
+  font-size:3vw;
+}
+.mat-line{
+  font-size:3vw !important;
+}
+}
+
+@media screen and (max-width: 800px) {
+  .icon-f{
+    width:30px;
+    height:30px;
+  }
+}
+
+.mat-list-base .mat-list-item .mat-divider{
+  margin:1px !important;
+}
+
+
+.button-warn{
+  margin-right: 20px;
+  width: 15%;
+}

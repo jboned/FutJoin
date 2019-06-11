@@ -18,21 +18,39 @@ import { GLOBAL } from 'src/app/services/global';
      public message;
      public url;
      public partido :Partido;
-  
+     selected = 1;
+
+
     constructor(
       private _userService:UserService,
       private toastr: ToastrService,
-      public dialogRef: MatDialogRef<CreatePartidoComponent>,
-      @Inject(MAT_DIALOG_DATA) data) {
+      public dialogRef: MatDialogRef<CreatePartidoComponent>, @Inject(MAT_DIALOG_DATA) data) {
         this.url = GLOBAL.url;
         this.identity = this._userService.getIdentity();
         this.token = this._userService.getToken();
         this.partido = data;
-        console.log(this.partido);
-        console.log(this.partido['campo']['complejo']['propietario'].nombre);
+
       }
-  
-    onNoClick(): void {
-      this.dialogRef.close(/*this.form.value*/);
+
+    onSubmit() {
+        this.partido.creador = this.identity;
+        this.partido.jugadores = [this.identity];
+        switch(this.partido.campo.tipo){
+          case 1:
+            this.partido.maxJugadores = 14;
+            break;
+          case 2:
+            this.partido.maxJugadores = 22;
+            break;
+          case 3:
+            this.partido.maxJugadores = 10;
+            break;
+        }
+        this.dialogRef.close(this.partido);
+    }
+
+    close() {
+        this.partido.tipo = 3;
+        this.dialogRef.close();
     }
 }

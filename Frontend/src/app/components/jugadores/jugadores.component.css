@@ -1,0 +1,15 @@
+.rol{
+  color: rgba(0, 0, 0, 0.54);
+  font-size:30px;
+  font-style:normal;
+  font-weight: 100;
+}
+
+.icono{
+  left:25px;
+  position:absolute;
+  top:70%;
+  background-color:black;
+  border-radius:50%;
+  cursor:pointer;
+}

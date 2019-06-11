@@ -1,20 +1,9 @@
 
 #logo{
-  width: 15em;
-}
-/*
-.login{
-  height:280px;
-  width:400px;
-  background-color:	#F3F5F4;
+  width: 100%;
 }
 
-.register{
-  height:400px;
-  width:400px;
-  background-color:	#F3F5F4;
-}
-*/
+
 .titulo{
   text-align: center;
 }
@@ -65,6 +54,40 @@ img.bg {
   min-height:64px !important;
 }
 
+@media screen and (min-height:  750px){
+.barra_abajo{
+  background-color:#121a63;
+  left: 0;
+  bottom:0;
+  right:0;
+  width: 100% !important;
+  position:fixed;
+  height:50px;
+}
+.link{
+  color:white;
+  font-size:16px;
+  padding-top: 13px;
+}
+}
+/*
+@media screen and (max-height: 749px){
+  .barra_abajo{
+    background-color:#121a63;
+    left: 0;
+    bottom:0;
+    right:0;
+    width: 100% !important;
+    position:fixed;
+    height:20px;
+  }
+  .link{
+    color:white;
+    font-size:12px;
+    padding-top: 2px;
+  }
+}
+*/
 .toolbar-title {
   margin: 0 16px 0 16px;
 }
@@ -77,12 +100,9 @@ img.bg {
 .mat-sidenav{
   position:fixed;
   height:100%;
-
   width: 200px;
-  /*width:60px;
-  margin-top:64.4px;*/
-
 }
+
 .app{
   height:100%;
   display: flex;
@@ -129,7 +149,7 @@ img.bg {
   color: #FFF;
 }
 .icon{
-  font-size: 14px;
+  font-size: 35px;
   padding-right: 6px;
   padding-top: 3px;
 }

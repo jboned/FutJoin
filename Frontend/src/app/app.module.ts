@@ -29,6 +29,12 @@ import { CreateCampoComponent } from './components/create-campos/create-campo.co
 import { CamposComponent } from './components/campos/campos.component';
 import { PartidosComponent } from './components/partidos/partidos.component';
 import { CreatePartidoComponent } from './components/create-partido/create-partido.component'
+import { UnirsePartidoComponent } from './components/unirse-a-partido/unirse-partido.component';
+import { FAQComponent } from './components/faq/faq.component';
+import { homeComponent } from './components/home/home.component';
+import { MisPartidosComponent } from './components/mis-partidos/mis-partidos';
+import { JugadoresComponent } from './components/jugadores/jugadores.component';
+import { UserInfo } from './components/user-info/user-info';
 
 
 
@@ -42,7 +48,13 @@ import { CreatePartidoComponent } from './components/create-partido/create-parti
     CamposComponent,
     CreateCampoComponent,
     PartidosComponent,
-    CreatePartidoComponent 
+    CreatePartidoComponent,
+    UnirsePartidoComponent,
+    FAQComponent,
+    homeComponent,
+    MisPartidosComponent,
+    JugadoresComponent,
+    UserInfo
   ],
   imports: [
     BrowserModule,
@@ -60,7 +72,7 @@ import { CreatePartidoComponent } from './components/create-partido/create-parti
   ],
   providers: [ appRoutingProviders],
   bootstrap: [AppComponent],
-  entryComponents: [CreatePartidoComponent]
+  entryComponents: [CreatePartidoComponent,UnirsePartidoComponent,JugadoresComponent]
 })
 export class AppModule {
 }

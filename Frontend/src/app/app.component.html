@@ -8,60 +8,6 @@
 <body>
 
   <div *ngIf="identity" [@fadeInOut] >
-<!--
-    <mat-sidenav-container fullscreen autosize >
-      <mat-sidenav mode="side" class="sidenav-app" style="margin-top:64.4px;" [@EnterLeave] >
-
-          <mat-nav-list class ="header">
-              <div fxLayout="row" fxLayoutGap="15px" style="margin-top:2px;margin-left: 3%;">
-                  <div><img src="{{url + 'get-image-user/' + this.identity.image }}" style="height: 60px; width: 60px"></div>
-                  <div fxLayout="column" fxLayoutGap="3px" class="info_user"><div class="nombre-user">{{identity.nombre}}</div><div class="email-user">{{identity.email}}</div></div>
-                </div>
-          </mat-nav-list>
-
-          <mat-nav-list class ="menu-sidenav">
-              <div MatSubheader class="menu-category"> Preview</div>
-
-              <a mat-list-item  (click)="sidenav.close()" [routerLink]= "['complejos']" routerLinkActive="active-list-item" #state3="routerLinkActive"><div class="icon"><mat-icon [inline]="true">home</mat-icon></div> Inicio
-                <div *ngIf="state3.isActive" fxFlex fxLayout class="icon-selected" fxLayoutAlign="end"><mat-icon [inline]="true">arrow_left</mat-icon></div></a>
-
-              <a mat-list-item  (click)="sidenav.close()" [routerLink]= "['mis-datos']" routerLinkActive="active-list-item" #state="routerLinkActive"><div class="icon"><mat-icon [inline]="true">settings</mat-icon></div> Mis Datos
-                <div *ngIf="state.isActive" fxFlex fxLayout class="icon-selected" fxLayoutAlign="end"><mat-icon [inline]="true">arrow_left</mat-icon></div></a>
-
-                <a mat-list-item  (click)="sidenav.close()" [routerLink]= "['complejos']" routerLinkActive="active-list-item" #state2="routerLinkActive"><div class="icon"><mat-icon [inline]="true">fitness_center</mat-icon></div> Complejos Deportivos
-                  <div *ngIf="state2.isActive" fxFlex fxLayout class="icon-selected" fxLayoutAlign="end"><mat-icon [inline]="true">arrow_left</mat-icon></div></a>
-
-                <div *ngIf="identity.tipo == 3" >
-                  <div MatSubheader class="menu-category">Administrador</div>
-                  <a mat-list-item  (click)="sidenav.close()" [routerLink]= "['crear-complejo']" routerLinkActive="active-list-item" #state2="routerLinkActive"><div class="icon"><mat-icon [inline]="true">supervised_user_circle</mat-icon></div> Crear Complejo Deportivo
-                      <div *ngIf="state2.isActive" fxFlex fxLayout class="icon-selected" fxLayoutAlign="end"><mat-icon [inline]="true">arrow_left</mat-icon></div></a>
-                </div>
-          </mat-nav-list>
-     </mat-sidenav>
-
-      <mat-sidenav-content>
-          <mat-toolbar color="primary" class="barra">
-              <mat-toolbar-row>
-                  <button mat-icon-button (click)="sidenav.toggle()"><mat-icon>menu</mat-icon></button>
-                  <a [routerLink]= "['']"  mat-button><img src = "../assets/img/Logo barra.png" style="width:50px;height:50px"><img src = "../assets/img/Palabra barra.png" style="width:100px;height:25px"></a>
-                  <div fxFlex fxLayout fxLayoutAlign="end">
-                      <div fxLayout fxLayoutGap="10px">
-                        <div>
-                          <button mat-icon-button [matMenuTriggerFor]="menu"><mat-icon>more_vert</mat-icon></button>
-                          <mat-menu #menu="matMenu">
-                            <a [routerLink]= "['']" mat-menu-item><mat-icon>help</mat-icon>FAQ</a>
-                            <a [routerLink]="['']" mat-menu-item (click)="logout()"><mat-icon>power_settings_new</mat-icon>Logout</a>
-                          </mat-menu>
-                        </div>
-                    </div>
-                </div>
-              </mat-toolbar-row>
-          </mat-toolbar>
-          <img class=bg src="../assets/img/gris.png">
-          <div style="height:100%; margin-top:64.4px;"><router-outlet></router-outlet></div>
-      </mat-sidenav-content>
-    </mat-sidenav-container>
-  -->
 
   <mat-sidenav-container fullscreen >
       <mat-sidenav id="sidenav" mode="side" class="sidenav-app" style="width:60px;margin-top:64px" opened [@changeSidenav] = "vari">
@@ -74,20 +20,23 @@
           </mat-nav-list>
 
           <mat-nav-list class ="menu-sidenav">
-              <div MatSubheader class="menu-category"> Preview</div>
+              <div MatSubheader class="menu-category"> Usuario</div>
 
-              <a mat-list-item (click)="vari=1"[routerLink]= "['complejos']" routerLinkActive="active-list-item" #state3="routerLinkActive"><div class="icon"><mat-icon [inline]="true" style="font-size:35px">home</mat-icon></div>&nbsp;&nbsp;&nbsp;INICIO
+              <a mat-list-item (click)="vari=1"[routerLink]= "['home']" routerLinkActive="active-list-item" #state3="routerLinkActive"><div class="icon"><mat-icon [inline]="true">home</mat-icon></div>&nbsp;&nbsp;&nbsp;INICIO
                 <div *ngIf="state3.isActive" fxFlex fxLayout class="icon-selected" fxLayoutAlign="end"><mat-icon [inline]="true">arrow_left</mat-icon></div></a>
 
-              <a mat-list-item (click)="vari=1" [routerLink]= "['mis-datos']" routerLinkActive="active-list-item" #state="routerLinkActive"><div class="icon"><mat-icon [inline]="true" style="font-size:35px">person</mat-icon></div>&nbsp;&nbsp;&nbsp;MIS&nbsp;&nbsp;DATOS
+              <a mat-list-item (click)="vari=1" [routerLink]= "['mis-datos']" routerLinkActive="active-list-item" #state="routerLinkActive"><div class="icon"><mat-icon [inline]="true">person</mat-icon></div>&nbsp;&nbsp;&nbsp;MIS&nbsp;&nbsp;DATOS
                 <div *ngIf="state.isActive" fxFlex fxLayout class="icon-selected" fxLayoutAlign="end"><mat-icon [inline]="true">arrow_left</mat-icon></div></a>
 
-                <a mat-list-item (click)="vari=1" [routerLink]= "['complejos']" routerLinkActive="active-list-item" #state2="routerLinkActive"><div class="icon"><mat-icon [inline]="true" style="font-size:35px">fitness_center</mat-icon></div>&nbsp;&nbsp;&nbsp;COMPLEJOS<br> &nbsp;&nbsp;&nbsp;DEPORTIVOS
+                <a mat-list-item (click)="vari=1" [routerLink]= "['complejos']" routerLinkActive="active-list-item" #state2="routerLinkActive"><div class="icon"><mat-icon [inline]="true">fitness_center</mat-icon></div>&nbsp;&nbsp;&nbsp;COMPLEJOS<br> &nbsp;&nbsp;&nbsp;DEPORTIVOS
                   <div *ngIf="state2.isActive" fxFlex fxLayout class="icon-selected" fxLayoutAlign="end"><mat-icon [inline]="true">arrow_left</mat-icon></div></a>
+
+                  <a mat-list-item (click)="vari=1" [routerLink]= "['mis-partidos']" routerLinkActive="active-list-item" #state4="routerLinkActive"><div class="icon"><img src="../assets/img/svgs/soccer-ball.svg"style="width:36px;height:36px;color:white"></div>&nbsp;&nbsp;&nbsp;MIS<br>&nbsp;&nbsp;&nbsp;PARTIDOS
+                    <div *ngIf="state4.isActive" fxFlex fxLayout class="icon-selected" fxLayoutAlign="end"><mat-icon [inline]="true">arrow_left</mat-icon></div></a>
 
                 <div *ngIf="identity.tipo == 3" >
                   <div MatSubheader class="menu-category">Administrador</div>
-                  <a mat-list-item  [routerLink]= "['crear-complejo']" routerLinkActive="active-list-item" #state2="routerLinkActive"><div class="icon"><mat-icon [inline]="true">supervised_user_circle</mat-icon></div>Crear Complejo Deportivo
+                  <a mat-list-item  [routerLink]= "['crear-complejo']" routerLinkActive="active-list-item" #state2="routerLinkActive"><div class="icon"><mat-icon [inline]="true">supervised_user_circle</mat-icon></div>&nbsp;&nbsp;&nbsp;CREAR<br> &nbsp;&nbsp;&nbsp;COMPLEJO<br>&nbsp;&nbsp;&nbsp;DEPORTIVO
                       <div *ngIf="state2.isActive" fxFlex fxLayout class="icon-selected" fxLayoutAlign="end"><mat-icon [inline]="true">arrow_left</mat-icon></div></a>
                 </div>
           </mat-nav-list>
@@ -103,7 +52,7 @@
                         <div>
                           <button mat-icon-button [matMenuTriggerFor]="menu"><mat-icon>more_vert</mat-icon></button>
                           <mat-menu #menu="matMenu">
-                            <a [routerLink]= "['']" mat-menu-item><mat-icon>help</mat-icon>FAQ</a>
+                            <a [routerLink]= "['faq']" mat-menu-item><mat-icon>help</mat-icon>FAQ</a>
                             <a [routerLink]="['']" mat-menu-item (click)="logout()"><mat-icon>power_settings_new</mat-icon>Logout</a>
                           </mat-menu>
                         </div>
@@ -122,7 +71,7 @@
 
     <div *ngIf="!identity" fxLayout="column" fxLayoutAlign="center center"  [@fadeInOut]>
         <img class=bg src="../assets/img/syOPVz8.jpg">
-        <div  fxFlexAlign="center">
+        <div fxFlexAlign="center">
             <img src="assets/img/Logo.png" class="puff-in-center" id="logo"/>
         </div>
         <mat-card  [@changeDivSize] = estado>
@@ -308,19 +257,20 @@
                             <div fxLayout="row" fxLayoutAlign="space-evenly">
                                     <button type="button" mat-raised-button color="warn" matStepperPrevious>Back <mat-icon>backspace</mat-icon></button>
                                     <button  type="submit" mat-raised-button class="fin">Finalizar <mat-icon>check</mat-icon></button>
-
                             </div>
                         </mat-step>
-
-
                     </mat-horizontal-stepper>
                 </form>
             </mat-card-content>
-
-
         </mat-card>
 
-
+        <!--
+        <div class="barra_abajo">
+            <div fxLayout="column" fxLayoutAlign="center center">
+              <a class="link"> ¿Qué es FutJoin?</a>
+            </div>
+        </div>
+      -->
    </div>
 
 </body>

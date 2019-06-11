@@ -1,18 +1,30 @@
-<h1 mat-dialog-title>Crear Partido</h1>
-<div mat-dialog-content>
-    <p>Usted, va a reservar el {{partido['campo'].nombre}} del {{partido['campo']['complejo']['propietario'].nombre}} </p>
-    <!--<div fxLayout="row" fxLayoutAlign="space-evenly">
+<h1 mat-dialog-title>Reservar hora.</h1>
+<form name="form" #partidoForm="ngForm" (ngSubmit)="partidoForm.form.valid && onSubmit()" >
+<div  class="dialog" mat-dialog-content>
+    <p>Usted, {{identity.nombre}}, va a reservar el {{partido['campo'].nombre}} del {{partido['campo']['complejo']['propietario'].nombre}} </p>
+    <div fxLayout="row" fxLayoutAlign="space-evenly">
+
         <mat-form-field>
             <mat-label>Tipo de partido</mat-label>
-            <mat-select class="form-control" [(ngModel)]="data.tipo"
-                        placeholder="El tipo de partido" name="tipo">
+            <mat-select class="form-control" [(ngModel)]="partido.tipo"
+                        placeholder="El tipo de partido" name="tipo" [(value)]="selected" required>
                 <mat-option value="1">Publico</mat-option>
                 <mat-option value="2">Privado</mat-option>
             </mat-select>
         </mat-form-field>
+        <div class="info" *ngIf="selected == 1">Partido público, se podrá unir cualquier jugador que lo desee.</div>
+        <div class="info" *ngIf="selected == 2">Partido privado. Desde la sección "Mis Partidos" podrá invitar a los usuarios que desee </div>
     </div>
+  <mat-list>
+    <h3 mat-subheader>Datos del partido</h3>
+    <mat-list-item><mat-icon>today</mat-icon>La reserva se realizará el día {{partido.dia}}</mat-list-item>
+    <mat-list-item><mat-icon>timer</mat-icon>El partido empieza a las: {{partido.fechaInicio.toLocaleTimeString()}}</mat-list-item>
+    <mat-list-item><mat-icon>timer_off</mat-icon>El partido termina a las: {{partido.fechaFin.toLocaleTimeString()}}</mat-list-item>
+  </mat-list>
 </div>
--->
-<div mat-dialog-actions>
-  <button mat-button (click)="onNoClick()">No Thanks</button>
+<div mat-dialog-actions fxLayout="row" fxLayoutAlign="center center">
+  <button mat-raised-button (click)="close()">Cancel</button>
+  <button type="submit" mat-raised-button color="accent" [disabled]="partidoForm.invalid"
+          (click)="onSubmit()">Save</button>
 </div>
+</form>

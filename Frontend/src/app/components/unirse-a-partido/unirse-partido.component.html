@@ -1,0 +1,21 @@
+<h1 mat-dialog-title>Unirse a partido</h1>
+
+<div  class="dialog" mat-dialog-content>
+    <p>Usted, {{identity.nombre}}, va a unirse a un partido en el {{partido['campo'].nombre}} del {{partido['campo']['complejo']['propietario'].nombre}} </p>
+    <div fxLayout="row" fxLayoutAlign="space-evenly">
+    </div>
+  <mat-list>
+    <h3 mat-subheader>Datos del partido</h3>
+    <mat-list-item><mat-icon>person</mat-icon>El creador del partido es {{partido['creador'].nombre}}, con correo {{partido['creador'].email}}</mat-list-item>
+    <mat-list-item [ngClass]="{'warning': lleno==true}"><mat-icon>people</mat-icon>{{partido['jugadores'].length}}/{{partido.maxJugadores}}.<b *ngIf="lleno">Este partido esta lleno</b></mat-list-item>
+    <mat-list-item><mat-icon>today</mat-icon>La reserva se realizará el día {{dia}}</mat-list-item>
+    <mat-list-item><mat-icon>timer</mat-icon>El partido empieza a las: {{horaInicio}}</mat-list-item>
+    <mat-list-item><mat-icon>timer_off</mat-icon>El partido termina a las: {{horaFin}}</mat-list-item>
+    <mat-list-item [ngClass]="{'warning': estoy}" *ngIf="estoy"><mat-icon>warning</mat-icon>No puedes unirte porque ya estás en este partido</mat-list-item>
+  </mat-list>
+</div>
+<div mat-dialog-actions fxLayout="row" fxLayoutAlign="center center">
+  <button mat-raised-button color="primary" [disabled]="estoy" (click)="join()">Unirse</button>
+  <button mat-raised-button (click)="close()">Cancel</button>
+</div>
+

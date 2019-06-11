@@ -1,0 +1,64 @@
+<div class="container">
+    <mat-tab-group class="tabs">
+
+        <mat-tab label="Creador">
+          <mat-list>
+            <mat-list-item *ngFor="let partido of partidosCreadorPagin">
+                <button class="button-warn" *ngIf="haTerminado(partido.fechaFin)" mat-raised-button color="warn">Terminar <mat-icon>check_circle</mat-icon></button>
+                <button class="button-warn" *ngIf="porEmpezar(partido.fechaInicio)" mat-raised-button color="warn">Cancelar <mat-icon>delete</mat-icon></button>
+                <button class="button-warn" *ngIf="enCurso(partido.fechaInicio, partido.fechaFin)" mat-raised-button color="warn" disabled >En curso <mat-icon>more_horiz</mat-icon></button>
+                <img matTooltip="Partido público"    matTooltipPosition="left" src="../assets/img/svgs/publico.svg" class="icon-f" *ngIf="partido.tipo==1">
+                <img matTooltip="Partido privado"    matTooltipPosition="left" src="../assets/img/svgs/privado.svg"   class="icon-f" *ngIf="partido.tipo==2">
+                <img matTooltip="Futbol 7"    matTooltipPosition="right" src="../assets/img/svgs/pitch_7.svg"    class="icon-f"   *ngIf="partido.campo.tipo==1">
+                <img matTooltip="Futbol 11"   matTooltipPosition="right" src="../assets/img/svgs/pitch_11.svg"   class="icon-f"   *ngIf="partido.campo.tipo==2">
+                <img matTooltip="Futbol Sala" matTooltipPosition="right" src="../assets/img/svgs/pitch_sala.svg" class="icon-f"   *ngIf="partido.campo.tipo==3">
+                <h4 mat-line>{{partido.campo.complejo.propietario.nombre}} - {{partido.campo.nombre}}</h4>
+                <p mat-line><mat-icon style="vertical-align: middle;" [inline]=true>today</mat-icon> {{getDia(partido.fechaInicio)}} {{getHora(partido.fechaInicio)}} - {{getHora(partido.fechaFin)}} </p>
+                <p mat-line><button mat-button (click)=openDialogJugadores(partido)><mat-icon style="vertical-align: middle;" [inline]=true>people</mat-icon>{{partido.jugadores.length}}/{{partido.maxJugadores}}</button></p>
+                <mat-divider></mat-divider>
+              </mat-list-item>
+            <mat-paginator [length]="partidosCreador.length"
+                [pageSize]="sizeCreador"
+                [pageIndex]="pageCreador"
+                (page)="getDataCreador($event)">
+          </mat-paginator>
+          </mat-list>
+        </mat-tab>
+
+        <mat-tab label="Participante">
+          <mat-list>
+            <mat-list-item *ngFor="let partido of partidosParticipantePagin">
+                <img matTooltip="Partido publico"    matTooltipPosition="left" src="../assets/img/svgs/publico.svg" class="icon-f" *ngIf="partido.tipo==1">
+                <img matTooltip="Partido privado"    matTooltipPosition="left" src="../assets/img/svgs/privado.svg"   class="icon-f" *ngIf="partido.tipo==2">
+                <img matTooltip="Futbol 7"    matTooltipPosition="left" src="../assets/img/svgs/pitch_7.svg"    class="icon-f"   *ngIf="partido.campo.tipo==1">
+                <img matTooltip="Futbol 11"   matTooltipPosition="left" src="../assets/img/svgs/pitch_11.svg"   class="icon-f"   *ngIf="partido.campo.tipo==2">
+                <img matTooltip="Futbol Sala" matTooltipPosition="left" src="../assets/img/svgs/pitch_sala.svg" class="icon-f"   *ngIf="partido.campo.tipo==3">
+                <h4 mat-line>{{partido.campo.complejo.propietario.nombre}} - {{partido.campo.nombre}}</h4>
+                <p mat-line><mat-icon style="vertical-align: middle;">today</mat-icon> {{getDia(partido.fechaInicio)}} {{getHora(partido.fechaInicio)}} - {{getHora(partido.fechaFin)}} </p>
+                <p mat-line><button mat-button (click)=openDialogJugadores(partido)><mat-icon style="vertical-align: middle;" [inline]=true>people</mat-icon>{{partido.jugadores.length}}/{{partido.maxJugadores}}</button></p>
+                <mat-divider></mat-divider>
+            </mat-list-item>
+            <mat-paginator [length]="partidosParticipante.length"
+            [pageSize]="sizeParticipante"
+            [pageIndex]="pageParticipante"
+            (page)="getDataParticipante($event)">
+            <br/><br/>
+      </mat-paginator>
+          </mat-list>
+        </mat-tab>
+
+    </mat-tab-group>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+<div style="bottom:0;margin-left:5px;font-size:8px">Icons made by <a href="https://www.freepik.com/?__hstc=57440181.f02e0ffcff6defd8c30322ec7df8c421.1558463457343.1559927824034.1560081545241.3&__hssc=57440181.1.1560081545241&__hsfp=1226890171" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" 			    title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" 			    title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>

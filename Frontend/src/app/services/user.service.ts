@@ -34,13 +34,18 @@ export class UserService{
       let headers = new HttpHeaders().set('Content-Type','application/json');
       return this._http.post(this.url+'register', params, {headers: headers}).pipe(map(res => res));
   }
-  
+
   public updateUser(user_to_update):Observable<any>{
       let params= JSON.stringify(user_to_update);
       let headers: HttpHeaders = new HttpHeaders();
       headers = headers.append('Content-Type','application/json');
       headers = headers.append('Authorization',this.getToken());
       return this._http.put(this.url+'updateUser/'+user_to_update._id, params, {headers: headers}).pipe(map(res => res));
+  }
+  public getUser(id):Observable<any>{
+    let headers: HttpHeaders = new HttpHeaders();
+    headers = headers.append('Content-Type','application/json');
+    return this._http.post(this.url+'getUser/'+id, {headers: headers}).pipe(map(res => res));
   }
 
 

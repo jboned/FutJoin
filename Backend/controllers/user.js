@@ -76,6 +76,33 @@ function loginUser(req, res){
     });
 }
 
+function getUser(req,res){
+    let id = req.params.id;
+    User.findById(id,(err,user)=>{
+        if(err){
+            res.status(500).send({message:'Error en la peticion'});
+        }else{
+            if(!user){
+                res.status(404).send({message:'El usuario no existe'});
+            }else{
+                let useraux = new User();
+                useraux.email = user.email;
+                useraux.nombre = user.nombre;
+                useraux.fecha = user.fecha;
+                useraux.image = user.image;
+                useraux.piebueno = user.piebueno;
+                useraux.posicion = user.posicion;
+                useraux.altura = user.altura;
+                useraux.partidosJugados = user.partidosJugados;
+                useraux.codigoPostal = user.codigoPostal;
+                useraux.telefono = user.telefono;
+
+                res.status(200).send({user:useraux});
+            }
+        }
+    })
+}
+
 
 function updateUser(req,res){
     var userId = req.params.id;
@@ -142,5 +169,7 @@ module.exports = {
     loginUser,
     updateUser,
     uploadImage,
-    getImageFile
+    getImageFile,
+    getUser
 };
+

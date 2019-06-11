@@ -1,12 +1,11 @@
 'use strict'
 
-var bcrypt = require('bcrypt-nodejs');
 var fs = require('fs');
 var path = require('path');
-var jwt = require('../services/jwt');
 var User = require('../models/user');
 var Campo = require('../models/campo');
-var Complejo = require('../models/complejodeportivo')
+var Complejo = require('../models/complejodeportivo');
+var Noticia = require('../controllers/noticias');
 
 
 function getCampos(req,res){
@@ -81,33 +80,36 @@ function updateCampo(req,res){
 function saveCampo(req,res){
     let params = req.body;
     let campo = new Campo();
+
+    let complejo = new Complejo();
+    complejo = params.complejo;
+
+    let user = new User();
+    user = params.complejo.propietario;
+    
     campo.nombre = params.nombre;
     campo.largo = params.largo;
     campo.ancho = params.ancho;
     campo.superficie = params.superficie;
     campo.aforoGrada = params.aforoGrada;
     campo.sistemaIluminacion = params.sistemaIluminacion;
-    campo.complejo = params.complejo;
+    
+    campo.complejo = new Complejo();
+    campo.complejo = complejo;
+
+    campo.complejo.propietario = new User();
+    campo.complejo.propietario = user;
+
+    console.log(complejo);
     campo.tipo = params.tipo;
     campo.image = "wCtxANxebqR5RM8m6E5519nn.png";
-    console.log(campo);
-    let save = campo.save();
-    save.populate({
-        path:'complejo',
-        populate: {
-            path:'propietario',
-            model:'User',
-        },
-        model:'ComplejoDeportivo',
-    }).exec(function(err,campo){
+    
+    campo.save((err, campoGuardado)=> {
         if(err){
-            res.status(500).send({message:'Error en la peticion'});
+            res.status(500).send({message:'El email de usuario ya existe.'});
         }else{
-            if(!campo){
-                res.status(500).send({message:'No existe el campo'});
-            }else{
-                res.status(200).send({campo:campo});
-            }
+            res.status(200).send({campo:campoGuardado});
+            Noticia.saveNoticia("El complejo "+complejo.propietario.nombre + " ha creado el campo "+campo.nombre ,2);
         }
     });
 }

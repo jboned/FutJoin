@@ -1,5 +1,5 @@
 <button mat-mini-fab style="background-color:#ffffff;margin-top:3px;margin-left:3px;" (click)="redirect_atras()" ><mat-icon style="color:red;">arrow_back</mat-icon></button>
-<div style="margin-top:1%;" class="mat-elevation-z8"> 
+<div style="margin-top:1%;" class="mat-elevation-z8">
   <table mat-table [dataSource]="dataSource" multiTemplateDataRows>
     <ng-container matColumnDef="{{column}}" *ngFor="let column of columnsToDisplay">
       <th mat-header-cell *matHeaderCellDef> {{column}} </th>
@@ -12,7 +12,7 @@
              [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
              <table>
                <tbody>
-                <td style="width:420px">
+                <td class="celda">
                       <img src="{{url + 'campos/get-image-campo/' + element.image}}" class="foto-campo">
                    </td>
                    <td>
@@ -22,9 +22,11 @@
                       <p class="campo-expanded"><strong style="color:#1A237E">Aforo de la grada: </strong>{{element.aforoGrada}} personas.</p>
                       <div><button *ngIf ="identity._id == element.complejo.propietario._id" (click)="redirect(element._id)"
                             mat-raised-button color="accent">Editar campo  <mat-icon> border_color</mat-icon></button></div>
+                      <div><button *ngIf ="identity._id == element.complejo.propietario._id" (click)="redirect(element._id)"
+                        mat-raised-button color="warn">Eliminar Campo <mat-icon> delete</mat-icon></button></div>
                    </td>
                    <td>
-                    <button class="myButton" mat-button (click)="redirect_partidos(element._id)">Ver reservas <mat-icon>calendar_today</mat-icon></button>
+                    <button class="myButton" mat-button (click)="redirect_partidos(element._id)"><i class="text-boton">Ver reservas </i><mat-icon>calendar_today</mat-icon></button>
                   </td>
                </tbody>
              </table>
@@ -41,7 +43,7 @@
   </table>
   <mat-paginator [pageSizeOptions]="[3, 5, 7, 10]"></mat-paginator>
   <ngx-float-button *ngIf ="complejo && identity._id == complejo.propietario._id" color="black" icon="add" direction="bottom" style="right: 5px; margin-top: 20px;">
-    <ngx-float-item-button 
+    <ngx-float-item-button
       (click)="redirect_create()" icon="person_add" content="Añadir campo"></ngx-float-item-button>
   </ngx-float-button>
 </div>

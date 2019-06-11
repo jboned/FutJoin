@@ -1,0 +1,35 @@
+<div fxLayout="row" style="width:100%; height:75%">
+  <div fxLayout="column" fxFlex="20" fxLayoutGap="20px" style="margin-left:20px; text-align: center;">
+      <div><img src="{{url + 'get-image-user/' + usuario.image}}" style="width:90%;margin-top:40px; border-radius:50%;"></div>
+      <mat-divider></mat-divider>
+      <div *ngIf="usuario.piebueno">Pie Bueno: <a style="color:#4241417c">{{usuario.piebueno}}</a></div>
+      <mat-divider></mat-divider>
+      <div *ngIf="usuario.altura != 0"> Altura: <a style="color:#4241417c">{{usuario.altura}} cm</a></div>
+      <mat-divider></mat-divider>
+  </div>
+  <div fxLayout="column" fxFlex="80" fxLayoutGap="20px" style="margin-left:20px;margin-top:40px; text-align: center;">
+      <mat-divider></mat-divider>
+      <div><img src="../../../assets/img/svgs/name.svg" style="width:24px; vertical-align: middle"> Nombre completo:<a style="color:#4241417c">{{usuario.nombre}}</a></div>
+      <mat-divider></mat-divider>
+      <div><mat-icon [inline]=true style="vertical-align: middle">email</mat-icon> Email: <a style="color:#4241417c">{{usuario.email}}</a></div>
+      <mat-divider></mat-divider>
+      <div *ngIf="usuario.fecha"><mat-icon [inline]=true style="vertical-align: middle">calendar_today</mat-icon> Fecha de nacimiento: <a style="color:#4241417c">{{getFecha(usuario.fecha)}}</a></div>
+      <mat-divider></mat-divider>
+      <div  *ngIf="usuario.telefono"><mat-icon [inline]=true style="vertical-align: middle">phone</mat-icon> Telefono: <a style="color:#4241417c">{{usuario.telefono}}</a></div>
+      <mat-divider style="border-top-width:2px"></mat-divider>
+      <div  *ngIf="usuario.codigoPostal"><mat-icon [inline]=true style="vertical-align: middle">location_on</mat-icon> Codigo Postal: <a style="color:#4241417c">{{usuario.codigoPostal}}</a></div>
+      <mat-divider></mat-divider>
+      <div>Partidos Jugados: <a style="color:#4241417c">{{usuario.partidosJugados}}</a></div>
+      <mat-divider></mat-divider>
+  </div>
+</div>
+<div fxLayout="row" style="margin-left:20px; text-align: center;" fxLayout="center center">
+    <div *ngIf="usuario.posicion">Posicion:
+      <img *ngIf="usuario.posicion == 'Portero'"        src="../../../assets/img/portero.jpg"     style="width:500px;height:200px">
+      <img *ngIf="usuario.posicion == 'Defensa'"        src="../../../assets/img/defensa.jpg"     style="width:500px;height:200px">
+      <img *ngIf="usuario.posicion == 'Centrocampista'" src="../../../assets/img/mediocentro.jpg" style="width:500px;height:200px">
+      <img *ngIf="usuario.posicion == 'Delantero'"      src="../../../assets/img/delantero.jpg"   style="width:500px;height:200px">
+    </div>
+</div>
+
+

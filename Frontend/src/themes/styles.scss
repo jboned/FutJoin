@@ -2,6 +2,7 @@
 @import './futjoinTheme.scss';
 /*@import "~@angular/material/prebuilt-themes/indigo-pink.css";*/
 @import "../../node_modules/ngx-toastr/toastr.css";
+@import url('https://fonts.googleapis.com/css?family=Oswald:500,600,700');
 
 /*
 html{
@@ -86,8 +87,11 @@ html{
 }
 @media only screen and (max-width:359px){.box21 .title{padding-bottom:10px}}
 
+
+
 body{
-font-family: Arial, Helvetica, sans-serif;
+/*font-family: Arial, Helvetica, sans-serif;*/
+font-family: Oswald, sans-serif;
 font-size: 1.75vw;
 font-variant-ligatures: normal;
 font-variant-caps: normal;

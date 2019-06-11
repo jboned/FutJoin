@@ -10,6 +10,7 @@ mongoose.set('useFindAndModify', false);
         throw err;
     }else{
         console.log("BD correcta.");
+        
         app.listen(port,function(){
             console.log("Servidor online en http://localhost:"+port);
         });

@@ -6,6 +6,7 @@ import {HttpErrorResponse} from  '@angular/common/http';
 import {User} from '../../models/user';
 import { ToastrService } from 'ngx-toastr';
 import {GLOBAL} from '../../services/global';
+import { copyStyles } from '@angular/animations/browser/src/util';
 
 @Component({
     selector: 'user-edit',
@@ -27,6 +28,7 @@ export class UserEditComponent implements OnInit{
 
     public message;
     public url;
+    public fechaInicial;
 
 
     constructor(
@@ -38,13 +40,14 @@ export class UserEditComponent implements OnInit{
         this.token = this._userService.getToken();
 
         this.user = this.identity;
+        console.log(this.identity);
 
         this.titulo= 'Mis datos';
 
         this.minDate = new Date(1900,0,1);
         this.maxDate = new Date();
         this.url = GLOBAL.url;
-
+        this.fechaInicial = this.identity.fecha;
 
     }
 
@@ -52,8 +55,10 @@ export class UserEditComponent implements OnInit{
     }
 
     onSubmit(){
-      var fecha = new Date(this.convertDate(this.user.fecha.toString())).toISOString();
-      this.user.fecha = fecha;
+      if(this.fechaInicial != this.user.fecha){
+        var fecha = new Date(this.convertDate(this.user.fecha.toString())).toISOString();
+        this.user.fecha = fecha;
+      }
       this._userService.updateUser(this.user).subscribe(
         response => {
 
@@ -142,8 +147,10 @@ export class UserEditComponent implements OnInit{
     }
 
     convertDate(d:string){
+      console.log(d);
       var parts = d.split(" ");
       var months = {Jan: "01",Feb: "02",Mar: "03",Apr: "04",May: "05",Jun: "06",Jul: "07",Aug: "08",Sep: "09",Oct: "10",Nov: "11",Dec: "12"};
+      console.log(parts);
       return parts[3]+"-"+months[parts[1]]+"-"+parts[2];
      }
 
