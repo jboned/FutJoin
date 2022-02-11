@@ -58,7 +58,6 @@
 </details>
 
 
-
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 This end-of-degree project introduces a web application which allows to schedule your own amateur football games, booking from a variety of football pitches across sporting centers in Malaga. The development of the app is characterised by the homogeneity of JavaScript, given expression in the MEAN stack, which is formed by technologies Mongo DB, Angular, Node.js and Express. This way, application users would be able to check for the schedule availability of the fields at all times and, through a neat and simple graphic interface, interact with each other to organise games and invite new players. Each user will enjoy of a profile in which his personal details are listed (name, email, date of birth), as well as his footballing details (stronger foot, position of play or height) that can be seen by other users. 
@@ -75,9 +74,9 @@ Furthermore, the sport centers that cooperate with the app will offer a list of 
 * [Angular](https://angular.io/)
 * [Express](https://expressjs.com)
 * [MongoDB](https://www.mongodb.com)
-* [Angular Material](https://material.angular.io/)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
+
 
 <!-- GETTING STARTED -->
 ## Getting Started
@@ -218,7 +217,6 @@ Project Link: [https://github.com/jboned/FutJoin](https://github.com/jboned/FutJ
 * [Bcrypt for hashing passwords](https://www.npmjs.com/package/bcrypt)
 * [Img Shields](https://shields.io)
 * [GitHub Pages](https://pages.github.com)
-* [Font Awesome](https://fontawesome.com)
 * [JSON Web Tokens](https://jwt.io/)
 * [MagicDraw for Modelling Software](https://www.3ds.com/products-services/catia/products/no-magic/solutions/software-engineering/)
 
