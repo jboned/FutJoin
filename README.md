@@ -173,7 +173,6 @@ Each football field has a personalised schedule with the free hours and app user
     - [x] Invite other players (users)
     - [x] Join to private match (with invitation)
     - [x] Change private match to public.
-    - [x] 
 
 See the [open issues](https://github.com/jboned/FutJoin/issues) for a full list of proposed features (and known issues).
 
@@ -195,15 +194,12 @@ Don't forget to give the project a star! Thanks again!
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
-
-
 <!-- LICENSE -->
 ## License
 
 Distributed under the MIT License. See `LICENSE.txt` for more information.
 
 <p align="right">(<a href="#top">back to top</a>)</p>
-
 
 
 <!-- CONTACT -->
@@ -216,13 +212,15 @@ Project Link: [https://github.com/jboned/FutJoin](https://github.com/jboned/FutJ
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 
-
 <!-- ACKNOWLEDGMENTS -->
 ## Acknowledgments
 
-* []()
-* []()
-* []()
+* [Bcrypt for hashing passwords](https://www.npmjs.com/package/bcrypt)
+* [Img Shields](https://shields.io)
+* [GitHub Pages](https://pages.github.com)
+* [Font Awesome](https://fontawesome.com)
+* [JSON Web Tokens](https://jwt.io/)
+* [MagicDraw for Modelling Software](https://www.3ds.com/products-services/catia/products/no-magic/solutions/software-engineering/)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
