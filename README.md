@@ -1,9 +1,3 @@
-# FutJoin
-FutJoin is my end-of-degree project for The University of Malaga and introduces a web application which allows to schedule your own amateur football games, booking from a variety of football pitches across sporting centers in Malaga
-
-The development of the app is characterised by the homogeneity of  JavaScript, given expression in the MEAN stack, which is formed by technologies  Mongo DB, Angular, Node.js and Express.
-
-<a><img src="https://www.sevenmentor.com/wp-content/uploads/2019/12/blog-1-11-dec-980x552-1.jpg"border="0"></a>
 <div id="top"></div>
 <!--
 *** Thanks for checking out the Best-README-Template. If you have a suggestion
@@ -14,26 +8,43 @@ The development of the app is characterised by the homogeneity of  JavaScript, g
 -->
 
 
+
+<!-- PROJECT SHIELDS -->
+<!--
+*** I'm using markdown "reference style" links for readability.
+*** Reference links are enclosed in brackets [ ] instead of parentheses ( ).
+*** See the bottom of this document for the declaration of the reference variables
+*** for contributors-url, forks-url, etc. This is an optional, concise syntax you may use.
+*** https://www.markdownguide.org/basic-syntax/#reference-style-links
+-->
+[![Contributors][contributors-shield]][contributors-url]
+[![Forks][forks-shield]][forks-url]
+[![Stargazers][stars-shield]][stars-url]
+[![Issues][issues-shield]][issues-url]
+[![MIT License][license-shield]][license-url]
+[![LinkedIn][linkedin-shield]][linkedin-url]
+
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
   <a href="https://github.com/jboned/FutJoin">
-    <img src="images/logo.png" alt="Logo" width="80" height="80">
+    <img src="images/Logo.png" alt="Logo" width="300" height="300">
   </a>
 
-<h3 align="center">project_title</h3>
+<h3 align="center">FutJoin</h3>
 
   <p align="center">
-    project_description
+    FutJoin is my end-of-degree project for The University of Malaga and introduces a web application which allows to schedule your own amateur football games, booking from a variety of football pitches across sporting centers in Malaga. 
+   
     <br />
-    <a href="https://github.com/github_username/repo_name"><strong>Explore the docs »</strong></a>
+    <a href="https://github.com/jboned/FutJoin"><strong>Explore the docs »</strong></a>
     <br />
     <br />
-    <a href="https://github.com/github_username/repo_name">View Demo</a>
+    <a href="https://github.com/jboned/FutJoin">View Demo</a>
     ·
-    <a href="https://github.com/github_username/repo_name/issues">Report Bug</a>
+    <a href="https://github.com/jboned/FutJoin/issues">Report Bug</a>
     ·
-    <a href="https://github.com/github_username/repo_name/issues">Request Feature</a>
+    <a href="https://github.com/jboned/FutJoin/issues">Request Feature</a>
   </p>
 </div>
 
@@ -69,59 +80,63 @@ The development of the app is characterised by the homogeneity of  JavaScript, g
 
 <!-- ABOUT THE PROJECT -->
 ## About The Project
+This end-of-degree project introduces a web application which allows to schedule your own amateur football games, booking from a variety of football pitches across sporting centers in Malaga. The development of the app is characterised by the homogeneity of JavaScript, given expression in the MEAN stack, which is formed by technologies Mongo DB, Angular, Node.js and Express. This way, application users would be able to check for the schedule availability of the fields at all times and, through a neat and simple graphic interface, interact with each other to organise games and invite new players. Each user will enjoy of a profile in which his personal details are listed (name, email, date of birth), as well as his footballing details (stronger foot, position of play or height) that can be seen by other users. 
 
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
+![Product Name Screen Shot][product-screenshot]
 
-Here's a blank template to get started: To avoid retyping too much info. Do a search and replace with your text editor for the following: `github_username`, `repo_name`, `twitter_handle`, `linkedin_username`, `email`, `email_client`, `project_title`, `project_description`
+Furthermore, the sport centers that cooperate with the app will offer a list of all the  available pitches, along with their characteristics and timetables.
 
 <p align="right">(<a href="#top">back to top</a>)</p>
-
-
 
 ### Built With
 
-* [Next.js](https://nextjs.org/)
-* [React.js](https://reactjs.org/)
-* [Vue.js](https://vuejs.org/)
+* [Node.js](https://nodejs.org/)
 * [Angular](https://angular.io/)
-* [Svelte](https://svelte.dev/)
-* [Laravel](https://laravel.com)
-* [Bootstrap](https://getbootstrap.com)
-* [JQuery](https://jquery.com)
+* [Express](https://expressjs.com)
+* [MongoDB](https://www.mongodb.com)
+* [Angular Material](https://material.angular.io/)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
-
-
 
 <!-- GETTING STARTED -->
 ## Getting Started
 
-This is an example of how you may give instructions on setting up your project locally.
-To get a local copy up and running follow these simple example steps.
-
 ### Prerequisites
-
-This is an example of how to list things you need to use the software and how to install them.
+* PC with operating system: macOS, Linux or Windows.
+* MongoDB (https://docs.mongodb.com/manual/installation/)
+* NodeJS (https://nodejs.org/es/download/)
 * npm
   ```sh
   npm install npm@latest -g
   ```
+* Angular 
+  ```sh
+  npm install -g @angular/cli
+  ```
 
 ### Installation
 
-1. Get a free API Key at [https://example.com](https://example.com)
-2. Clone the repo
+1. Clone the repo
    ```sh
-   git clone https://github.com/github_username/repo_name.git
+   git clone https://github.com/jboned/FutJoin.git
    ```
-3. Install NPM packages
+2. In the 'Backend' folder, install NPM packages:
    ```sh
    npm install
    ```
-4. Enter your API in `config.js`
-   ```js
-   const API_KEY = 'ENTER YOUR API';
+3. Start the Node JS Backend application:
+    ```sh
+   npm start
    ```
+4. In the 'Frontend' folder, install NPM packages:
+   ```sh
+   npm install
+   ```
+5. Start the Angular Frontend application:
+    ```sh
+   npm init
+   ```
+IMPORTANT: For the correct functioning of the client, once the command has been executed, copy and paste the "ngx-carousel-3d" folder into the "node_modules" folder created in the "Frontend" folder
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -130,23 +145,41 @@ This is an example of how to list things you need to use the software and how to
 <!-- USAGE EXAMPLES -->
 ## Usage
 
-Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
+#Login
+On the login screen you will find the application's logo and the login form, along with the options to register in the application and to contact the  the login form, along with the options to register in the application and to contact the application in case the user is a sports center.
 
-_For more examples, please refer to the [Documentation](https://example.com)_
+![Product Name Screen Shot][login-screenshot]
+
+#Home
+On the login screen you will find the application's logo and the login form, along with the options to register in the application and to contact the  the login form, along with the options to register in the application and to contact the application in case the user is a sports center.
+
+![Product Name Screen Shot][home-screenshot]
+
+#Sports centers
+This menu will show the different sports complexes that collaborate with the application and that the user can access to organize a soccer match. Each sports center will have different football fields available for reservation.
+
+![Product Name Screen Shot][sports-center-screenshot]
+
+#Matches
+Each football field has a personalised schedule with the free hours and app users can book the pitch and invite other app users. Users can choose whether they want to have a private match or free registration.
+
+![Product Name Screen Shot][match-screenshot]
+
+
 
 <p align="right">(<a href="#top">back to top</a>)</p>
-
 
 
 <!-- ROADMAP -->
 ## Roadmap
 
-- [ ] Feature 1
-- [ ] Feature 2
-- [ ] Feature 3
+- [ ] Users management
+- [ ] Sports center 
+- [ ] Sports center football fields
     - [ ] Nested Feature
+- [ ] The matches
 
-See the [open issues](https://github.com/github_username/repo_name/issues) for a full list of proposed features (and known issues).
+See the [open issues](https://github.com/jboned/FutJoin/issues) for a full list of proposed features (and known issues).
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -182,9 +215,9 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 <!-- CONTACT -->
 ## Contact
 
-Your Name - [@twitter_handle](https://twitter.com/twitter_handle) - email@email_client.com
+Javier Boned López - [![LinkedIn][linkedin-shield]][linkedin-url]
 
-Project Link: [https://github.com/github_username/repo_name](https://github.com/github_username/repo_name)
+Project Link: [https://github.com/jboned/FutJoin](https://github.com/jboned/FutJoin)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -203,16 +236,20 @@ Project Link: [https://github.com/github_username/repo_name](https://github.com/
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
-[contributors-shield]: https://img.shields.io/github/contributors/github_username/repo_name.svg?style=for-the-badge
-[contributors-url]: https://github.com/github_username/repo_name/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/github_username/repo_name.svg?style=for-the-badge
-[forks-url]: https://github.com/github_username/repo_name/network/members
-[stars-shield]: https://img.shields.io/github/stars/github_username/repo_name.svg?style=for-the-badge
-[stars-url]: https://github.com/github_username/repo_name/stargazers
-[issues-shield]: https://img.shields.io/github/issues/github_username/repo_name.svg?style=for-the-badge
-[issues-url]: https://github.com/github_username/repo_name/issues
-[license-shield]: https://img.shields.io/github/license/github_username/repo_name.svg?style=for-the-badge
-[license-url]: https://github.com/github_username/repo_name/blob/master/LICENSE.txt
+[contributors-shield]: https://img.shields.io/github/contributors/jboned/FutJoin.svg?style=for-the-badge
+[contributors-url]: https://github.com/jboned/FutJoin/graphs/contributors
+[forks-shield]: https://img.shields.io/github/forks/jboned/FutJoin.svg?style=for-the-badge
+[forks-url]: https://github.com/jboned/FutJoin/network/members
+[stars-shield]: https://img.shields.io/github/stars/jboned/FutJoin.svg?style=for-the-badge
+[stars-url]: https://github.com/jboned/FutJoin/stargazers
+[issues-shield]: https://img.shields.io/github/issues/jboned/FutJoin.svg?style=for-the-badge
+[issues-url]: https://github.com/jboned/FutJoin/issues
+[license-shield]: https://img.shields.io/github/license/jboned/FutJoin.svg?style=for-the-badge
+[license-url]: https://github.com/jboned/FutJoin/blob/master/LICENSE.txt
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
-[linkedin-url]: https://linkedin.com/in/linkedin_username
-[product-screenshot]: images/screenshot.png
+[linkedin-url]: https://linkedin.com/in/javier-boned-lopez/
+[product-screenshot]: images/app.png
+[home-screenshot]: images/home.png
+[sports-center-screenshot]: images/sports-center.png
+[login-screenshot]: images/login.png
+[match-screenshot]: images/match.png
