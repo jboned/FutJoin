@@ -240,6 +240,6 @@ Project Link: [https://github.com/jboned/FutJoin](https://github.com/jboned/FutJ
 [linkedin-url]: https://linkedin.com/in/javier-boned-lopez/
 [product-screenshot]: images/app.png
 [home-screenshot]: images/home.png
-[sports-center-screenshot]: images/sports-center.png
+[sports-center-screenshot]: images/sports_center.png
 [login-screenshot]: images/login.png
 [match-screenshot]: images/match.png
