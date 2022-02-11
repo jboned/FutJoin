@@ -125,22 +125,22 @@ IMPORTANT: For the correct functioning of the client, once the command has been 
 <!-- USAGE EXAMPLES -->
 ## Usage
 
-#Login
+# Login
 On the login screen you will find the application's logo and the login form, along with the options to register in the application and to contact the  the login form, along with the options to register in the application and to contact the application in case the user is a sports center.
 
 ![Product Name Screen Shot][login-screenshot]
 
-#Home
+# Home
 On the login screen you will find the application's logo and the login form, along with the options to register in the application and to contact the  the login form, along with the options to register in the application and to contact the application in case the user is a sports center.
 
 ![Product Name Screen Shot][home-screenshot]
 
-#Sports centers
+# Sports centers
 This menu will show the different sports complexes that collaborate with the application and that the user can access to organize a soccer match. Each sports center will have different football fields available for reservation.
 
 ![Product Name Screen Shot][sports-center-screenshot]
 
-#Matches
+# Matches
 Each football field has a personalised schedule with the free hours and app users can book the pitch and invite other app users. Users can choose whether they want to have a private match or free registration.
 
 ![Product Name Screen Shot][match-screenshot]
