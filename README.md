@@ -1,22 +1,6 @@
 <div id="top"></div>
-<!--
-*** Thanks for checking out the Best-README-Template. If you have a suggestion
-*** that would make this better, please fork the repo and create a pull request
-*** or simply open an issue with the tag "enhancement".
-*** Don't forget to give the project a star!
-*** Thanks again! Now go create something AMAZING! :D
--->
-
-
 
 <!-- PROJECT SHIELDS -->
-<!--
-*** I'm using markdown "reference style" links for readability.
-*** Reference links are enclosed in brackets [ ] instead of parentheses ( ).
-*** See the bottom of this document for the declaration of the reference variables
-*** for contributors-url, forks-url, etc. This is an optional, concise syntax you may use.
-*** https://www.markdownguide.org/basic-syntax/#reference-style-links
--->
 [![Contributors][contributors-shield]][contributors-url]
 [![Forks][forks-shield]][forks-url]
 [![Stargazers][stars-shield]][stars-url]
@@ -35,7 +19,6 @@
 
   <p align="center">
     FutJoin is my end-of-degree project for The University of Malaga and introduces a web application which allows to schedule your own amateur football games, booking from a variety of football pitches across sporting centers in Malaga. 
-   
     <br />
     <a href="https://github.com/jboned/FutJoin"><strong>Explore the docs »</strong></a>
     <br />
@@ -47,8 +30,6 @@
     <a href="https://github.com/jboned/FutJoin/issues">Request Feature</a>
   </p>
 </div>
-
-
 
 <!-- TABLE OF CONTENTS -->
 <details>
@@ -173,17 +154,30 @@ Each football field has a personalised schedule with the free hours and app user
 <!-- ROADMAP -->
 ## Roadmap
 
-- [ ] Users management
-- [ ] Sports center 
-- [ ] Sports center football fields
-    - [ ] Nested Feature
-- [ ] The matches
+- [x] Users
+    - [x] Login/Logout
+    - [x] Register
+    - [x] Profile
+    - [x] Hashing passwords
+- [x] Sports center 
+    - [x] Create new sport center in the app.
+    - [x] Delete an existent sport center
+    - [x] Carousel with sport centers. (for users)
+- [x] Fotball fields
+    - [x] Create/Delete/Update fields (for Sports centers)
+    - [x] List of Fields of Sport Center (for users)
+    - [x] Custom schedule for each Sport Center
+- [x] Matches
+    - [x] Create/Delete public/private Match
+    - [x] Join to public match
+    - [x] Invite other players (users)
+    - [x] Join to private match (with invitation)
+    - [x] Change private match to public.
+    - [x] 
 
 See the [open issues](https://github.com/jboned/FutJoin/issues) for a full list of proposed features (and known issues).
 
 <p align="right">(<a href="#top">back to top</a>)</p>
-
-
 
 <!-- CONTRIBUTING -->
 ## Contributing
