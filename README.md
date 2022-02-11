@@ -237,7 +237,7 @@ Project Link: [https://github.com/jboned/FutJoin](https://github.com/jboned/FutJ
 [issues-shield]: https://img.shields.io/github/issues/jboned/FutJoin.svg?style=for-the-badge
 [issues-url]: https://github.com/jboned/FutJoin/issues
 [license-shield]: https://img.shields.io/github/license/jboned/FutJoin.svg?style=for-the-badge
-[license-url]: https://github.com/jboned/FutJoin/blob/master/LICENSE.txt
+[license-url]: https://github.com/jboned/FutJoin/LICENSE.txt
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://linkedin.com/in/javier-boned-lopez/
 [product-screenshot]: images/app.png
